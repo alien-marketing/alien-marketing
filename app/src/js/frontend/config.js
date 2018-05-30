@@ -10,6 +10,7 @@ requirejs.config({
         localforage: 'libs/localforage',
         moment: 'libs/moment.min',
         messenger: 'libs/messenger',
+        particle: 'libs/particle',
         progress: 'libs/progressbar.min',
         signature: 'libs/signature.min',
         youtube: 'libs/youtube',
