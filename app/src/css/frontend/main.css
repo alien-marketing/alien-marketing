@@ -23,10 +23,11 @@
 */
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css');
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
-/* @import url('libs/messenger.css'); */
+@import url('libs/datetimepicker.css');
+@import url('libs/bootstrap.min.css');
+/*@import url('libs/messenger.css');*/
 
 /* Start ~ Browser Defaults */
 
@@ -217,8 +218,16 @@
 	    z-index: 1;
 	}
 
+	.alm-angled-section:last-child {
+		padding-bottom: 0px;
+	}
+
 	.alm-section-services {
 		background: linear-gradient(-45deg, #F44336, #685ec5) !important;
+	}
+
+	.alm-section-contact {
+		background: linear-gradient(-35deg, rgb(245, 131, 66), rgb(247, 183, 51)) !important;
 	}
 
 	.alm-angled-section-wrapper {
@@ -739,6 +748,7 @@
 
 	.alm-header-logo {
 		width: 55px;
+		position: relative;
 	}
 
 	.alm-header-logo img {
@@ -746,8 +756,23 @@
 	}
 
 	.alm-header-logo-container {
-		width: 54px;
-		height: 55px;
+	    width: 54px;
+	    height: 55px;
+	    background: #000;
+	    position: relative;
+	    z-index: 1;
+	}
+
+	.alm-header-logo-text {
+	    position: absolute;
+	    width: 175px;
+	    height: 55px;
+	    top: 0px;
+	    left: -180px;
+	}
+
+	.alm-header.active .alm-header-logo-text {
+		left: 60px;
 	}
 
 	.alm-header-logo-container,
@@ -1015,12 +1040,26 @@
 		    box-shadow: 0px 0px 10px rgba(20,20,20,0.2);
 		}
 
+		.alm-hero-contact-form-section.active {
+			display: block;
+		}
+
+		.alm-hero-contact-form-section {
+			display: none;
+		}
+
 		.alm-hero-contact-text {
 		    margin: 30px 0px;
 		    text-align: center;
 		    font-size: 30px;
 		    font-weight: 300;
 		    line-height: 40px;
+		}
+
+		.alm-hero-contact-text span {
+		    font-weight: 800;
+		    text-transform: uppercase;
+		    letter-spacing: 1px;
 		}
 
 		.alm-hero-contact-item {
@@ -1050,6 +1089,18 @@
 		.alm-hero-contact-btn {
 		    height: 46px;
 		    background: #0eb486;
+		    background: #8f57a0;
+		    color: #fff;
+		    font-weight: 600;
+		    text-transform: capitalize;
+		}
+
+		.alm-homepage-contact-btn {
+		    height: 46px;
+		    background: #725cbb;
+		    background: #bd4e71;
+		    background: #d34959;
+		    background: #18bcaa;
 		    color: #fff;
 		    font-weight: 600;
 		    text-transform: capitalize;
@@ -1094,6 +1145,49 @@
 		    /*background: #685ec5;*/
 		    /*background: #9c5596;*/
 		    background: #f4a236;
+		    color: #fff;
+		    font-size: 14px;
+		    text-transform: capitalize;
+		    font-weight: 600;
+		    cursor: pointer;
+		}
+
+		.alm-stories-card {
+		    margin: 5px;
+		    background: #fff;
+		    box-shadow: 0px 0px 10px rgba(20,20,20,0.2);
+		}
+
+		.alm-stories-card-image-container {
+			padding: 20px;
+		}
+
+		.alm-stories-card-image {
+		    height: 180px;
+		}
+
+		.alm-stories-card-content {
+			padding: 15px;
+		}
+
+		.alm-stories-card-title {
+			font-weight: 600;
+		    font-size: 20px;
+		    text-align: center;
+		    text-transform: capitalize;
+		    margin-bottom: 15px;
+		}
+
+		.alm-stories-card-text {
+		    font-weight: 300;
+		    line-height: 24px;
+		    font-size: 14px;
+		    margin-bottom: 15px;
+		}
+
+		.alm-stories-card-btn {
+		    height: 40px;
+		    background: #c24d6c;
 		    color: #fff;
 		    font-size: 14px;
 		    text-transform: capitalize;

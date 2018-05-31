@@ -81,6 +81,9 @@ class App {
 										<img src="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/logo3.png">
 									</div>
 								</div>
+								<div class="alm-header-logo-text alm-wrapper alm-25">
+									<img src="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/AM-logo-text-white.png" width="100px">
+								</div>
 							</a>
 						</div>
 						<div class="alm-header-menu alm-wrapper"></div>
@@ -103,7 +106,7 @@ class App {
 		list = [
 			{'title':'about','path':'about'},
 			{'title':'services','path':'services'},
-			{'title':'portfolio','path':'portfolio'},
+			{'title':'pricing','path':'pricing'},
 			{'title':'blog','path':'blog'},
 			{'title':'contact','path':'contact'}
 		];
@@ -343,7 +346,9 @@ class App {
 							</div>
 						</div>
 						<div class="alm-footer-copyright">
-							<div class="alm-wrapper">[ alien.marketing ]</div>
+							<div class="alm-wrapper">
+								<img src="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/AM-logo-text-white.png" width="150px">
+							</div>
 						</div>
 					</div>
 					<!-- End ~ Footer -->`;

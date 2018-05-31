@@ -5,10 +5,12 @@ requirejs.config({
         jQuery: 'libs/jquery.min',
         angular: 'libs/angular.min',
         aws: 'libs/aws-sdk.min',
+        bootstrap: 'libs/bootstrap.min',
         charts: 'libs/charts.min',
         cropper: 'libs/cropper.min',
         localforage: 'libs/localforage',
         moment: 'libs/moment.min',
+        datetimepicker: 'libs/datetimepicker',
         messenger: 'libs/messenger',
         particle: 'libs/particle',
         progress: 'libs/progressbar.min',
@@ -29,11 +31,15 @@ requirejs.config({
         // pages
         about: 'controller/pages/about',
         blog: 'controller/pages/blog',
+        contact: 'controller/pages/contact',
         dashboard: 'controller/pages/dashboard',
         home: 'controller/pages/home',
         page: 'controller/pages/page',
         post: 'controller/pages/post',
         register: 'controller/pages/register',
         team: 'controller/pages/team',
+    },
+    shim: {
+        'bootstrap': ['jQuery'],
     }
 });
