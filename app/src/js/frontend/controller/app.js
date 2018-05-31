@@ -78,7 +78,7 @@ class App {
 							<a href="home.html">
 								<div class="alm-header-logo-container alm-wrapper">
 									<div class="alm-logo alm-wrapper">
-										<img src="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/logo2.png">
+										<img src="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/logo3.png">
 									</div>
 								</div>
 							</a>

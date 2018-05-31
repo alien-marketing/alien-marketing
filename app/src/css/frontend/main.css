@@ -24,7 +24,7 @@
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-/*@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900');*/
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
 /* @import url('libs/messenger.css'); */
 
@@ -40,8 +40,8 @@
 	    left: 0px;
 	}
 
-	* {
-	    font-family: 'Roboto';
+	body:not(.alm-page) {
+		font-family: 'Lato';
 	}
 
 	a {
@@ -147,13 +147,13 @@
 	}
 
 	.alm-content {
-	    font-family: 'Lato';
 	    -webkit-font-smoothing: antialiased;
 	    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 	}
 
 	.alm-page {
 		padding-top: 90px;
+		font-family: 'Roboto' !important;
 	}
 
 	.alm-page-data {
@@ -173,19 +173,13 @@
 	}
 
 	.alm-angled-section:nth-child(odd) {
-		/*background: linear-gradient(-35deg, rgb(201, 75, 75), rgb(247, 183, 51));*/
-		/*background: linear-gradient(45deg, #37c0b1, #37c06d);*/
-		/*background: linear-gradient(215deg, #333333, #000000);*/
-		/*background: linear-gradient(-35deg, rgb(0, 121, 145), rgb(120, 255, 214));*/
-		/*background: linear-gradient(to right, rgb(54, 191, 176), rgb(41, 99, 109));*/
-		/*background: linear-gradient(-35deg, #0947db, #07d89d);*/
 		background: linear-gradient(-45deg, #00ac53, #23c3e0);
+		padding-bottom: 180px;
 	}
 
 	.alm-angled-section {
-		/*min-height: 50vh;*/
 		position: relative;
-		padding: 100px 0px 150px;
+		padding: 100px 0px 0px;
 	}
 
 	.alm-section-title {
@@ -199,22 +193,42 @@
 		display: none;
 	}
 
-	.alm-angled-section:before {
+	.alm-angled-section:nth-child(even):before {
 	    content: '';
 	    background: inherit;
 	    position: absolute;
 	    width: 125vw;
-	    height: 300px;
-	    top: -125px;
+	    height: 200px;
+	    top: -100px;
 	    left: -10%;
 	    transform: rotate(-5deg);
 	    z-index: 1;
 	}
 
+	.alm-angled-section:nth-child(even):after {
+	    content: '';
+	    background: inherit;
+	    position: absolute;
+	    width: 125vw;
+	    height: 200px;
+	    bottom: -100px;
+	    left: -10%;
+	    transform: rotate(-5deg);
+	    z-index: 1;
+	}
+
+	.alm-section-services {
+		background: linear-gradient(-45deg, #F44336, #685ec5) !important;
+	}
+
 	.alm-angled-section-wrapper {
-		position: relative;
+	    position: relative;
 	    top: -7.5vh;
 	    z-index: 2;
+	}
+
+	.alm-angled-section:nth-child(odd) .alm-angled-section-wrapper {
+		margin-top: 200px;
 	}
 
 	.alm-page-cover.active {
@@ -568,6 +582,10 @@
 	    font-size: 24px;
 	    line-height: 38px;
 	    margin-bottom: 15px;
+	}
+
+	.alm-page-text span {
+	    font-weight: 400;
 	}
 
 	.alm-page-video-container {
@@ -1039,8 +1057,47 @@
 
 		.alm-services-card {
 		    margin: 5px;
-		    padding: 10px;
 		    background: #fff;
+		    box-shadow: 0px 0px 10px rgba(20,20,20,0.2);
+		}
+
+		.alm-services-card-image-container {
+			padding: 20px;
+		}
+
+		.alm-services-card-image {
+		    height: 180px;
+		}
+
+		.alm-services-card-content {
+			padding: 15px;
+		}
+
+		.alm-services-card-title {
+			font-weight: 600;
+		    font-size: 20px;
+		    text-align: center;
+		    text-transform: capitalize;
+		    margin-bottom: 15px;
+		}
+
+		.alm-services-card-text {
+		    font-weight: 300;
+		    line-height: 24px;
+		    font-size: 14px;
+		    margin-bottom: 15px;
+		}
+
+		.alm-services-card-btn {
+		    height: 40px;
+		    /*background: #0eb486;*/
+		    /*background: #685ec5;*/
+		    background: #9c5596;
+		    color: #fff;
+		    font-size: 14px;
+		    text-transform: capitalize;
+		    font-weight: 600;
+		    cursor: pointer;
 		}
 
 	/* End ~ Content - Homepage */
