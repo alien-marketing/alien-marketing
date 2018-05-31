@@ -585,7 +585,7 @@
 	}
 
 	.alm-page-text span {
-	    font-weight: 400;
+	    font-weight: 500;
 	}
 
 	.alm-page-video-container {
@@ -1092,7 +1092,8 @@
 		    height: 40px;
 		    /*background: #0eb486;*/
 		    /*background: #685ec5;*/
-		    background: #9c5596;
+		    /*background: #9c5596;*/
+		    background: #f4a236;
 		    color: #fff;
 		    font-size: 14px;
 		    text-transform: capitalize;

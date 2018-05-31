@@ -16,7 +16,7 @@ class Home {
 	sections() {
 		let container, content, sections;
 		container = jQuery('.alm-angled-sections');
-		sections = ['hero','about','services','portfolio','contact'];
+		sections = ['hero','about','services','pricing','contact'];
 	    for (var i = 0; i < sections.length; i++) {
 	    	content = 	`<div class="alm-section alm-angled-section alm-section-`+sections[i]+`"></div>`;
 	    	container.append(content);
@@ -24,7 +24,7 @@ class Home {
 	    this.hero();
 	    this.about();
 	    this.services();
-	    this.portfolio();
+	    this.pricing();
 	    this.contact();
 	}
 
@@ -101,7 +101,7 @@ class Home {
 							<div class="alm-xs-100 alm-sm-70">
 								<div class="alm-page-content">
 									<div class="alm-page-text">
-										A marketer, a designer and a developer walk into a Starbucks... what walked out what something bigger than any of us could have imagined. Through our common love for <span>coffee + creativity</span>, we discovered that despite having corporate experience - we were each missing something in our careers and lives: using our powers for good. In other word, <span>helping businesses truly grow.</span> For us, there's nothing greater than helping a local business or entrepreneur grow to see their dreams come true. You have the idea, we're just here to make sure its as successful as you want it to be.
+										A marketer, a designer and a developer walk into a Starbucks... what walked out what something bigger than any of us could have imagined. Through our common love for <span style="color: #18bbaa">coffee + creativity</span>, we discovered that despite having corporate experience - we were each missing something in our careers and lives: using our powers for good. In other word, <span style="color: #bd4e71">helping businesses truly grow.</span> For us, there's nothing greater than helping a local business or entrepreneur grow to see their dreams come true. You have the idea, we're just here to make sure its as successful as you want it to be.
 									</div>
 								</div>
 							</div>
@@ -228,21 +228,122 @@ class Home {
 		});
 	}
 
-	portfolio() {
+	pricing() {
 		let container, content;
-		container = jQuery('.alm-section-portfolio');
+		container = jQuery('.alm-section-pricing');
 		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
-							<div class="alm-xs-100 alm-sm-75">
+							<div class="alm-xs-100 alm-sm-25">
 								<div class="alm-page-content">
-									<div class="alm-page-text">
-										text
+									<div class="alm-page-title">
+										Our Stories
+									</div>
+								</div>
+							</div>
+							<div class="alm-xs-100 alm-sm-75">
+								<div class="alm-services-carousel owl-carousel owl-theme">
+									<div class="item">
+										<div class="alm-services-card alm-15">
+											<div class="alm-services-card-image-container">
+												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-2-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
+											</div>
+											<div class="alm-services-card-content">
+												<div class="alm-services-card-title">Social Media Management</div>
+												<div class="alm-services-card-text">
+													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												</div>
+												<div class="alm-services-card-btn alm-wrapper">learn more</div>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="alm-services-card alm-15">
+											<div class="alm-services-card-image-container">
+												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-5-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
+											</div>
+											<div class="alm-services-card-content">
+												<div class="alm-services-card-title">SEO & SEM</div>
+												<div class="alm-services-card-text">
+													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												</div>
+												<div class="alm-services-card-btn alm-wrapper">learn more</div>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="alm-services-card alm-15">
+											<div class="alm-services-card-image-container">
+												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-8-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
+											</div>
+											<div class="alm-services-card-content">
+												<div class="alm-services-card-title">Web Design & Development</div>
+												<div class="alm-services-card-text">
+													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												</div>
+												<div class="alm-services-card-btn alm-wrapper">learn more</div>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="alm-services-card alm-15">
+											<div class="alm-services-card-image-container">
+												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-19-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
+											</div>
+											<div class="alm-services-card-content">
+												<div class="alm-services-card-title">Reporting & Analytics</div>
+												<div class="alm-services-card-text">
+													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												</div>
+												<div class="alm-services-card-btn alm-wrapper">learn more</div>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="alm-services-card alm-15">
+											<div class="alm-services-card-image-container">
+												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-1-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
+											</div>
+											<div class="alm-services-card-content">
+												<div class="alm-services-card-title">Social Listening</div>
+												<div class="alm-services-card-text">
+													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												</div>
+												<div class="alm-services-card-btn alm-wrapper">learn more</div>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="alm-services-card alm-15">
+											<div class="alm-services-card-image-container">
+												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-9-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
+											</div>
+											<div class="alm-services-card-content">
+												<div class="alm-services-card-title">Email & SMS Marketing</div>
+												<div class="alm-services-card-text">
+													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												</div>
+												<div class="alm-services-card-btn alm-wrapper">learn more</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>`;
 		container.append(content);
+		jQuery('.alm-services-carousel').owlCarousel({
+		    loop: true,
+		    margin: 0,
+		    nav: false,
+			autoplay: true,
+			autoplayTimeout: 3000,
+			autoplayHoverPause: true,
+		    responsive:{
+		        0:{ items:1 },
+		        600:{ items:2 },
+		        1000:{ items:3 }
+		    }
+		});
 	}
 
 	contact() {
