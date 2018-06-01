@@ -8,7 +8,7 @@ class Home {
 	template() {
 		let container, content;
 		container = this.container;
-		content = '<div class="alm-angled-sections"></div>'
+		content = '<div class="alm-angled-sections"></div>';
 		container.html(content);
 		this.sections();
 	}
@@ -16,14 +16,14 @@ class Home {
 	sections() {
 		let container, content, sections;
 		container = jQuery('.alm-angled-sections');
-		sections = ['hero','about','services','blog','contact'];
+		sections = ['hero','services','about','blog','contact'];
 	    for (var i = 0; i < sections.length; i++) {
 	    	content = 	`<div class="alm-section alm-angled-section alm-section-`+sections[i]+`"></div>`;
 	    	container.append(content);
 	    }
 	    this.hero();
-	    this.about();
 	    this.services();
+	    this.about();
 	    this.blog();
 	    this.contact();
 	}
@@ -32,7 +32,7 @@ class Home {
 		let container, content, today, api = new API();
 		container = jQuery('.alm-section-hero');
 		content = 	`<div class="alm-hero-particle-js" id="particles-js"></div>
-					<div class="alm-angled-section-wrapper alm-container" style="margin-top: 50px;">
+					<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
 							<div class="alm-xs-100 alm-sm-50">
 								<div class="alm-page-content">
@@ -149,7 +149,8 @@ class Home {
 	about() {
 		let container, content;
 		container = jQuery('.alm-section-about');
-		content = 	`<div class="alm-angled-section-wrapper alm-container">
+		content = 	`<div class="alm-hero-particle-js" id="alm-about-particles-js"></div>
+					<div class="alm-angled-section-wrapper alm-container" style="color: #fff;">
 						<div class="alm-wrapper">
 							<div class="alm-xs-100 alm-sm-30">
 								<div class="alm-page-content">
@@ -161,20 +162,20 @@ class Home {
 							<div class="alm-xs-100 alm-sm-70">
 								<div class="alm-page-content">
 									<div class="alm-page-text">
-										A marketer, a designer and a developer walk into a Starbucks... what walked out what something bigger than any of us could have imagined. Through our common love for <span style="color: #18bbaa">coffee + creativity</span>, we discovered that despite having corporate experience - we were each missing something in our careers and lives: using our powers for good. In other word, <span style="color: #bd4e71">helping businesses truly grow.</span> For us, there's nothing greater than helping a local business or entrepreneur grow to see their dreams come true. You have the idea, we're just here to make sure its as successful as you want it to be.
+										Two marketers and a developer walk into a coffee shop... what walked out was something bigger than any of us could have imagined. Through our common love for <span>coffee + creativity</span>, we discovered that despite having corporate experience - we were each missing something in our careers and lives: using our powers for good. In other words, <span>helping businesses truly grow.</span> For us, there's nothing greater than helping a local business or entrepreneur grow to see their dreams come true. You have the idea, we're just here to make sure its as successful as you want it to be.
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>`;
 		container.append(content);
+		particlesJS("alm-about-particles-js", {"particles":{"number":{"value":175,"density":{"enable":true,"value_area":2164.606282168456}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#fff"},"polygon":{"nb_sides":6},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.49705773886831206,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#fff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"repulse"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
 	}
 
 	services() {
 		let container, content, obj;
 		container = jQuery('.alm-section-services');
-		content = 	`<div class="alm-hero-particle-js" id="alm-services-particles-js"></div>
-					<div class="alm-angled-section-wrapper alm-container">
+		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
 							<div class="alm-xs-100 alm-sm-75">
 								<div class="alm-services-carousel owl-carousel owl-theme">
@@ -266,7 +267,7 @@ class Home {
 							</div>
 							<div class="alm-xs-100 alm-sm-25">
 								<div class="alm-page-content">
-									<div class="alm-page-title" style="color: #fff; margin: 0px; margin-left: 80px;">
+									<div class="alm-page-title" style="margin: 0px; margin-left: 80px;">
 										Our services
 									</div>
 								</div>
@@ -277,7 +278,8 @@ class Home {
 		jQuery('.alm-services-carousel').owlCarousel({
 		    loop: true,
 		    margin: 0,
-		    nav: false,
+		    nav: true,
+		    dots: false,
 			autoplay: true,
 			autoplayTimeout: 3000,
 			autoplayHoverPause: true,
@@ -287,7 +289,6 @@ class Home {
 		        1000:{ items:3 }
 		    }
 		});
-		particlesJS("alm-services-particles-js", {"particles":{"number":{"value":175,"density":{"enable":true,"value_area":2164.606282168456}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#fff"},"polygon":{"nb_sides":6},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.49705773886831206,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#fff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"repulse"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
 	}
 
 	blog() {
@@ -295,13 +296,6 @@ class Home {
 		container = jQuery('.alm-section-blog');
 		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
-							<div class="alm-xs-100 alm-sm-25">
-								<div class="alm-page-content">
-									<div class="alm-page-title">
-										Our Stories
-									</div>
-								</div>
-							</div>
 							<div class="alm-xs-100 alm-sm-75">
 								<div class="alm-stories-carousel owl-carousel owl-theme">
 									<div class="item">
@@ -390,13 +384,21 @@ class Home {
 									</div>
 								</div>
 							</div>
+							<div class="alm-xs-100 alm-sm-25">
+								<div class="alm-page-content">
+									<div class="alm-page-title" style="margin: 0px; margin-left: 80px;">
+										Our Stories
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>`;
 		container.append(content);
 		jQuery('.alm-stories-carousel').owlCarousel({
 		    loop: true,
 		    margin: 0,
-		    nav: false,
+		    nav: true,
+		    dots: false,
 			autoplay: true,
 			autoplayTimeout: 3000,
 			autoplayHoverPause: true,
@@ -438,9 +440,9 @@ class Home {
 											</div>
 										</div>
 										<div class="alm-hero-contact-item">
-											<div class="alm-hero-contact-title">Website <span>(optional)</span></div>
+											<div class="alm-hero-contact-title">Message</div>
 											<div class="alm-hero-contact-input">
-												<input type="text" class="alm-hero-contact-value" placeholder="http://www.alien.marketing">
+												<textarea class="alm-hero-contact-value" placeholder="What's on your mind..."></textarea>
 											</div>
 										</div>
 										<div class="alm-homepage-contact-btn alm-wrapper">

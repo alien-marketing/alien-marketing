@@ -13,11 +13,11 @@
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['jQuery','app','home'],
+				requirejs(['jQuery','app','services'],
 				function () {
-					let app = new App(), home = new Home();
+					let app = new App(), services = new Services();
 					app.init();
-					home.init();
+					services.init();
 				});
 			});
 		</script>

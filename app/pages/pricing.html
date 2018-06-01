@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<!-- Main CSS -->
+		<link rel="stylesheet" type="text/css" href="../src/css/frontend/main.css">
+
+		<!-- RequireJS -->
+		<script src="../src/js/frontend/require.js"></script>
+
+	</head>
+	<body class="alm-app alm-25">
+
+		<script>
+			requirejs(['../src/js/frontend/config'],function(){
+				requirejs(['jQuery','app','pricing'],
+				function () {
+					let app = new App(), pricing = new Pricing();
+					app.init();
+					pricing.init();
+				});
+			});
+		</script>
+
+	</body>
+</html>

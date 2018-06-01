@@ -19,11 +19,11 @@ class App {
 					<meta charset="UTF-8">
 					<meta name="viewport" content="width=device-width, initial-scale=1">
 
-					<link rel="apple-touch-icon" sizes="180x180" href="https://s3-us-west-2.amazonaws.com/educoded/media/favicon/apple-touch-icon.png">
-					<link rel="icon" type="image/png" sizes="32x32" href="https://s3-us-west-2.amazonaws.com/educoded/media/favicon/favicon-32x32.png">
-					<link rel="icon" type="image/png" sizes="16x16" href="https://s3-us-west-2.amazonaws.com/educoded/media/favicon/favicon-16x16.png">
-					<link rel="manifest" href="https://s3-us-west-2.amazonaws.com/educoded/media/favicon/site.webmanifest">
-					<link rel="mask-icon" href="https://s3-us-west-2.amazonaws.com/educoded/media/favicon/safari-pinned-tab.svg" color="#5bbad5">
+					<link rel="apple-touch-icon" sizes="180x180" href="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/favicon/apple-touch-icon.png">
+					<link rel="icon" type="image/png" sizes="32x32" href="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/favicon/favicon-32x32.png">
+					<link rel="icon" type="image/png" sizes="16x16" href="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/favicon/favicon-16x16.png">
+					<link rel="manifest" href="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/favicon/site.webmanifest">
+					<link rel="mask-icon" href="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
 					<meta name="msapplication-TileColor" content="#da532c">
 					<meta name="theme-color" content="#ffffff">`;
 		container.prepend(content);
@@ -45,7 +45,9 @@ class App {
 		let container, content;
 		container = this.head;
 		content = 	`<div class="alm-header-top alm-wrapper">
-						<div class="alm-header-top-info alm-wrapper">info@alien.marketing</div>
+						<div class="alm-header-top-info alm-wrapper">
+							<a href="mailto:info@alien.marketing">info@alien.marketing</a>
+						</div>
 						<div class="alm-header-top-cta alm-wrapper"></div>
 						<div class="alm-header-top-social alm-wrapper">
 							<div class="alm-header-top-social-list alm-wrapper">
@@ -102,26 +104,42 @@ class App {
 	}
 
 	headerMenu() {
-		let container, content, list;
+		let container, content, list, url, path, last, current;
 		list = [
-			{'title':'about','path':'about'},
-			{'title':'services','path':'services'},
-			{'title':'pricing','path':'pricing'},
-			{'title':'blog','path':'blog'},
-			{'title':'contact','path':'contact'}
+			{'title':'services','path':'services','scroll':true},
+			{'title':'about','path':'about','scroll':true},
+			{'title':'pricing','path':'pricing','scroll':false},
+			{'title':'blog','path':'blog','scroll':true},
+			{'title':'contact','path':'contact','scroll':true}
 		];
 		container = jQuery('.alm-header-menu');
 		content = 	`<div class="alm-header-menu-container">
 						<div class="alm-header-menu-list alm-wrapper"></div>
 					</div>`;
 		container.html(content);
+		url = window.location.pathname;
+		path = url.split('/');
+		last = path.length;
+		current = path[last - 1];
 		for (var i = 0; i < list.length; i++) {
-			var data, item;
+			var data, item, link;
 			data = list[i];
-			item = 	`<div class="alm-header-menu-item">
-						<a href="`+data.path+`.html">`+data.title+`</a>
+			link = data.path+'.html';
+			if(current.includes('home') && data.scroll) { link = 'javascript:void(0)'; }
+			item = 	`<div class="alm-header-menu-item" data-name="`+data.path+`">
+						<a href="`+link+`">`+data.title+`</a>
 					</div>`;
 			jQuery('.alm-header-menu-list').append(item);
+		}
+		if(current.includes('home')) {
+			jQuery('.alm-header-menu-item').on('click', function() {
+				let item, name;
+				item = jQuery(this);
+				name = item.data('name');
+				jQuery('html, body').animate({
+			        scrollTop: jQuery('.alm-section-'+name).offset().top - 100
+			    }, 500);
+			});
 		}
 	}
 
@@ -267,17 +285,14 @@ class App {
 											<div class="alm-footer-menu-block-wrapper alm-wrapper">
 												<div class="alm-footer-menu-block">
 													<div class="alm-footer-menu-title">Browse</div>
-													<a href="javascript:void(0)">
-														<div class="alm-footer-menu-item">Routes</div>
+													<a href="services.html">
+														<div class="alm-footer-menu-item">Services</div>
+													</a>
+													<a href="pricing.html">
+														<div class="alm-footer-menu-item">Pricing</div>
 													</a>
 													<a href="javascript:void(0)">
-														<div class="alm-footer-menu-item">Paths</div>
-													</a>
-													<a href="courses.html">
-														<div class="alm-footer-menu-item">Courses</div>
-													</a>
-													<a href="sandbox.html">
-														<div class="alm-footer-menu-item">Sandbox</div>
+														<div class="alm-footer-menu-item">Portfolio</div>
 													</a>
 												</div>
 											</div>
@@ -285,21 +300,24 @@ class App {
 										<div class="alm-xs-100 alm-sm-50 alm-md-25 alm-lg-25">
 											<div class="alm-footer-menu-block-wrapper alm-wrapper">
 												<div class="alm-footer-menu-block">
-													<div class="alm-footer-menu-title">Random</div>
+													<div class="alm-footer-menu-title">Services</div>
 													<a href="javascript:void(0)">
-														<div class="alm-footer-menu-item">item</div>
+														<div class="alm-footer-menu-item">Web Design & Devlelopment</div>
 													</a>
 													<a href="javascript:void(0)">
-														<div class="alm-footer-menu-item">item</div>
+														<div class="alm-footer-menu-item">Social Media Management</div>
 													</a>
 													<a href="javascript:void(0)">
-														<div class="alm-footer-menu-item">item</div>
+														<div class="alm-footer-menu-item">Email & SMS Marketing</div>
 													</a>
 													<a href="javascript:void(0)">
-														<div class="alm-footer-menu-item">item</div>
+														<div class="alm-footer-menu-item">Reporting & Analytics</div>
 													</a>
 													<a href="javascript:void(0)">
-														<div class="alm-footer-menu-item">item</div>
+														<div class="alm-footer-menu-item">Social Listening</div>
+													</a>
+													<a href="javascript:void(0)">
+														<div class="alm-footer-menu-item">SEO & SEM</div>
 													</a>
 												</div>
 											</div>
@@ -314,7 +332,7 @@ class App {
 													<a href="register.html">
 														<div class="alm-footer-menu-item">Register</div>
 													</a>
-													<a href="javascript:void(0)">
+													<a href="contact.html">
 														<div class="alm-footer-menu-item">Contact</div>
 													</a>
 													<a href="javascript:void(0)">

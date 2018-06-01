@@ -36,7 +36,9 @@ requirejs.config({
         home: 'controller/pages/home',
         page: 'controller/pages/page',
         post: 'controller/pages/post',
+        pricing: 'controller/pages/pricing',
         register: 'controller/pages/register',
+        services: 'controller/pages/services',
         team: 'controller/pages/team',
     },
     shim: {
