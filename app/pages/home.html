@@ -13,8 +13,8 @@
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['jQuery','angular','moment','datetimepicker','particle','api','app','owl','home'],
-				function (a,angular,moment) {
+				requirejs(['jQuery','mask','moment','datetimepicker','particle','api','app','owl','home'],
+				function (a,b,moment) {
 					let app = new App(), home = new Home();
 					window.moment = moment;
 					app.init();

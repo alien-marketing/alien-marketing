@@ -3,6 +3,7 @@ requirejs.config({
     paths: {
         // libraries
         jQuery: 'libs/jquery.min',
+        mask: 'libs/jquery.mask.min',
         angular: 'libs/angular.min',
         aws: 'libs/aws-sdk.min',
         bootstrap: 'libs/bootstrap.min',
@@ -43,5 +44,6 @@ requirejs.config({
     },
     shim: {
         'bootstrap': ['jQuery'],
+        'mask': ['jQuery'],
     }
 });
