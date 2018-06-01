@@ -31,6 +31,17 @@ class API {
         return result;
     }
 
+    trimContent(str,trim) {
+    	let content;
+    	if(str.length > trim) {
+    		content = str.substring(0,trim) + ' ...';;
+    	}
+    	else {
+    		content = str;
+    	}
+    	return content;
+    }
+
     phoneApi(){
         var almApp = angular.module('almApp', []);
         almApp.controller('almCtrl', function($scope) {

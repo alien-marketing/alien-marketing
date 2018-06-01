@@ -155,7 +155,7 @@ class Home {
 							<div class="alm-xs-100 alm-sm-30">
 								<div class="alm-page-content">
 									<div class="alm-page-title">
-										About us
+										Who <br> we are
 									</div>
 								</div>
 							</div>
@@ -173,97 +173,51 @@ class Home {
 	}
 
 	services() {
-		let container, content, obj;
+		let container, content, obj, string, api = new API();
+		obj = [
+			{
+				'title':'Social Media Management',
+				'icon':'https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-2-512.png',
+				'content':'Did you know that 90% of all marketers say social media marketing has increased their business exposure? Or that 66% of marketers that spend at least 6 hours on social per week have seen more leads? (Source: Content Factory). In this day and age, properly managing multiple social channels is key to driving business. Whether it’s organic or paid, social media is all about grabbing the attention of your target audience, and driving them to your website or landing page. Alien Marketing will put in extra terrestrial hours to establish your brands social presence,   deliver relevant content to your target audiences, and drive the right traffic to your website or landing page.',
+				'link':'',
+			},
+			{
+				'title':'SEO & SEM',
+				'icon':'https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-5-512.png',
+				'content':'Search engine optimization (SEO) allows your business to be discovered by those searching for what you offer. Sounds easy right? Then why do so many companies fail to properly attain this? It’s because SEO is a moving target. Search engines are constantly changing and evolving, making it difficult for businesses to keep up. Which is why you need Alien Marketing’s help - we’ll ensure your website ranks high in search engines and use our intergalactic knowledge to increase the visibility of your site to lead to a higher ranking in search engine results.',
+				'link':'',
+			},
+			{
+				'title':'Web Design & Development',
+				'icon':'https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-8-512.png',
+				'content':'If marketing were a baseball game, then your website would be the home base. It’s the one thing that all of your online efforts circle back to. Having a strong website not only boosts credibility but helps you stand out from competitors. We will design and develop a comprehensive website that is both beautiful and functional.',
+				'link':'',
+			},
+			{
+				'title':'Reporting & Analytics',
+				'icon':'https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-19-512.png',
+				'content':'We like to think of reporting & analytics as the mothership. It’s the big thing that holds together all the important stuff. And we get it - graphs and numbers can be confusing. Which is why Alien Marketing makes it easy for you to stay up-to-date with your social media and web performance with our Custom Analytics Dashboard to help determine what\'s working and what isn\'t. We offer monthly, weekly, and even daily analytic reports that break down your digital performance with tips on how to optimize.',
+				'link':'',
+			},
+			{
+				'title':'Social Listening',
+				'icon':'https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-1-512.png',
+				'content':'Here’s a fun question - who controls your brand’s reputation? The answer: your (current & potential) customers! Now, what if you could have an ear across the entire galaxy and know exactly what your clients and customers are saying about you + have the ability to fix things? Well, now you can. Alien Marketing has the power to monitor digital conversations across the internet to understand what people are saying about your brand so that you can make optimizations to help improve brand reputation.',
+				'link':'',
+			},
+			{
+				'title':'Email & SMS Marketing',
+				'icon':'https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-9-512.png',
+				'content':'According to Radicati Group, more than 3.7 billion people worldwide use email. That’s almost 54% of the world’s population! Proving that email is still one of the best ways to keep in touch with your customer. However, there’s a lot of noise out there. So how can you ensure your business stands out from the myriad of other messages hitting your target audience’s inbox? Having the right content, design and cadence can make the world of difference. So why not leave it to the experts? Still not convinced that email marketing is the way to go? Then try SMS marketing. It’s a sure fire way to keep your business top-of-mind by reaching your audience directly on their phones.',
+				'link':'',
+			}
+		];
+		string = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`;
 		container = jQuery('.alm-section-services');
 		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
 							<div class="alm-xs-100 alm-sm-75">
-								<div class="alm-services-carousel owl-carousel owl-theme">
-									<div class="item">
-										<div class="alm-services-card alm-15">
-											<div class="alm-services-card-image-container">
-												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-2-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
-											</div>
-											<div class="alm-services-card-content">
-												<div class="alm-services-card-title">Social Media Management</div>
-												<div class="alm-services-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-												</div>
-												<div class="alm-services-card-btn alm-wrapper">learn more</div>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="alm-services-card alm-15">
-											<div class="alm-services-card-image-container">
-												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-5-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
-											</div>
-											<div class="alm-services-card-content">
-												<div class="alm-services-card-title">SEO & SEM</div>
-												<div class="alm-services-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-												</div>
-												<div class="alm-services-card-btn alm-wrapper">learn more</div>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="alm-services-card alm-15">
-											<div class="alm-services-card-image-container">
-												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-8-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
-											</div>
-											<div class="alm-services-card-content">
-												<div class="alm-services-card-title">Web Design & Development</div>
-												<div class="alm-services-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-												</div>
-												<div class="alm-services-card-btn alm-wrapper">learn more</div>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="alm-services-card alm-15">
-											<div class="alm-services-card-image-container">
-												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-19-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
-											</div>
-											<div class="alm-services-card-content">
-												<div class="alm-services-card-title">Reporting & Analytics</div>
-												<div class="alm-services-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-												</div>
-												<div class="alm-services-card-btn alm-wrapper">learn more</div>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="alm-services-card alm-15">
-											<div class="alm-services-card-image-container">
-												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-1-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
-											</div>
-											<div class="alm-services-card-content">
-												<div class="alm-services-card-title">Social Listening</div>
-												<div class="alm-services-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-												</div>
-												<div class="alm-services-card-btn alm-wrapper">learn more</div>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="alm-services-card alm-15">
-											<div class="alm-services-card-image-container">
-												<div class="alm-services-card-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-9-512.png); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
-											</div>
-											<div class="alm-services-card-content">
-												<div class="alm-services-card-title">Email & SMS Marketing</div>
-												<div class="alm-services-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-												</div>
-												<div class="alm-services-card-btn alm-wrapper">learn more</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								<div class="alm-services-carousel owl-carousel owl-theme"></div>
 							</div>
 							<div class="alm-xs-100 alm-sm-25">
 								<div class="alm-page-content">
@@ -275,6 +229,23 @@ class Home {
 						</div>
 					</div>`;
 		container.append(content);
+		for (var i = 0; i < obj.length; i++) {
+			let data, slide;
+			data = obj[i];
+			slide = `<div class="item">
+						<div class="alm-services-card alm-15">
+							<div class="alm-services-card-image-container">
+								<div class="alm-services-card-image" style="background: url(`+data.icon+`); background-size: contain; background-position: center center; background-repeat: no-repeat;"></div>
+							</div>
+							<div class="alm-services-card-content">
+								<div class="alm-services-card-title">`+data.title+`</div>
+								<div class="alm-services-card-text">`+api.trimContent(data.content, 90)+`</div>
+								<div class="alm-services-card-btn alm-wrapper">learn more</div>
+							</div>
+						</div>
+					</div>`;
+			jQuery('.alm-services-carousel').append(slide);
+		}
 		jQuery('.alm-services-carousel').owlCarousel({
 		    loop: true,
 		    margin: 0,

@@ -45,7 +45,7 @@ class Pricing {
 					</div>`;
 		container.append(content);
 		// container.css({'background':'linear-gradient(-45deg, #4CAF50, #8BC34A)'});
-		container.css({'background':'linear-gradient(to right, rgb(220, 227, 91), rgb(69, 182, 73))'});
+		container.css({'background':'linear-gradient(-45deg, rgb(220, 227, 91), rgb(69, 182, 73))'});
 		setTimeout(function() {
 			container.addClass('active');
 		}, 1500);
