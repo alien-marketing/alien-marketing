@@ -44,7 +44,6 @@ class Services {
 						</div>
 					</div>`;
 		container.append(content);
-		container.css({'background': 'linear-gradient(-45deg, #F44336, #685ec5)'});
 		setTimeout(function() {
 			container.addClass('active');
 		}, 1500);

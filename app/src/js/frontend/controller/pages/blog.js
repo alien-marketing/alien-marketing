@@ -44,7 +44,7 @@ class Blog {
 						</div>
 					</div>`;
 		container.append(content);
-		container.css({'background':'linear-gradient(-45deg, #4CAF50, #8BC34A)'});
+		container.css({'background':'linear-gradient(-45deg, rgb(255, 65, 108), rgb(255, 75, 43))'});
 		setTimeout(function() {
 			container.addClass('active');
 		}, 1500);

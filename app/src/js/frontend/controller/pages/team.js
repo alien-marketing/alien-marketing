@@ -44,6 +44,7 @@ class Team {
 						</div>
 					</div>`;
 		container.append(content);
+		container.css({'background':'linear-gradient(to right, rgb(8, 80, 120), rgb(133, 216, 206))'});
 		setTimeout(function() {
 			container.addClass('active');
 		}, 1500);
@@ -59,7 +60,9 @@ class Team {
 									<div class="alm-team-page-container alm-wrapper">
 										<div class="alm-xs-100 alm-sm-50 alm-md-33">
 											<div class="alm-team-member">
-												<div class="alm-team-member-image"></div>
+												<div class="alm-team-member-image-container">
+													<div class="alm-team-member-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-1-512.png); background-size: contain; background-repeat: no-repeat; background-position: center center;"></div>
+												</div>
 												<div class="alm-team-member-info">
 													<div class="alm-team-member-name alm-wrapper">sarah wilson</div>
 													<div class="alm-team-member-position alm-wrapper">Founder</div>
@@ -82,7 +85,9 @@ class Team {
 										</div>
 										<div class="alm-xs-100 alm-sm-50 alm-md-33">
 											<div class="alm-team-member">
-												<div class="alm-team-member-image"></div>
+												<div class="alm-team-member-image-container">
+													<div class="alm-team-member-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-1-512.png); background-size: contain; background-repeat: no-repeat; background-position: center center;"></div>
+												</div>
 												<div class="alm-team-member-info">
 													<div class="alm-team-member-name alm-wrapper">larry nelson</div>
 													<div class="alm-team-member-position alm-wrapper">Founder</div>
@@ -105,7 +110,9 @@ class Team {
 										</div>
 										<div class="alm-xs-100 alm-sm-50 alm-md-33">
 											<div class="alm-team-member">
-												<div class="alm-team-member-image"></div>
+												<div class="alm-team-member-image-container">
+													<div class="alm-team-member-image" style="background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-1-512.png); background-size: contain; background-repeat: no-repeat; background-position: center center;"></div>
+												</div>
 												<div class="alm-team-member-info">
 													<div class="alm-team-member-name alm-wrapper">mathew maione</div>
 													<div class="alm-team-member-position alm-wrapper">Developer</div>
