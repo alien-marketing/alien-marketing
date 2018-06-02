@@ -169,12 +169,19 @@
 	    overflow: hidden;
 	}
 
+	.alm-section-layout-inverse .alm-angled-section-title {
+		order: 1;
+	}
+
+	.alm-section-layout-inverse .alm-angled-section-content {
+		order: 2;
+	}
+
 	.alm-angled-section:nth-child(even) {
 		background: #f6f6f7;
 	}
 
 	.alm-angled-section:nth-child(odd) {
-		background: linear-gradient(-45deg, #00ac53, #23c3e0);
 		padding-bottom: 180px;
 	}
 
@@ -195,39 +202,33 @@
 	}
 
 	.alm-angled-section:nth-child(even):before {
-	    content: '';
-	    background: inherit;
-	    position: absolute;
-	    width: 125vw;
-	    height: 200px;
-	    top: -100px;
-	    left: -10%;
-	    transform: rotate(-5deg);
-	    z-index: 1;
+		content: '';
+		background: inherit;
+		position: absolute;
+		width: 110vw;
+		height: 25vh;
+		top: -15vh;
+		left: -5vw;
+		transform: rotate(-4deg);
+		z-index: 1;
+		border-radius: 50% 0px 0px 0px;
 	}
 
 	.alm-angled-section:nth-child(even):after {
 	    content: '';
 	    background: inherit;
 	    position: absolute;
-	    width: 125vw;
-	    height: 200px;
-	    bottom: -100px;
-	    left: -10%;
-	    transform: rotate(-5deg);
-	    z-index: 1;
+		width: 110vw;
+		height: 25vh;
+		bottom: -15vh;
+		left: -5vw;
+		transform: rotate(-4deg);
+		z-index: 1;
+		border-radius: 0px 0px 50% 0px;
 	}
 
 	.alm-angled-section:last-child {
 		padding-bottom: 0px;
-	}
-
-	.alm-section-about {
-		background: linear-gradient(-45deg, #F44336, #685ec5) !important;
-	}
-
-	.alm-section-contact {
-		background: linear-gradient(-35deg, rgb(245, 131, 66), rgb(247, 183, 51)) !important;
 	}
 
 	.alm-section-hero .alm-angled-section-wrapper {
@@ -257,13 +258,13 @@
 	}
 
 	.alm-section-cover.active {
-		padding-top: 10px;
-	    padding-bottom: 180px !important;
+		padding-top: 10vh;
+    	padding-bottom: 30vh !important;
 	}
 
 	.alm-section-cover {
-	    padding-top: 100px;
-	    padding-bottom: 280px !important;
+	    padding-top: 25vh;
+	    padding-bottom: 45vh !important;
 	}
 
 	.alm-section-cover .alm-angled-section-wrapper {
@@ -301,6 +302,30 @@
 	    left: 0px;
 	    width: 100%;
 	    height: 100%;
+	}
+
+	.alm-page-btn {
+	    width: 160px;
+	    height: 46px;
+	    display: inline-flex;
+	    position: relative;
+	    background: #fff;
+	    color: #333;
+	    font-size: 14px;
+	    text-transform: capitalize;
+	    font-weight: 500;
+	    cursor: pointer;
+	}
+
+	.alm-page-btn:after {
+	    content: '';
+	    position: absolute;
+	    width: inherit;
+	    height: inherit;
+	    background: rgba(20,20,20,0.1);
+	    z-index: -1;
+	    right: -10px;
+	    top: 10px;
 	}
 
 	.alm-shape-circle {
@@ -605,7 +630,7 @@
 	.alm-page-title {
 	    font-size: 60px;
 	    font-weight: 100;
-	    margin-right: 80px;
+	    text-align: center;
 	}
 
 	.alm-page-text {
@@ -1072,10 +1097,11 @@
 	/* Start ~ Content - Homepage */
 
 		.alm-hero-particle-js {
-		    position: absolute;
+		    position: fixed;
 		    height: 100%;
 		    width: 100%;
 		    top: 0px;
+		    left: 0px;
 		}
 
 		.alm-hero-title {
@@ -1295,6 +1321,7 @@
 		    width: 100%;
 		    height: 30vh;
 		    min-height: 350px;
+		    background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-1-512.png);
 		}
 
 		.alm-team-member-info {
@@ -1473,7 +1500,8 @@
 /* Start ~ Footer */
 
 	.alm-footer {
-
+		position: relative;
+		z-index: 1;
 	}
 
 	.alm-footer-main {
@@ -1626,6 +1654,28 @@
 		/* Small */
 		@media( min-width: 767px ) {
 
+			.alm-section-layout-inverse .alm-angled-section-title {
+				order: 2;
+			}
+
+			.alm-section-layout-inverse .alm-angled-section-content {
+				order: 1;
+			}
+
+			.alm-page-title {
+				text-align: unset;
+			}
+
+			.alm-section-layout-inverse .alm-page-title {
+				margin: 0px;
+				margin-left: 80px;
+			}
+
+			.alm-section-layout-normal .alm-page-title {
+				margin: 0px;
+				margin-right: 80px;
+			}
+
 			.alm-section-hero .alm-angled-section-wrapper {
 				margin-top: 50px !important;
 			}
@@ -1690,3 +1740,23 @@
 	/* End ~ Responsive Design - Default */
 
 /* End ~ Responsive Design */
+
+/* Start ~ Animations */
+	
+	/*.alm-angled-section:nth-child(even):before {
+	  animation: pulse 5s infinite;
+	}*/
+
+	@keyframes pulse {
+	  0% {
+	    border-radius: 50%;
+	  }
+	  50% {
+	  	border-radius: 0%;
+	  }
+	  100% {
+	    border-radius: 50%
+	  }
+	}
+
+/* End ~ Animations */

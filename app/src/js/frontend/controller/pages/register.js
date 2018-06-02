@@ -14,11 +14,25 @@ class Register {
 	}
 
 	sections() {
-		let container, content, sections;
+		let container, content, sections, section;
 		container = jQuery('.alm-angled-sections');
-		sections = ['cover','content'];
+		sections = [
+			{
+				'title':'cover',
+				'type':'gradient',
+				'layout':'normal',
+				'style':'background: linear-gradient(-45deg, #00ac53, #23c3e0);'
+			},
+			{
+				'title':'content',
+				'type':'normal',
+				'layout':'inverse',
+				'style':'#f6f6f7;'
+			}
+		];
 	    for (var i = 0; i < sections.length; i++) {
-	    	content = 	`<div class="alm-section alm-angled-section alm-section-`+sections[i]+` alm-25"></div>`;
+	    	section = sections[i];
+	    	content = 	`<div class="alm-section alm-angled-section alm-section-`+section.title+` alm-section-type-`+section.type+` alm-section-layout-`+section.layout+` alm-25" style="`+section.style+`"></div>`;
 	    	container.append(content);
 	    }
 	    this.cover();
@@ -44,7 +58,6 @@ class Register {
 						</div>
 					</div>`;
 		container.append(content);
-		// container.css({'background':'linear-gradient(to right, #4CAF50, #8BC34A)'});
 		setTimeout(function() {
 			container.addClass('active');
 		}, 1500);

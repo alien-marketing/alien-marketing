@@ -14,11 +14,44 @@ class Home {
 	}
 
 	sections() {
-		let container, content, sections;
+		let container, content, sections, section;
 		container = jQuery('.alm-angled-sections');
-		sections = ['hero','services','about','blog','contact'];
+		sections = [
+			{
+				'title':'hero',
+				'type':'gradient',
+				'layout':'normal',
+				'style':'background: linear-gradient(-45deg, #00ac53, #23c3e0);'
+			},
+			{
+				'title':'services',
+				'type':'normal',
+				'layout':'inverse',
+				'style':'background: #f6f6f7;'
+			},
+			{
+				'title':'about',
+				'type':'gradient',
+				'layout':'normal',
+				'style':'background: linear-gradient(-45deg, #F44336, #685ec5);'
+			},
+			{
+				'title':'blog',
+				'type':'normal',
+				'layout':'inverse',
+				'style':'background: #f6f6f7;'
+			},
+			{
+				'title':'contact',
+				'type':'gradient',
+				'layout':'normal',
+				'style':'background: linear-gradient(-45deg, rgb(245, 131, 66), rgb(247, 183, 51));'
+				// background: linear-gradient(-45deg, rgb(189, 78, 14), rgb(255, 205, 102));
+			}
+		];
 	    for (var i = 0; i < sections.length; i++) {
-	    	content = 	`<div class="alm-section alm-angled-section alm-section-`+sections[i]+`"></div>`;
+	    	section = sections[i];
+	    	content = 	`<div class="alm-section alm-angled-section alm-section-`+section.title+` alm-section-type-`+section.type+` alm-section-layout-`+section.layout+`" style="`+section.style+`"></div>`;
 	    	container.append(content);
 	    }
 	    this.hero();
@@ -34,7 +67,7 @@ class Home {
 		content = 	`<div class="alm-hero-particle-js" id="particles-js"></div>
 					<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
-							<div class="alm-xs-100 alm-sm-50">
+							<div class="alm-xs-100 alm-sm-50 alm-angled-section-title">
 								<div class="alm-page-content">
 									<div class="alm-hero-title">
 										We love marketing
@@ -44,7 +77,7 @@ class Home {
 									</div>
 								</div>
 							</div>
-							<div class="alm-xs-100 alm-sm-50">
+							<div class="alm-xs-100 alm-sm-50 alm-angled-section-content">
 								<div class="alm-hero-contact">
 									<div class="alm-hero-contact-text">
 										Sign up to receive a <span>free</span> website + social media analysis
@@ -152,17 +185,22 @@ class Home {
 		content = 	`<div class="alm-hero-particle-js" id="alm-about-particles-js"></div>
 					<div class="alm-angled-section-wrapper alm-container" style="color: #fff;">
 						<div class="alm-wrapper">
-							<div class="alm-xs-100 alm-sm-30">
+							<div class="alm-xs-100 alm-sm-30 alm-angled-section-title">
 								<div class="alm-page-content">
 									<div class="alm-page-title">
 										Who <br> we are
 									</div>
 								</div>
 							</div>
-							<div class="alm-xs-100 alm-sm-70">
+							<div class="alm-xs-100 alm-sm-70 alm-angled-section-content">
 								<div class="alm-page-content">
 									<div class="alm-page-text">
 										Two marketers and a developer walk into a coffee shop... what walked out was something bigger than any of us could have imagined. Through our common love for <span>coffee + creativity</span>, we discovered that despite having corporate experience - we were each missing something in our careers and lives: using our powers for good. In other words, <span>helping businesses truly grow.</span> For us, there's nothing greater than helping a local business or entrepreneur grow to see their dreams come true. Reach for the stars! Because in this day and age anything is possible.
+										<br>
+										<br>
+										<a href="team.html">
+											<div class="alm-page-btn alm-wrapper">Meet the team!</div>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -216,12 +254,12 @@ class Home {
 		container = jQuery('.alm-section-services');
 		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
-							<div class="alm-xs-100 alm-sm-75">
+							<div class="alm-xs-100 alm-sm-75 alm-angled-section-content">
 								<div class="alm-services-carousel owl-carousel owl-theme"></div>
 							</div>
-							<div class="alm-xs-100 alm-sm-25">
+							<div class="alm-xs-100 alm-sm-25 alm-angled-section-title">
 								<div class="alm-page-content">
-									<div class="alm-page-title" style="margin: 0px; margin-left: 80px;">
+									<div class="alm-page-title">
 										Our services
 									</div>
 								</div>
@@ -267,7 +305,7 @@ class Home {
 		container = jQuery('.alm-section-blog');
 		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
-							<div class="alm-xs-100 alm-sm-75">
+							<div class="alm-xs-100 alm-sm-75 alm-angled-section-content">
 								<div class="alm-stories-carousel owl-carousel owl-theme">
 									<div class="item">
 										<div class="alm-stories-card alm-15">
@@ -355,9 +393,9 @@ class Home {
 									</div>
 								</div>
 							</div>
-							<div class="alm-xs-100 alm-sm-25">
+							<div class="alm-xs-100 alm-sm-25 alm-angled-section-title">
 								<div class="alm-page-content">
-									<div class="alm-page-title" style="margin: 0px; margin-left: 80px;">
+									<div class="alm-page-title">
 										Our Stories
 									</div>
 								</div>
@@ -386,7 +424,7 @@ class Home {
 		content = 	`<div class="alm-hero-particle-js" id="alm-contact-particles-js"></div>
 					<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
-							<div class="alm-xs-100 alm-sm-50">
+							<div class="alm-xs-100 alm-sm-50 alm-angled-section-content">
 								<div class="alm-hero-contact">
 									<div class="alm-hero-contact-text">
 										Let's make contact
