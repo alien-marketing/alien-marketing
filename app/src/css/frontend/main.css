@@ -1253,7 +1253,7 @@
 		.alm-services-card {
 		    margin: 5px;
 		    background: #fff;
-		    box-shadow: 0px 0px 10px rgba(20,20,20,0.2);
+		    box-shadow: 0px 0px 10px rgba(20,20,20,0.1);
 		}
 
 		.alm-services-card-image-container {
@@ -1299,7 +1299,7 @@
 		.alm-stories-card {
 		    margin: 5px;
 		    background: #fff;
-		    box-shadow: 0px 0px 10px rgba(20,20,20,0.2);
+		    box-shadow: 0px 0px 10px rgba(20,20,20,0.1);
 		}
 
 		.alm-stories-card-image-container {
@@ -1346,6 +1346,7 @@
 		.alm-radio-option {
 		    font-size: 14px;
 		    font-weight: 300;
+		    cursor: pointer;
 		}
 
 		.alm-radio-toggle-control {

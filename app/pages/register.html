@@ -16,12 +16,13 @@
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['moment','progress','jQuery','mask','particle','messenger','config','api','app','register'],
-				function (moment,progress) {
-					let app = new App(), register = new Register(), messenger = new Messenger();
+				requirejs(['localforage','moment','progress','jQuery','mask','particle','messenger','AES','MD5','config','api','app','user','register'],
+				function (localforage,moment,progress) {
+					var config = new Config(), api = new API(), app = new App(), user = new User(), register = new Register();
+					window.localforage = localforage
 					window.moment = moment;
-					window.progress = progress;
 					app.init();
+					user.init();
 					register.init();
 					messenger.init();
 				});

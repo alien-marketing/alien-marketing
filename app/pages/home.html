@@ -13,11 +13,13 @@
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['jQuery','mask','moment','datetimepicker','particle','api','app','owl','home'],
-				function (a,b,moment) {
-					let app = new App(), home = new Home();
+				requirejs(['localforage','moment','jQuery','mask','datetimepicker','particle','AES','MD5','config','api','app','user','owl','home'],
+				function (localforage,moment) {
+					var config = new Config(), api = new API(), app = new App(), user = new User(), home = new Home();
+					window.localforage = localforage
 					window.moment = moment;
 					app.init();
+					user.init();
 					home.init();
 				});
 			});

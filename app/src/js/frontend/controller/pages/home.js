@@ -68,7 +68,6 @@ class Home {
 	hero() {
 		let container, block, content, today, api = new API();
 		container = jQuery('.alm-section-hero');
-		block = container.children('.alm-section-block');
 		content = 	`<div class="alm-hero-particle-js" id="particles-js"></div>
 					<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
@@ -150,7 +149,7 @@ class Home {
 							</div>
 						</div>
 					</div>`;
-		block.append(content);
+		container.append(content);
 		jQuery('.alm-phone-mask').mask('(000) 000-0000');
 		// particlesJS("particles-js", {"particles":{"number":{"value":175,"density":{"enable":true,"value_area":2164.606282168456}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#fff"},"polygon":{"nb_sides":6},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.49705773886831206,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#fff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"repulse"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
 		today = moment().format('MMMM Do YYYY, h:mm A');
@@ -187,7 +186,6 @@ class Home {
 	about() {
 		let container, block, content;
 		container = jQuery('.alm-section-about');
-		block = container.children('.alm-section-block');
 		content = 	`<div class="alm-hero-particle-js" id="alm-about-particles-js"></div>
 					<div class="alm-angled-section-wrapper alm-container" style="color: #fff;">
 						<div class="alm-wrapper">
@@ -212,7 +210,7 @@ class Home {
 							</div>
 						</div>
 					</div>`;
-		block.append(content);
+		container.append(content);
 		// particlesJS("alm-about-particles-js", {"particles":{"number":{"value":175,"density":{"enable":true,"value_area":2164.606282168456}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#fff"},"polygon":{"nb_sides":6},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.49705773886831206,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#fff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"repulse"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
 	}
 
@@ -258,7 +256,6 @@ class Home {
 		];
 		string = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`;
 		container = jQuery('.alm-section-services');
-		block = container.children('.alm-section-block');
 		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
 							<div class="alm-xs-100 alm-sm-75 alm-angled-section-content">
@@ -273,7 +270,7 @@ class Home {
 							</div>
 						</div>
 					</div>`;
-		block.append(content);
+		container.append(content);
 		for (var i = 0; i < obj.length; i++) {
 			let data, slide;
 			data = obj[i];
@@ -310,7 +307,6 @@ class Home {
 	blog() {
 		let container, block, content;
 		container = jQuery('.alm-section-blog');
-		block = container.children('.alm-section-block');
 		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
 							<div class="alm-xs-100 alm-sm-75 alm-angled-section-content">
@@ -410,7 +406,7 @@ class Home {
 							</div>
 						</div>
 					</div>`;
-		block.append(content);
+		container.append(content);
 		jQuery('.alm-stories-carousel').owlCarousel({
 		    loop: true,
 		    margin: 0,
@@ -429,7 +425,6 @@ class Home {
 	contact() {
 		let container, block, content;
 		container = jQuery('.alm-section-contact');
-		block = container.children('.alm-section-block');
 		content = 	`<div class="alm-hero-particle-js" id="alm-contact-particles-js"></div>
 					<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
@@ -471,7 +466,7 @@ class Home {
 							</div>
 						</div>
 					</div>`;
-		block.append(content);
+		container.append(content);
 		// particlesJS("alm-contact-particles-js", {"particles":{"number":{"value":175,"density":{"enable":true,"value_area":2164.606282168456}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#fff"},"polygon":{"nb_sides":6},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.49705773886831206,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#fff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"repulse"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
 	}
 
