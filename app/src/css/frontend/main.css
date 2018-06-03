@@ -267,7 +267,7 @@
 	}
 
 	.alm-section-bottom svg {
-		transform: scaleY(-1);
+		transform: scale(-1);
 	}
 
 	.alm-angled-section:last-child {
