@@ -201,17 +201,26 @@
 		display: none;
 	}
 
+	.alm-section-type-gradient .alm-section-top,
+	.alm-section-type-gradient .alm-section-bottom {
+		display: none;
+	}
+
+	.alm-section-type-normal .alm-section-top,
+	.alm-section-type-normal .alm-section-bottom {
+		display: block;
+	}
+
 	.alm-angled-section:nth-child(even):before {
 		content: '';
 		background: inherit;
 		position: absolute;
 		width: 110vw;
-		height: 25vh;
-		top: -15vh;
+		height: 15vh;
+		top: -5vh;
 		left: -5vw;
 		transform: rotate(-4deg);
 		z-index: 1;
-		border-radius: 50% 0px 0px 0px;
 	}
 
 	.alm-angled-section:nth-child(even):after {
@@ -219,12 +228,35 @@
 	    background: inherit;
 	    position: absolute;
 		width: 110vw;
-		height: 25vh;
-		bottom: -15vh;
+		height: 15vh;
+		bottom: -5vh;
 		left: -5vw;
 		transform: rotate(-4deg);
 		z-index: 1;
-		border-radius: 0px 0px 50% 0px;
+	}
+
+	.alm-section-top {
+	    position: absolute;
+	    z-index: 1;
+	    width: 110%;
+	    height: 120px;
+	    top: -140px;
+	    left: -5%;
+	    transform: rotate(-4deg);
+	}
+
+	.alm-section-bottom {
+	    position: absolute;
+	    z-index: 1;
+	    width: 110%;
+	    height: 120px;
+	    bottom: -140px;
+	    left: -5%;
+	    transform: rotate(-4deg);
+	}
+
+	.alm-section-bottom svg {
+		transform: scaleY(-1);
 	}
 
 	.alm-angled-section:last-child {
@@ -237,12 +269,12 @@
 
 	.alm-angled-section-wrapper {
 	    position: relative;
-	    top: -7.5vh;
+	    top: -5vh;
 	    z-index: 2;
 	}
 
 	.alm-angled-section:nth-child(odd) .alm-angled-section-wrapper {
-		margin-top: 200px;
+		margin-top: 250px;
 	}
 
 	.alm-page-cover.active {
@@ -642,6 +674,7 @@
 
 	.alm-page-text span {
 	    font-weight: 500;
+	    /*text-shadow: 3px 3px 1px rgba(20,20,20,0.15);*/
 	}
 
 	.alm-page-video-container {
@@ -1295,6 +1328,108 @@
 		    cursor: pointer;
 		}
 
+		.alm-pricing-timeframe {
+		    margin-bottom: 10px;
+		}
+
+		.alm-radio-option {
+		    font-size: 14px;
+		    font-weight: 300;
+		}
+
+		.alm-radio-toggle-control {
+		    margin: 0px 10px;
+		    width: 50px;
+		    height: 30px;
+		    background: rgba(20,20,20,0.05);
+		    position: relative;
+		}
+
+		.alm-radio-toggle-switch {
+		    height: 20px;
+		    width: 20px;
+		    background: #c93c74;
+		    /* border-radius: 50%; */
+		    position: absolute;
+		    left: 5px;
+		}
+
+		.alm-pricing-card {
+		    margin: 5px;
+		    background: #fff;
+		    border: 1px solid rgba(20,20,20,0.05);
+		    /* box-shadow: 0px 0px 10px rgba(20,20,20,0.1); */
+		}
+
+		.alm-pricing-card-image-container {
+		    padding: 50px 20px 25px;
+		}
+
+		.alm-pricing-card-image {
+		    height: 180px;
+		}
+
+		.alm-pricing-card-content {
+			padding: 20px;
+		}
+
+		.alm-pricing-card-title {
+		    font-weight: 500;
+		    font-size: 24px;
+		    text-align: center;
+		    text-transform: capitalize;
+		    margin-bottom: 20px;
+		}
+
+		.alm-pricing-card-cost {
+			margin-bottom: 20px;
+		}
+
+		.alm-pricing-card-amount {
+			font-size: 40px;
+			font-weight: 800;
+		}
+
+		.alm-pricing-card-length {
+			position: relative;
+			top: 8px;
+			font-weight: 300;
+		}
+
+		.alm-pricing-card-info {
+		    font-size: 15px;
+		    font-weight: 300;
+		    text-align: justify;
+		    line-height: 26px;
+		    min-height: 50px;
+		}
+
+		.alm-pricing-card-list {
+		    margin: 20px 0px;
+		}
+
+		.alm-pricing-card-item.active {
+			color: #000;
+		}
+
+		.alm-pricing-card-item {
+		    border-bottom: 1px solid rgba(20,20,20,0.05);
+		    padding: 15px;
+		    font-size: 14px;
+		    font-weight: 300;
+		    color: #d2d2d2;
+		}
+
+		.alm-pricing-card-btn {
+		    height: 46px;
+		    background: #c24d6c;
+		    color: #fff;
+		    font-size: 14px;
+		    text-transform: capitalize;
+		    font-weight: 600;
+		    cursor: pointer;
+		}
+
 	/* End ~ Content - Homepage */
 
 	/* Start ~ Content - About */
@@ -1309,12 +1444,11 @@
 
 		.alm-team-member {
 		    margin: 5px;
+		    background: #fff;
 		}
 
 		.alm-team-member-image-container {
-		    padding: 0px 25px;
-		    background: #fff;
-		   	/*background: #ececec;*/
+		    padding: 0px 10%;
 		}
 
 		.alm-team-member-image {
@@ -1325,7 +1459,7 @@
 		}
 
 		.alm-team-member-info {
-		    margin: 30px 0px;
+		    padding: 30px 0px;
 		}
 
 		.alm-team-member-name {
