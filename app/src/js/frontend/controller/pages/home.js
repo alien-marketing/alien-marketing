@@ -21,7 +21,7 @@ class Home {
 				'title':'hero',
 				'type':'gradient',
 				'layout':'normal',
-				'style':'background: linear-gradient(-45deg, #00ac53, #23c3e0); background-attachment: fixed;'
+				'style':'background: linear-gradient(-45deg, #00ac53, #23c3e0);'
 			},
 			{
 				'title':'services',
@@ -33,7 +33,7 @@ class Home {
 				'title':'about',
 				'type':'gradient',
 				'layout':'normal',
-				'style':'background: linear-gradient(-45deg, #F44336, #685ec5); background-attachment: fixed;'
+				'style':'background: linear-gradient(-45deg, #F44336, #685ec5);'
 			},
 			{
 				'title':'blog',
@@ -45,7 +45,7 @@ class Home {
 				'title':'contact',
 				'type':'gradient',
 				'layout':'normal',
-				'style':'background: linear-gradient(-45deg, rgb(245, 131, 66), rgb(247, 183, 51)); background-attachment: fixed;'
+				'style':'background: linear-gradient(-45deg, rgb(245, 131, 66), rgb(247, 183, 51));'
 				// background: linear-gradient(-45deg, rgb(189, 78, 14), rgb(255, 205, 102));
 			}
 		];

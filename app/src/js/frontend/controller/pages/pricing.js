@@ -80,8 +80,10 @@ class Pricing {
 								<div class="alm-pricing-timeframe">
 									<div class="alm-radio-toggle alm-wrapper">
 										<div class="alm-radio-option" data-term="monthly">monthly</div>
-										<div class="alm-radio-toggle-control alm-wrapper">
-											<div class="alm-radio-toggle-switch alm-25"></div>
+										<div class="alm-radio-toggle-control-container alm-wrapper">
+											<div class="alm-radio-toggle-control alm-wrapper">
+												<div class="alm-radio-toggle-switch alm-25"></div>
+											</div>
 										</div>
 										<div class="alm-radio-option" data-term="yearly">yearly</div>
 									</div>
@@ -228,7 +230,7 @@ class Pricing {
 					item.siblings('.alm-pricing-card-length').html('/month');
 				}
 				else {
-					item.children('span').html(amount*12);
+					item.children('span').html((amount*12 - (amount*12)*.20).toFixed());
 					item.siblings('.alm-pricing-card-length').html('/year');
 				}
 			});
