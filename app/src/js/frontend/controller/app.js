@@ -1,15 +1,23 @@
 class App {
 
-	init() {
+	init(data) {
 		this.app = jQuery('.alm-app');
 		this.meta();
-		this.header();
-		this.sidebar();
-		this.page();
-		this.footer();
-		// this.startApp();
+		switch(data.template) {
+			case 'admin':
+				this.adminHeader();
+				this.adminSidebar();
+				this.adminPage();
+				this.adminFooter();
+			break;
+			case 'frontend':
+				this.header();
+				this.sidebar();
+				this.page();
+				this.footer();
+			break;
+		}
 		this.events();
-		this.onScreen();
 	}
 
 	meta() {
@@ -27,6 +35,186 @@ class App {
 					<meta name="theme-color" content="#ffffff">`;
 		container.prepend(content);
 	}
+
+	adminHeader() {
+		let container, content;
+		container = this.app;
+		content = 	`<!-- Start ~ Header -->
+					<div class="alm-admin-header alm-wrapper">
+						<div class="alm-admin-header-logo alm-wrapper">
+							<div class="alm-admin-header-logo-container">
+								logo
+							</div>
+						</div>
+						<div class="alm-admin-header-menu alm-wrapper">
+							menu
+						</div>
+						<div class="alm-admin-header-profile alm-wrapper">
+							<span class="fa fa-circle-o"></span>
+						</div>
+					</div>
+					<!-- End ~ Header -->`;
+		container.append(content);
+		this.head = jQuery('.alm-admin-header');
+	}
+
+	adminSidebar() {
+		let container, content;
+		container = this.app;
+		content = 	`<!-- Start ~ Sidebar -->
+					<div class="alm-admin-sidebar-container">
+						<div class="alm-admin-sidebar alm-25">
+							<div class="alm-admin-sidebar-content">
+								<div class="alm-admin-sidebar-item alm-wrapper">
+									<div class="alm-admin-sidebar-icon-container alm-wrapper">
+										<div class="alm-admin-sidebar-icon alm-wrapper">
+											<span class="fa fa-file"></span>
+										</div>
+									</div>
+									<div class="alm-admin-sidebar-title alm-wrapper">dashboard</div>
+								</div>
+								<div class="alm-admin-sidebar-item alm-admin-sidebar-parent alm-wrapper">
+									<div class="alm-admin-sidebar-icon-container alm-wrapper">
+										<div class="alm-admin-sidebar-icon alm-wrapper">
+											<span class="fa fa-file"></span>
+										</div>
+									</div>
+									<div class="alm-admin-sidebar-title alm-wrapper">pages</div>
+									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
+										<span class="fa fa-caret-down"></span>
+									</div>
+									<div class="alm-admin-sidebar-list">
+										<div class="alm-admin-sidebar-list-container">
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+										</div>
+									</div>
+								</div>
+								<div class="alm-admin-sidebar-item alm-wrapper">
+									<div class="alm-admin-sidebar-icon-container alm-wrapper">
+										<div class="alm-admin-sidebar-icon alm-wrapper">
+											<span class="fa fa-circle-o"></span>
+										</div>
+									</div>
+									<div class="alm-admin-sidebar-title alm-wrapper">clients</div>
+									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
+										<span class="fa fa-caret-down"></span>
+									</div>
+									<div class="alm-admin-sidebar-list">
+										<div class="alm-admin-sidebar-list-container">
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+										</div>
+									</div>
+								</div>
+								<div class="alm-admin-sidebar-item alm-wrapper">
+									<div class="alm-admin-sidebar-icon-container alm-wrapper">
+										<div class="alm-admin-sidebar-icon alm-wrapper">
+											<span class="fa fa-circle-o"></span>
+										</div>
+									</div>
+									<div class="alm-admin-sidebar-title alm-wrapper">posts</div>
+									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
+										<span class="fa fa-caret-down"></span>
+									</div>
+									<div class="alm-admin-sidebar-list">
+										<div class="alm-admin-sidebar-list-container">
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+										</div>
+									</div>
+								</div>
+								<div class="alm-admin-sidebar-item alm-wrapper">
+									<div class="alm-admin-sidebar-icon-container alm-wrapper">
+										<div class="alm-admin-sidebar-icon alm-wrapper">
+											<span class="fa fa-circle-o"></span>
+										</div>
+									</div>
+									<div class="alm-admin-sidebar-title alm-wrapper">title</div>
+									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
+										<span class="fa fa-caret-down"></span>
+									</div>
+									<div class="alm-admin-sidebar-list">
+										<div class="alm-admin-sidebar-list-container">
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+										</div>
+									</div>
+								</div>
+								<div class="alm-admin-sidebar-item alm-wrapper">
+									<div class="alm-admin-sidebar-icon-container alm-wrapper">
+										<div class="alm-admin-sidebar-icon alm-wrapper">
+											<span class="fa fa-circle-o"></span>
+										</div>
+									</div>
+									<div class="alm-admin-sidebar-title alm-wrapper">title</div>
+									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
+										<span class="fa fa-caret-down"></span>
+									</div>
+									<div class="alm-admin-sidebar-list">
+										<div class="alm-admin-sidebar-list-container">
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="alm-admin-sidebar-account alm-wrapper">
+								<div class="alm-admin-sidebar-account-image alm-wrapper">
+									<img src="https://avatars2.githubusercontent.com/u/17184503">
+								</div>
+								<div class="alm-admin-sidebar-account-title">
+									<div class="alm-admin-sidebar-account-name">Mathew Maione</div>
+									<div class="alm-admin-sidebar-account-type">Admin</div>
+								</div>
+							</div>
+						</div>
+						<div class="alm-admin-sidebar-overlay"></div>
+					</div>
+					<!-- End ~ Sidebar -->`;
+		container.append(content);
+		this.sidebar = jQuery('.alm-admin-sidebar');
+	}
+
+	adminPage() {
+		let container, content;
+		container = this.app;
+		content = 	`<!-- Start ~ Page -->
+					<div class="alm-admin-page">
+						<div class="alm-admin-page-container">
+							lorem ipsum
+						</div>
+					</div>
+					<!-- End ~ Page -->`;
+		container.append(content);
+		this.body = jQuery('.alm-admin-page');
+	}
+
+	adminFooter() {
+		let container, content;
+		container = this.app;
+		content = 	`<!-- Start ~ Footer -->
+					<div class="alm-admin-footer"></div>
+					<!-- End ~ Footer -->`;
+		container.append(content);
+		this.footer = jQuery('.alm-admin-footer');
+	}
+
 
 	header() {
 		let container, content;
@@ -373,38 +561,6 @@ class App {
 		this.foot = jQuery('.alm-footer');
 	}
 
-	startApp() {
-		let app = new App();
-		// check to see if recent courses have been either loaded or cached
-		localforage.ready(function() {
-			let key, theme;
-	        key = 'alm-cache-app-obj';
-	        theme = {'theme':'dark'};
-	        localforage.getItem(key).then(function(value) {
-			    if(value != null) {
-			    	console.log('cached');
-			    	// cached
-					// Sets the course data as a global value
-					switch(value.theme) {
-						case 'dark':
-							jQuery('body').addClass('alm-dark-theme');
-						break;
-						case 'light':
-							jQuery('body').addClass('alm-light-theme');
-						break;
-					}
-			    }
-			    else {
-			    	console.log('not cached');
-			    	// not cached
-					localforage.setItem(key, theme, function() {
-						app.startApp();
-			        });
-			    }
-			});
-	    });
-	}
-
 	events() {
 		jQuery(document).scroll(function() {
 			let pos;
@@ -433,21 +589,5 @@ class App {
 			container.css({'height':containerHeight+'px'});
 		}
     }
-
-	onScreen() {
-        jQuery.fn.isOnScreen = function(){
-            var win = jQuery(window);
-            var viewport = {
-                top : win.scrollTop(),
-                left : win.scrollLeft()
-            };
-            viewport.right = viewport.left + win.width();
-            viewport.bottom = viewport.top + win.height();
-            var bounds = this.offset();
-            bounds.right = bounds.left + this.outerWidth();
-            bounds.bottom = bounds.top + this.outerHeight();
-            return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
-        };
-	}
 
 }

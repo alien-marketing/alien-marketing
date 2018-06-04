@@ -115,14 +115,42 @@ class User {
 	}
 
 	getUser(data, obj) {
-		let user, path, uData, password, u = new User(), config = new Config();
+		let user, path, uData, password, error, u = new User(), config = new Config(), messenger = new Messenger();
 		if(!data.email || !data.password) {
-			console.log('Missing data');
+			messenger.run({
+				'id':'error1', // This value needs to be unique
+				'name':'error-data', // This value needs to be unique
+				'title':'ERROR', // title
+				'message':'There are missing values', // content
+				'duration':4500, // duration of timer | if null, close box will apear
+				'theme':'light', // only one theme currently...
+				'icon':'exclamation', // font awesome value fa-{value}
+				'color':'#f92b30', // used for progressbar color
+				'location':'bottom-left', // top-right | bottom-right | bottom-left | top-left
+				'button':{ // didn't get to this yet...
+					'title':'',
+					'link':''
+				}
+			});
 		}
 		else {
 			user = this.findUser(data.email, obj);
 			if(!user) {
-				console.log('Email does not exist.');
+				messenger.run({
+					'id':'error2', // This value needs to be unique
+					'name':'error-email', // This value needs to be unique
+					'title':'ERROR', // title
+					'message':'Email does not exist', // content
+					'duration':4500, // duration of timer | if null, close box will apear
+					'theme':'light', // only one theme currently...
+					'icon':'exclamation', // font awesome value fa-{value}
+					'color':'#f92b30', // used for progressbar color
+					'location':'bottom-left', // top-right | bottom-right | bottom-left | top-left
+					'button':{ // didn't get to this yet...
+						'title':'',
+						'link':''
+					}
+				});
 			}
 			else {
 				path = CryptoJS.AES.decrypt(user.path,config.route('salt')).toString(CryptoJS.enc.Utf8);
@@ -143,7 +171,21 @@ class User {
 								});
 							}
 							else {
-								console.log('Email or password is incorrect.');
+								messenger.run({
+									'id':'error3', // This value needs to be unique
+									'name':'error-login', // This value needs to be unique
+									'title':'ERROR', // title
+									'message':'Email or passwrod is incorrect', // content
+									'duration':4500, // duration of timer | if null, close box will apear
+									'theme':'light', // only one theme currently...
+									'icon':'exclamation', // font awesome value fa-{value}
+									'color':'#f92b30', // used for progressbar color
+									'location':'bottom-left', // top-right | bottom-right | bottom-left | top-left
+									'button':{ // didn't get to this yet...
+										'title':'',
+										'link':''
+									}
+								});
 							}
 						}
 		            }

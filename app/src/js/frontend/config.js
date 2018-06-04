@@ -31,6 +31,7 @@ requirejs.config({
         main: 'main',
         // pages
         about: 'controller/pages/about',
+        admin: 'controller/pages/admin',
         blog: 'controller/pages/blog',
         contact: 'controller/pages/contact',
         dashboard: 'controller/pages/dashboard',

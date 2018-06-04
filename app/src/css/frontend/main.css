@@ -24,7 +24,7 @@
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Cutive+Mono|Roboto:100,300,400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Roboto:100,300,400,500,700,900');
 @import url('libs/datetimepicker.css');
 @import url('libs/bootstrap.min.css');
 @import url('libs/messenger.css');
@@ -182,12 +182,12 @@
 	}
 
 	.alm-angled-section:nth-child(odd) {
-		padding-bottom: 180px;
+		padding-bottom: 230px;
 	}
 
 	.alm-angled-section {
 		position: relative;
-		padding: 100px 0px 0px;
+		padding: 1px 0px 0px;
 	}
 
 	.alm-section-title {
@@ -271,7 +271,7 @@
 	}
 
 	.alm-angled-section:last-child {
-		padding-bottom: 0px;
+	    padding-bottom: 50px;
 	}
 
 	.alm-section-hero .alm-angled-section-wrapper {
@@ -280,7 +280,7 @@
 
 	.alm-angled-section-wrapper {
 	    position: relative;
-	    top: -5vh;
+	    /*top: -5vh;*/
 	    z-index: 2;
 	}
 

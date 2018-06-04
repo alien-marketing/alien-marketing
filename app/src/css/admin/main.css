@@ -1,0 +1,178 @@
+.alm-admin-header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 55px;
+	background: #fff;
+	z-index: 10;
+}
+
+.alm-admin-header-logo {
+	width: 250px;
+	background: #282828;
+	color: #fff;
+	font-weight: 800;
+	justify-content: flex-start;
+}
+
+.alm-admin-header-logo-container {
+	padding: 0px 15px;
+}
+
+.alm-admin-header-menu {
+	width: calc(100% - 305px);
+	background: #ececec;
+}
+
+.alm-admin-header-profile {
+	width: 55px;
+}
+
+.alm-admin-sidebar {
+    position: fixed;
+    top: 55px;
+    left: 0px;
+    width: 250px;
+    height: calc(100vh - 55px);
+    background: #3c3c3c;
+    z-index: 10;
+    overflow-y: scroll;
+}
+
+/*.alm-admin-sidebar:hover {
+	width: 300px;
+}*/
+
+.alm-admin-sidebar-item {
+	position: relative;
+	width: 100%;
+	height: auto;
+	background: #333;
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.alm-admin-sidebar-item:last-child {
+	border: none;
+}
+
+.alm-admin-sidebar-icon-container {
+	width: 50px;
+	height: 50px;
+}
+
+.alm-admin-sidebar-icon {
+	width: 40px;
+	height: 40px;
+	color: #f6f6f7;
+	font-size: 18px;
+}
+
+.alm-admin-sidebar-title {
+	width: 200px;
+	height: inherit;
+	justify-content: flex-start;
+	font-weight: 500;
+	font-size: 13px;
+	color: #f6f6f7;
+	text-transform: capitalize;
+}
+
+.alm-admin-sidebar-dropdown {
+	position: absolute;
+	top: 17px;
+	right: 0px;
+    width: 30px;
+    height: inherit;
+    color: #adadad;
+    transform: rotate(-90deg);
+}
+
+.alm-admin-sidebar-item:hover .alm-admin-sidebar-dropdown {
+	transform: rotate(0deg);
+}
+
+.alm-admin-sidebar-list {
+    display: none; 
+    width: 100%;
+    background: #282828;
+    color: #fff;
+}
+
+.alm-admin-sidebar-list-container {
+	width: 100%;
+}
+
+.alm-admin-sidebar-list-item {
+    height: 36px;
+    padding-left: 50px;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: capitalize;
+    justify-content: flex-start;
+}
+
+.alm-admin-sidebar-list-item:hover {
+	background: #4a4a4a;
+	cursor: pointer;
+}
+
+.alm-admin-sidebar-item:hover .alm-admin-sidebar-list {
+	display: block;
+}
+
+.alm-admin-sidebar-account {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 250px;
+    height: 50px;
+    background: #282828;
+}
+
+.alm-admin-sidebar-account-image {
+	width: 50px;
+	height: 50px;
+	background: #333;
+}
+
+.alm-admin-sidebar-account-image img {
+	width: 70%;
+}
+
+.alm-admin-sidebar-account-title {
+    width: 190px;
+    padding-left: 10px;
+    color: #fff;
+}
+
+.alm-admin-sidebar-account-name {
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.alm-admin-sidebar-account-type {
+	font-size: 10px;
+	font-weight: 300;
+}
+
+.alm-admin-page {
+	position: relative;
+	display: inline-block;
+    left: 250px;
+    margin-top: 55px;
+    width: calc(100% - 250px);
+    min-height: 200vh;
+    background: #f6f6f7;
+
+}
+
+.alm-admin-page-container {
+    margin: 15px;
+    padding: 15px;
+    background: #fff;
+}
+
+.alm-admin-footer {
+
+}
