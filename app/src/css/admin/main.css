@@ -1,3 +1,7 @@
+* {
+	font-family: 'Lato';
+}
+
 .alm-admin-header {
 	position: fixed;
 	top: 0px;
@@ -34,7 +38,7 @@
     top: 55px;
     left: 0px;
     width: 250px;
-    height: calc(100vh - 55px);
+    height: calc(100vh - 105px);
     background: #3c3c3c;
     z-index: 10;
     overflow-y: scroll;
@@ -44,32 +48,54 @@
 	width: 300px;
 }*/
 
+.alm-admin-sidebar-group {
+
+}
+
+.alm-admin-sidebar-group-title {
+    padding: 10px 15px;
+    background: #636363;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 .alm-admin-sidebar-item {
 	position: relative;
 	width: 100%;
 	height: auto;
 	background: #333;
-	border-bottom: 1px solid rgba(255,255,255,0.1);
+	/*border-bottom: 1px solid rgba(255,255,255,0.1);*/
+}
+
+.alm-admin-sidebar-item:hover {
+	cursor: pointer;
 }
 
 .alm-admin-sidebar-item:last-child {
 	border: none;
 }
 
+.alm-admin-sidebar-item.active .alm-admin-sidebar-tab {
+	background: #484848;
+}
+
 .alm-admin-sidebar-icon-container {
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 }
 
 .alm-admin-sidebar-icon {
 	width: 40px;
 	height: 40px;
 	color: #f6f6f7;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 .alm-admin-sidebar-title {
-	width: 200px;
+	width: 210px;
 	height: inherit;
 	justify-content: flex-start;
 	font-weight: 500;
@@ -80,7 +106,7 @@
 
 .alm-admin-sidebar-dropdown {
 	position: absolute;
-	top: 17px;
+	top: 12px;
 	right: 0px;
     width: 30px;
     height: inherit;
@@ -88,7 +114,7 @@
     transform: rotate(-90deg);
 }
 
-.alm-admin-sidebar-item:hover .alm-admin-sidebar-dropdown {
+.alm-admin-sidebar-item.active .alm-admin-sidebar-dropdown {
 	transform: rotate(0deg);
 }
 
@@ -104,24 +130,29 @@
 }
 
 .alm-admin-sidebar-list-item {
-    height: 36px;
+    height: 30px;
     padding-left: 50px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 300;
-    text-transform: capitalize;
+    letter-spacing: 0.5px;
     justify-content: flex-start;
 }
 
 .alm-admin-sidebar-list-item:hover {
-	background: #4a4a4a;
+	background: #3c3c3c;
 	cursor: pointer;
 }
 
-.alm-admin-sidebar-item:hover .alm-admin-sidebar-list {
-	display: block;
+.alm-admin-footer {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 50px;
+	z-index: 10;
 }
 
-.alm-admin-sidebar-account {
+.alm-admin-footer-account {
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -130,28 +161,28 @@
     background: #282828;
 }
 
-.alm-admin-sidebar-account-image {
+.alm-admin-footer-account-image {
 	width: 50px;
 	height: 50px;
 	background: #333;
 }
 
-.alm-admin-sidebar-account-image img {
+.alm-admin-footer-account-image img {
 	width: 70%;
 }
 
-.alm-admin-sidebar-account-title {
+.alm-admin-footer-account-title {
     width: 190px;
     padding-left: 10px;
     color: #fff;
 }
 
-.alm-admin-sidebar-account-name {
+.alm-admin-footer-account-name {
 	font-size: 12px;
 	font-weight: 600;
 }
 
-.alm-admin-sidebar-account-type {
+.alm-admin-footer-account-type {
 	font-size: 10px;
 	font-weight: 300;
 }
@@ -161,18 +192,205 @@
 	display: inline-block;
     left: 250px;
     margin-top: 55px;
+    margin-bottom: 50px;
     width: calc(100% - 250px);
-    min-height: 200vh;
+    height: auto;
     background: #f6f6f7;
 
 }
 
 .alm-admin-page-container {
     margin: 15px;
-    padding: 15px;
-    background: #fff;
+    /*padding: 15px;
+    background: #fff;*/
 }
 
-.alm-admin-footer {
+.alm-admin-page-block {
+    padding: 15px;
+    margin: 5px;
+    background: #fff;
+    margin-bottom: 10px;
+}
 
+.alm-admin-audit-menu .alm-admin-page-block {
+	border-left: 4px solid #333;
+}
+
+.alm-admin-footer-copyright {
+	position: absolute;
+	width: calc(100% - 250px);
+	right: 0px;
+	/*background: #3b3b3b;*/
+	background: rgba(20,20,20,0.8);
+}
+
+.alm-admin-footer-menu {
+	width: calc(100% - 100px);
+}
+
+.alm-admin-footer-version {
+	width: 100px;
+	font-size: 12px;
+	font-weight: 300;
+	color: #fff;
+}
+
+/* Audit */
+.alm-admin-audit-section {
+	
+}
+
+.alm-admin-audit-group.active {
+	display: block;
+}
+
+.alm-admin-audit-group {
+	display: none;
+}
+
+.alm-admin-audit-menu-title {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.alm-admin-audit-list {
+	padding-left: 20px;
+	margin: 10px 0px 0px;
+}
+
+.alm-admin-audit-list-item.active {
+    font-weight: 600;
+}
+
+.alm-admin-audit-list-item {
+    font-size: 12px;
+    margin-bottom: 2px;
+    font-weight: 300;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.alm-admin-audit-title {
+	font-size: 12px;
+	font-weight: 800;
+	text-transform: capitalize;
+	padding: 5px 10px;
+	margin-bottom: 15px;
+	background: #333;
+	color: #fff;
+	display: none;
+}
+
+.alm-admin-audit-item {
+    margin-bottom: 15px;
+}
+
+.alm-admin-audit-item:last-child {
+	margin-bottom: 0px;
+}
+
+.alm-admin-audit-item-profile {
+
+}
+
+.alm-admin-audit-item-icon {
+    width: 36px;
+    height: 36px;
+    background: #333;
+    color: #fff;
+}
+
+.alm-admin-audit-item-title {
+    font-weight: 600;
+    font-size: 15px;
+    width: calc(100% - 46px);
+    margin-left: 10px;
+    justify-content: flex-start;
+}
+
+.alm-admin-audit-item-block:last-child 
+.alm-admin-audit-item-input {
+    margin: 0px;
+}
+
+.alm-admin-audit-item-block {
+    margin-top: 15px;
+}
+
+.alm-admin-audit-item-heading {
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: capitalize;
+    margin-bottom: 4px;
+}
+
+/*.alm-admin-audit-item-input {
+    margin-right: 15px;
+}*/
+
+.alm-admin-audit-item-add-input {
+	width: calc(100% - 40px);
+}
+
+.alm-admin-audit-item-add-btn {
+	width: 40px;
+	height: 40px;
+	background: #333;
+	color: #fff;
+}
+
+.alm-admin-audit-item-listing {
+    margin-bottom: 10px;
+}
+
+.alm-admin-audit-listing-item {
+	margin-bottom: 5px;
+}
+
+.alm-admin-audit-listing-item:before {
+    content: '-';
+    padding-right: 10px;
+}
+
+.alm-admin-audit-item-listing-value {
+    width: calc(100% - 36px);
+}
+
+.alm-admin-audit-item-listing-remove {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    background: #f6f6f7;
+}
+
+input.alm-admin-audit-item-value {
+	width: 100%;
+	height: 40px;
+	border: 1px solid rgba(20,20,20,0.1);
+	text-indent: 10px;
+	font-size: 16px;
+	font-weight: 300;
+	font-family: 'Lato';
+}
+
+select.alm-admin-audit-item-value {
+    width: 100%;
+    height: 40px;
+    border: 1px solid rgba(20,20,20,0.1);
+    text-indent: 10px;
+    font-size: 16px;
+    font-weight: 300;
+    font-family: 'Lato';
+}
+
+textarea.alm-admin-audit-item-value {
+	width: 100%;
+	min-height: 100px;
+    padding: 10px;
+    margin: 0px;
+    text-indent: 0px;
+    border: 1px solid rgba(20,20,20,0.1);
+    font-size: 16px;
+    font-weight: 300;
+    resize: none;
 }

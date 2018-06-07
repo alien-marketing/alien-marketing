@@ -18,7 +18,7 @@
 					var config = new Config(), api = new API(), app = new App(), user = new User(), about = new About();
 					window.localforage = localforage
 					window.moment = moment;
-					app.init();
+					app.init({'template':'frontend'});
 					user.init();
 					about.init();
 				});

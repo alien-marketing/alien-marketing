@@ -16,7 +16,7 @@
 				requirejs(['jQuery','app','home'],
 				function () {
 					let app = new App(), home = new Home();
-					app.init();
+					app.init({'template':'frontend'});
 					home.init();
 				});
 			});

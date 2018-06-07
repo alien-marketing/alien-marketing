@@ -5,12 +5,13 @@ class App {
 		this.meta();
 		switch(data.template) {
 			case 'admin':
+				this.menu = [{"group":"main","header":false,"list":[{"title":"Dashboard","icon":"home","children":[]}]},{"group":"content","header":true,"list":[{"title":"pages","icon":"file","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new page","enabled":true,"link":""}]},{"title":"posts","icon":"file-text","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new post","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""},{"title":"Tags","enabled":true,"link":""}]},{"title":"clients","icon":"address-book","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new client","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""}]},{"title":"users","icon":"users","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new user","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""}]},{"title":"files","icon":"file-image-o","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new file","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""}]}]},{"group":"other","header":true,"list":[{"title":"appearance","icon":"flask","children":[{"title":"Header","enabled":true,"link":""},{"title":"Menu","enabled":true,"link":""},{"title":"Footer","enabled":true,"link":""}]},{"title":"tools","icon":"wrench","children":[{"title":"Audit","enabled":true,"link":""},{"title":"Calendar","enabled":true,"link":""},{"title":"Invoice","enabled":true,"link":""}]},{"title":"settings","icon":"cog","children":[{"title":"Account","enabled":true,"link":""},{"title":"Configuration","enabled":true,"link":""},{"title":"Theme","enabled":true,"link":""}]}]}];
 				this.adminHeader();
 				this.adminSidebar();
 				this.adminPage();
 				this.adminFooter();
 			break;
-			case 'frontend':
+			default:
 				this.header();
 				this.sidebar();
 				this.page();
@@ -59,147 +60,81 @@ class App {
 	}
 
 	adminSidebar() {
-		let container, content;
+		let container, content, data;
 		container = this.app;
+		data = this.menu;
 		content = 	`<!-- Start ~ Sidebar -->
 					<div class="alm-admin-sidebar-container">
 						<div class="alm-admin-sidebar alm-25">
-							<div class="alm-admin-sidebar-content">
-								<div class="alm-admin-sidebar-item alm-wrapper">
-									<div class="alm-admin-sidebar-icon-container alm-wrapper">
-										<div class="alm-admin-sidebar-icon alm-wrapper">
-											<span class="fa fa-file"></span>
-										</div>
-									</div>
-									<div class="alm-admin-sidebar-title alm-wrapper">dashboard</div>
-								</div>
-								<div class="alm-admin-sidebar-item alm-admin-sidebar-parent alm-wrapper">
-									<div class="alm-admin-sidebar-icon-container alm-wrapper">
-										<div class="alm-admin-sidebar-icon alm-wrapper">
-											<span class="fa fa-file"></span>
-										</div>
-									</div>
-									<div class="alm-admin-sidebar-title alm-wrapper">pages</div>
-									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
-										<span class="fa fa-caret-down"></span>
-									</div>
-									<div class="alm-admin-sidebar-list">
-										<div class="alm-admin-sidebar-list-container">
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-										</div>
-									</div>
-								</div>
-								<div class="alm-admin-sidebar-item alm-wrapper">
-									<div class="alm-admin-sidebar-icon-container alm-wrapper">
-										<div class="alm-admin-sidebar-icon alm-wrapper">
-											<span class="fa fa-circle-o"></span>
-										</div>
-									</div>
-									<div class="alm-admin-sidebar-title alm-wrapper">clients</div>
-									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
-										<span class="fa fa-caret-down"></span>
-									</div>
-									<div class="alm-admin-sidebar-list">
-										<div class="alm-admin-sidebar-list-container">
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-										</div>
-									</div>
-								</div>
-								<div class="alm-admin-sidebar-item alm-wrapper">
-									<div class="alm-admin-sidebar-icon-container alm-wrapper">
-										<div class="alm-admin-sidebar-icon alm-wrapper">
-											<span class="fa fa-circle-o"></span>
-										</div>
-									</div>
-									<div class="alm-admin-sidebar-title alm-wrapper">posts</div>
-									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
-										<span class="fa fa-caret-down"></span>
-									</div>
-									<div class="alm-admin-sidebar-list">
-										<div class="alm-admin-sidebar-list-container">
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-										</div>
-									</div>
-								</div>
-								<div class="alm-admin-sidebar-item alm-wrapper">
-									<div class="alm-admin-sidebar-icon-container alm-wrapper">
-										<div class="alm-admin-sidebar-icon alm-wrapper">
-											<span class="fa fa-circle-o"></span>
-										</div>
-									</div>
-									<div class="alm-admin-sidebar-title alm-wrapper">title</div>
-									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
-										<span class="fa fa-caret-down"></span>
-									</div>
-									<div class="alm-admin-sidebar-list">
-										<div class="alm-admin-sidebar-list-container">
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-										</div>
-									</div>
-								</div>
-								<div class="alm-admin-sidebar-item alm-wrapper">
-									<div class="alm-admin-sidebar-icon-container alm-wrapper">
-										<div class="alm-admin-sidebar-icon alm-wrapper">
-											<span class="fa fa-circle-o"></span>
-										</div>
-									</div>
-									<div class="alm-admin-sidebar-title alm-wrapper">title</div>
-									<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15">
-										<span class="fa fa-caret-down"></span>
-									</div>
-									<div class="alm-admin-sidebar-list">
-										<div class="alm-admin-sidebar-list-container">
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-											<div class="alm-admin-sidebar-list-item alm-wrapper">item</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="alm-admin-sidebar-account alm-wrapper">
-								<div class="alm-admin-sidebar-account-image alm-wrapper">
-									<img src="https://avatars2.githubusercontent.com/u/17184503">
-								</div>
-								<div class="alm-admin-sidebar-account-title">
-									<div class="alm-admin-sidebar-account-name">Mathew Maione</div>
-									<div class="alm-admin-sidebar-account-type">Admin</div>
-								</div>
-							</div>
+							<div class="alm-admin-sidebar-content"></div>
 						</div>
 						<div class="alm-admin-sidebar-overlay"></div>
 					</div>
 					<!-- End ~ Sidebar -->`;
 		container.append(content);
-		this.sidebar = jQuery('.alm-admin-sidebar');
+		this.buildSidebar(data);
+		jQuery('.alm-admin-sidebar-tab').on('click', function() {
+			let item, title, list;
+			item = jQuery(this);
+			item.parent().toggleClass('active');
+			title = item.children('.alm-admin-sidebar-title');
+			list = item.siblings('.alm-admin-sidebar-list');
+			list.slideToggle(250);
+		});
+	}
+
+	buildSidebar(obj) {
+		let container, content, data, header;
+		container = jQuery('.alm-admin-sidebar-content');
+		for (var i = 0; i < obj.length; i++) {
+			data = obj[i];
+			if(data.header) {header = '<div class="alm-admin-sidebar-group-title">'+data.group+'</div>';}else{header = '';}
+			content = '<div class="alm-admin-sidebar-group" id="'+data.group+'">'+header+'</div>';
+			container.append(content);
+			this.sidebarTab(data);
+		}
+	}
+
+	sidebarTab(obj) {
+		let container, content, data, dropdown;
+		container = jQuery('#'+obj.group);
+		for (var i = 0; i < obj.list.length; i++) {
+			data = obj.list[i];
+			if(data.children.length > 0) {dropdown = '<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15"><span class="fa fa-caret-down"></span></div>';}else{dropdown = '';}
+			content = `<div class="alm-admin-sidebar-item alm-wrapper">
+						<div class="alm-admin-sidebar-tab alm-wrapper">
+							<div class="alm-admin-sidebar-icon-container alm-wrapper">
+								<div class="alm-admin-sidebar-icon alm-wrapper">
+									<span class="fa fa-`+data.icon+`"></span>
+								</div>
+							</div>
+							<div class="alm-admin-sidebar-title alm-wrapper">`+data.title+`</div>
+							`+dropdown+`
+						</div>
+						<div class="alm-admin-sidebar-list" id="`+data.title+`">
+							<div class="alm-admin-sidebar-list-container"></div>
+						</div>
+					</div>`;
+			container.append(content);
+			this.sidebarChildren(data);
+		}
+	}
+
+	sidebarChildren(obj) {
+		let container, content, data;
+		container = jQuery('#'+obj.title+' .alm-admin-sidebar-list-container');
+		for (var i = 0; i < obj.children.length; i++) {
+			data = obj.children[i];
+			content = `<div class="alm-admin-sidebar-list-item alm-wrapper">`+data.title+`</div>`;
+			container.append(content);
+		}
 	}
 
 	adminPage() {
 		let container, content;
 		container = this.app;
 		content = 	`<!-- Start ~ Page -->
-					<div class="alm-admin-page">
-						<div class="alm-admin-page-container">
-							lorem ipsum
-						</div>
-					</div>
+					<div class="alm-admin-page"></div>
 					<!-- End ~ Page -->`;
 		container.append(content);
 		this.body = jQuery('.alm-admin-page');
@@ -209,7 +144,25 @@ class App {
 		let container, content;
 		container = this.app;
 		content = 	`<!-- Start ~ Footer -->
-					<div class="alm-admin-footer"></div>
+					<div class="alm-admin-footer">
+						<div class="alm-admin-footer-account alm-wrapper">
+							<div class="alm-admin-footer-account-image alm-wrapper">
+								<img src="https://avatars2.githubusercontent.com/u/17184503">
+							</div>
+							<div class="alm-admin-footer-account-title">
+								<div class="alm-admin-footer-account-name">Mathew Maione</div>
+								<div class="alm-admin-footer-account-type">Admin</div>
+							</div>
+						</div>
+						<div class="alm-admin-footer-copyright alm-wrapper">
+							<div class="alm-admin-footer-menu alm-wrapper">
+								<img src="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/AM-logo-text-white.png" width="150px">
+							</div>
+							<div class="alm-admin-footer-version alm-wrapper">
+								ver. 0.0.1
+							</div>
+						</div>
+					</div>
 					<!-- End ~ Footer -->`;
 		container.append(content);
 		this.footer = jQuery('.alm-admin-footer');
