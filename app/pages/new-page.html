@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<!-- Main CSS -->
+		<link rel="stylesheet" type="text/css" href="../src/css/frontend/main.css">
+		<link rel="stylesheet" type="text/css" href="../src/css/admin/main.css">
+
+		<!-- RequireJS -->
+		<script src="../src/js/frontend/require.js"></script>
+
+	</head>
+	<body class="alm-app alm-25">
+
+		<script>
+			requirejs(['../src/js/frontend/config'],function(){
+				requirejs(['localforage','moment','jQuery','particle','AES','MD5','config','api','app','user'],
+				function (localforage,moment) {
+					var config = new Config(), api = new API(), app = new App(), user = new User();
+					window.localforage = localforage
+					window.moment = moment;
+					localforage.ready(function() {
+						let key, status;
+				        key = 'alm-cache-user-obj';
+				        localforage.getItem(key).then(function(value) {
+						    if(value != null) {
+						    	app.init({'template':'admin'});
+								user.init();
+						    }
+						    else {
+								window.location.href = 'home.html';
+						    }
+						});
+				    });
+				});
+			});
+		</script>
+
+	</body>
+</html>

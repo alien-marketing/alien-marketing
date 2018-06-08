@@ -6,11 +6,15 @@ class Audit {
 	}
 
 	template() {
-		let container, content;
-		container = this.page;
-		content = `<div class="alm-admin-page-container alm-wrapper" style="align-items: flex-start;"></div>`;
-		container.append(content);
+		this.cover();
 		this.content();
+	}
+
+	cover() {
+		let container, content, obj;
+		container = jQuery('.alm-admin-page-cover');
+		content = 	`<div class="alm-admin-page-cover-title">Social Media Audit</div>`;
+		container.append(content);
 	}
 
 	content() {
@@ -20,7 +24,7 @@ class Audit {
 		this.data = obj;
 		content = 	`<div class="alm-xs-100 alm-sm-50 alm-md-25">
 						<div class="alm-admin-page-blocks">
-							<div class="alm-admin-audit-menu"></div>
+							<div class="alm-admin-page-block alm-admin-audit-menu"></div>
 						</div>
 					</div>
 					<div class="alm-xs-100 alm-sm-50 alm-md-75">
@@ -40,7 +44,7 @@ class Audit {
 		data = this.data;
 		for (var i = 0; i < data.length; i++) {
 			item = data[i];
-			content = 	`<div class="alm-admin-page-block" id="`+item.id+`"">
+			content = 	`<div class="alm-admin-audit-menu-item" id="`+item.id+`"">
 							<div class="alm-admin-audit-menu-title" data-section="`+item.id.replace(/\s+/g, '-')+`">`+item.title+`</div>
 							<div class="alm-admin-audit-list"></div>
 						</div>`;
@@ -50,6 +54,15 @@ class Audit {
 				jQuery('#'+item.id+' .alm-admin-audit-list').append(menu);
 			}
 		}
+
+		jQuery('.alm-admin-audit-menu-title').on('click', function() {
+			let item;
+			item = jQuery(this);
+			jQuery('.alm-admin-audit-menu-item').removeClass('active');
+			item.parent().addClass('active');
+			jQuery('.alm-admin-audit-list').slideUp();
+			item.siblings('.alm-admin-audit-list').slideDown();
+		});
 
 		jQuery('.alm-admin-audit-list-item').on('click', function() {
 			let item, section, group, spot;
@@ -61,7 +74,7 @@ class Audit {
 			spot.addClass('active');
 			item.addClass('active');
 		});
-		jQuery('.alm-admin-audit-menu .alm-admin-page-block:first .alm-admin-audit-list-item:first, .alm-admin-audit-section:first .alm-admin-audit-group:first').addClass('active');
+		jQuery('.alm-admin-audit-menu .alm-admin-audit-menu:first .alm-admin-audit-list-item:first, .alm-admin-audit-section:first .alm-admin-audit-group:first').addClass('active');
 	}
 
 	buildForm() {

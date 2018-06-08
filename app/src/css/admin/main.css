@@ -7,44 +7,60 @@
 	top: 0px;
 	left: 0px;
 	width: 100%;
-	height: 55px;
+	height: 50px;
 	background: #fff;
 	z-index: 10;
 }
 
-.alm-admin-header-logo {
+.alm-admin-header-brand {
 	width: 250px;
 	background: #282828;
-	color: #fff;
-	font-weight: 800;
 	justify-content: flex-start;
 }
 
-.alm-admin-header-logo-container {
-	padding: 0px 15px;
+.alm-admin-header-brand-logo {
+    width: 60px;
+    height: inherit;
+    background: #282828;
+}
+
+.alm-admin-header-brand-name {
+    width: calc(100% - 60px);
+    height: inherit;
+    justify-content: flex-start;
+}
+
+.alm-admin-header-brand-title {
+    padding: 0px 15px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 .alm-admin-header-menu {
 	width: calc(100% - 305px);
-	background: #ececec;
 }
 
 .alm-admin-header-profile {
 	width: 55px;
 }
 
+.alm-admin-sidebar.open {
+	width: 250px;
+}
+
 .alm-admin-sidebar {
     position: fixed;
-    top: 55px;
+    top: 50px;
     left: 0px;
-    width: 250px;
-    height: calc(100vh - 105px);
+    width: 60px;
+    height: calc(100vh - 100px);
     background: #3c3c3c;
     z-index: 10;
     overflow-y: scroll;
 }
 
-/*.alm-admin-sidebar:hover {
+/*.alm-admin-sidebar.open {
 	width: 300px;
 }*/
 
@@ -52,13 +68,19 @@
 
 }
 
-.alm-admin-sidebar-group-title {
+.alm-admin-sidebar.open .alm-admin-sidebar-group-title {
     padding: 10px 15px;
-    background: #636363;
-    color: #fff;
-    font-size: 10px;
+    text-align: left;
+}
+
+.alm-admin-sidebar-group-title {
+    padding: 10px 0px;
+	background: #fff;
+	color: #000;
+    font-size: 8px;
     font-weight: 800;
     text-transform: uppercase;
+    text-align: center;
     letter-spacing: 0.5px;
 }
 
@@ -82,9 +104,13 @@
 	background: #484848;
 }
 
+.alm-admin-sidebar-tab {
+	width: 100%;
+}
+
 .alm-admin-sidebar-icon-container {
-	width: 40px;
-	height: 40px;
+    width: 60px;
+    height: 40px;
 }
 
 .alm-admin-sidebar-icon {
@@ -94,17 +120,33 @@
 	font-size: 14px;
 }
 
+.alm-admin-sidebar.open .alm-admin-sidebar-title,
+.alm-admin-sidebar.open .alm-admin-sidebar-dropdown {
+    visibility: visible;
+    opacity: 1;
+}
+
 .alm-admin-sidebar-title {
-	width: 210px;
-	height: inherit;
-	justify-content: flex-start;
-	font-weight: 500;
-	font-size: 13px;
+    visibility: hidden;
+    opacity: 0;
+    width: calc(100% - 60px);
+    height: inherit;
+    justify-content: flex-start;
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+.alm-admin-sidebar-title a {
+	width: 100%;
+	height: 40px;
 	color: #f6f6f7;
-	text-transform: capitalize;
+	justify-content: flex-start;
 }
 
 .alm-admin-sidebar-dropdown {
+	visibility: hidden;
+	opacity: 0;
 	position: absolute;
 	top: 12px;
 	right: 0px;
@@ -122,7 +164,6 @@
     display: none; 
     width: 100%;
     background: #282828;
-    color: #fff;
 }
 
 .alm-admin-sidebar-list-container {
@@ -131,9 +172,10 @@
 
 .alm-admin-sidebar-list-item {
     height: 30px;
-    padding-left: 50px;
+    padding-left: 75px;
     font-size: 12px;
     font-weight: 300;
+    color: #fff;
     letter-spacing: 0.5px;
     justify-content: flex-start;
 }
@@ -162,17 +204,17 @@
 }
 
 .alm-admin-footer-account-image {
-	width: 50px;
+	width: 60px;
 	height: 50px;
 	background: #333;
 }
 
 .alm-admin-footer-account-image img {
-	width: 70%;
+	width: 34px;
 }
 
 .alm-admin-footer-account-title {
-    width: 190px;
+    width: calc(100% - 70px);
     padding-left: 10px;
     color: #fff;
 }
@@ -188,18 +230,33 @@
 }
 
 .alm-admin-page {
-	position: relative;
-	display: inline-block;
-    left: 250px;
-    margin-top: 55px;
+    position: relative;
+    display: inline-block;
+    left: 60px;
+    margin-top: 50px;
     margin-bottom: 50px;
-    width: calc(100% - 250px);
+    width: calc(100% - 60px);
     height: auto;
+    min-height: calc(100vh - 100px);
     background: #f6f6f7;
+}
 
+.alm-admin-page-cover {
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(-15deg, #00ac53, #23c3e0);
+}
+
+.alm-admin-page-cover-title {
+    font-size: 36px;
+    font-weight: 800;
+    text-transform: capitalize;
+    color: #fff;
 }
 
 .alm-admin-page-container {
+	justify-content: flex-start;
+	align-items: flex-start;
     margin: 15px;
     /*padding: 15px;
     background: #fff;*/
@@ -209,7 +266,6 @@
     padding: 15px;
     margin: 5px;
     background: #fff;
-    margin-bottom: 10px;
 }
 
 .alm-admin-audit-menu .alm-admin-page-block {
@@ -235,6 +291,54 @@
 	color: #fff;
 }
 
+/* Post */
+	.alm-admin-page-post {
+	    position: relative;
+	    margin-bottom: 10px;
+	    padding: 10px;
+	}
+
+	.alm-admin-page-post:last-child {
+		margin: 0px;
+	}
+
+	.alm-admin-page-post-thumb {
+		position: relative;
+		width: 90px;
+		height: 60px;
+		background: #333;
+	}
+
+	.alm-admin-page-post-info {
+		width: calc(100% - 90px);
+	}
+
+	.alm-admin-page-post-titles {
+	    padding-left: 15px;
+	}
+
+	.alm-admin-page-post-title {
+	    font-weight: 800;
+	    margin-bottom: 2px;
+	}
+
+	.alm-admin-page-post-author {
+	    font-size: 13px;
+	    font-weight: 300;
+	    font-style: italic;
+	}
+
+	.alm-admin-page-post-data {
+		font-size: 12px;
+	}
+
+	.alm-admin-page-post-status,
+	.alm-admin-page-post-views,
+	.alm-admin-page-post-date {
+		
+	}
+
+
 /* Audit */
 .alm-admin-audit-section {
 	
@@ -249,13 +353,19 @@
 }
 
 .alm-admin-audit-menu-title {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 15px;
+    background: #333;
+    color: #fff;
+    margin-bottom: 5px;
+    padding: 10px;
+    cursor: pointer;
 }
 
 .alm-admin-audit-list {
-	padding-left: 20px;
-	margin: 10px 0px 0px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    display: none;
 }
 
 .alm-admin-audit-list-item.active {
@@ -264,7 +374,7 @@
 
 .alm-admin-audit-list-item {
     font-size: 12px;
-    margin-bottom: 2px;
+    margin: 6px 0px;
     font-weight: 300;
     text-transform: capitalize;
     cursor: pointer;

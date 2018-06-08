@@ -14,14 +14,14 @@
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['localforage','moment','jQuery','particle','AES','MD5','config','api','app','user','admin'],
+				requirejs(['localforage','moment','jQuery','particle','AES','MD5','config','api','app','user','allPosts'],
 				function (localforage,moment) {
-					var config = new Config(), api = new API(), app = new App(), user = new User(), admin = new Admin();
+					var config = new Config(), api = new API(), app = new App(), user = new User(), posts = new allPosts();
 					window.localforage = localforage
 					window.moment = moment;
 					app.init({'template':'admin'});
 					user.init();
-					admin.init();
+					posts.init();
 					// localforage.ready(function() {
 					// 	let key, status;
 				 //        key = 'alm-cache-user-obj';

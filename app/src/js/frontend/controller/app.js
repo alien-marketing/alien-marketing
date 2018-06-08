@@ -5,7 +5,7 @@ class App {
 		this.meta();
 		switch(data.template) {
 			case 'admin':
-				this.menu = [{"group":"main","header":false,"list":[{"title":"Dashboard","icon":"home","children":[]}]},{"group":"content","header":true,"list":[{"title":"pages","icon":"file","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new page","enabled":true,"link":""}]},{"title":"posts","icon":"file-text","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new post","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""},{"title":"Tags","enabled":true,"link":""}]},{"title":"clients","icon":"address-book","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new client","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""}]},{"title":"users","icon":"users","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new user","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""}]},{"title":"files","icon":"file-image-o","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new file","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""}]}]},{"group":"other","header":true,"list":[{"title":"appearance","icon":"flask","children":[{"title":"Header","enabled":true,"link":""},{"title":"Menu","enabled":true,"link":""},{"title":"Footer","enabled":true,"link":""}]},{"title":"tools","icon":"wrench","children":[{"title":"Audit","enabled":true,"link":""},{"title":"Calendar","enabled":true,"link":""},{"title":"Invoice","enabled":true,"link":""}]},{"title":"settings","icon":"cog","children":[{"title":"Account","enabled":true,"link":""},{"title":"Configuration","enabled":true,"link":""},{"title":"Theme","enabled":true,"link":""}]}]}];
+				this.menu = [{"group":"main","header":false,"list":[{"title":"Dashboard","icon":"home","link":"admin","children":[]}]},{"group":"content","header":true,"list":[{"title":"pages","icon":"file","link":"","children":[{"title":"View all","enabled":true,"link":"all-pages"},{"title":"Add new page","enabled":true,"link":"new-page"}]},{"title":"posts","icon":"file-text","link":"","children":[{"title":"View all","enabled":true,"link":"all-posts"},{"title":"Add new post","enabled":true,"link":"new-post"},{"title":"Categories","enabled":true,"link":""},{"title":"Tags","enabled":true,"link":""}]},{"title":"clients","icon":"address-book","link":"","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new client","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""}]},{"title":"users","icon":"users","link":"","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new user","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""}]},{"title":"files","icon":"file-image-o","link":"","children":[{"title":"View all","enabled":true,"link":""},{"title":"Add new file","enabled":true,"link":""},{"title":"Categories","enabled":true,"link":""}]}]},{"group":"other","header":true,"list":[{"title":"appearance","icon":"flask","link":"","children":[{"title":"Header","enabled":true,"link":""},{"title":"Menu","enabled":true,"link":""},{"title":"Footer","enabled":true,"link":""}]},{"title":"tools","icon":"wrench","link":"","children":[{"title":"Audit","enabled":true,"link":"audit"},{"title":"Calendar","enabled":true,"link":""},{"title":"Invoice","enabled":true,"link":""}]},{"title":"settings","icon":"cog","link":"","children":[{"title":"Account","enabled":true,"link":""},{"title":"Configuration","enabled":true,"link":""},{"title":"Theme","enabled":true,"link":""}]}]}];
 				this.adminHeader();
 				this.adminSidebar();
 				this.adminPage();
@@ -19,6 +19,7 @@ class App {
 			break;
 		}
 		this.events();
+		this.disableZoom();
 	}
 
 	meta() {
@@ -42,14 +43,17 @@ class App {
 		container = this.app;
 		content = 	`<!-- Start ~ Header -->
 					<div class="alm-admin-header alm-wrapper">
-						<div class="alm-admin-header-logo alm-wrapper">
-							<div class="alm-admin-header-logo-container">
-								logo
+						<div class="alm-admin-header-brand alm-wrapper">
+							<div class="alm-admin-header-brand-logo alm-wrapper">
+								<a class="alm-wrapper" href="home.html">
+									<img src="https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/logo3.png" width="80%">
+								</a>
+							</div>
+							<div class="alm-admin-header-brand-name alm-wrapper">
+								<div class="alm-admin-header-brand-title">alien.marketing</div>
 							</div>
 						</div>
-						<div class="alm-admin-header-menu alm-wrapper">
-							menu
-						</div>
+						<div class="alm-admin-header-menu alm-wrapper">menu</div>
 						<div class="alm-admin-header-profile alm-wrapper">
 							<span class="fa fa-circle-o"></span>
 						</div>
@@ -73,6 +77,18 @@ class App {
 					<!-- End ~ Sidebar -->`;
 		container.append(content);
 		this.buildSidebar(data);
+		jQuery('.alm-admin-sidebar').on('mouseover', function() {
+			let item;
+			item = jQuery(this);
+			item.addClass('open');
+		});
+		jQuery('.alm-admin-sidebar').on('mouseleave', function() {
+			let item;
+			item = jQuery(this);
+			item.removeClass('open');
+			jQuery('.alm-admin-sidebar-item').removeClass('active');
+			jQuery('.alm-admin-sidebar-list').slideUp(250);
+		});
 		jQuery('.alm-admin-sidebar-tab').on('click', function() {
 			let item, title, list;
 			item = jQuery(this);
@@ -88,19 +104,19 @@ class App {
 		container = jQuery('.alm-admin-sidebar-content');
 		for (var i = 0; i < obj.length; i++) {
 			data = obj[i];
-			if(data.header) {header = '<div class="alm-admin-sidebar-group-title">'+data.group+'</div>';}else{header = '';}
-			content = '<div class="alm-admin-sidebar-group" id="'+data.group+'">'+header+'</div>';
+			if(data.header) {header = '<div class="alm-admin-sidebar-group-title alm-25">'+data.group+'</div>';}else{header = '';}
+			content = `<div class="alm-admin-sidebar-group" id="`+data.group+`">`+header+`</div>`;
 			container.append(content);
 			this.sidebarTab(data);
 		}
 	}
 
 	sidebarTab(obj) {
-		let container, content, data, dropdown;
+		let container, content, data, link, dropdown;
 		container = jQuery('#'+obj.group);
 		for (var i = 0; i < obj.list.length; i++) {
 			data = obj.list[i];
-			if(data.children.length > 0) {dropdown = '<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15"><span class="fa fa-caret-down"></span></div>';}else{dropdown = '';}
+			if(data.children.length > 0) {dropdown = '<div class="alm-admin-sidebar-dropdown alm-wrapper alm-15"><span class="fa fa-caret-down"></span></div>'; link = 'javascript:void(0)'; }else{dropdown = ''; link = data.link+'.html';}
 			content = `<div class="alm-admin-sidebar-item alm-wrapper">
 						<div class="alm-admin-sidebar-tab alm-wrapper">
 							<div class="alm-admin-sidebar-icon-container alm-wrapper">
@@ -108,7 +124,9 @@ class App {
 									<span class="fa fa-`+data.icon+`"></span>
 								</div>
 							</div>
-							<div class="alm-admin-sidebar-title alm-wrapper">`+data.title+`</div>
+							<div class="alm-admin-sidebar-title alm-wrapper alm-25">
+								<a class="alm-wrapper" href="`+link+`">`+data.title+`</a>
+							</div>
 							`+dropdown+`
 						</div>
 						<div class="alm-admin-sidebar-list" id="`+data.title+`">
@@ -121,11 +139,12 @@ class App {
 	}
 
 	sidebarChildren(obj) {
-		let container, content, data;
+		let container, content, data, link;
 		container = jQuery('#'+obj.title+' .alm-admin-sidebar-list-container');
 		for (var i = 0; i < obj.children.length; i++) {
 			data = obj.children[i];
-			content = `<div class="alm-admin-sidebar-list-item alm-wrapper">`+data.title+`</div>`;
+			if(data.link){link = data.link+'.html';}else{link = 'javascript:void(0)';}
+			content = `<a href="`+link+`"><div class="alm-admin-sidebar-list-item alm-wrapper">`+data.title+`</div></a>`;
 			container.append(content);
 		}
 	}
@@ -134,7 +153,10 @@ class App {
 		let container, content;
 		container = this.app;
 		content = 	`<!-- Start ~ Page -->
-					<div class="alm-admin-page"></div>
+					<div class="alm-admin-page">
+						<div class="alm-admin-page-cover alm-wrapper"></div>
+						<div class="alm-admin-page-container alm-wrapper"></div>
+					</div>
 					<!-- End ~ Page -->`;
 		container.append(content);
 		this.body = jQuery('.alm-admin-page');
@@ -326,6 +348,7 @@ class App {
 			jQuery('.alm-sidebar-section-'+name).addClass('active');
 		});
 		this.sidebarSettings();
+		this.sidebarMenu();
 	}
 
 	sidebarProfile() {
@@ -355,7 +378,85 @@ class App {
 
 	sidebarMenu() {
 		let container, content;
-		container = jQuery('.alm-sidebar-section-menu');
+		container = jQuery('.alm-sidebar-menu-content');
+		content = 	`<div class="alm-sidebar-section-menu-group">
+						<div class="alm-sidebar-section-menu-title alm-wrapper">
+							<a class="alm-sidebar-section-menu-link alm-wrapper" href="javascript:void(0)">services</a>
+							<div class="alm-sidebar-section-menu-expand alm-wrapper">
+								<div class="alm-sidebar-section-menu-expand-item alm-25"></div>
+								<div class="alm-sidebar-section-menu-expand-item alm-25"></div>
+							</div>
+						</div>
+						<div class="alm-sidebar-section-menu-list">
+							<div class="alm-sidebar-section-menu-item alm-wrapper">
+								<a class="alm-sidebar-section-menu-link alm-wrapper" href="javascript:void()">web design & development</a>
+							</div>
+							<div class="alm-sidebar-section-menu-item alm-wrapper">
+								<a class="alm-sidebar-section-menu-link alm-wrapper" href="javascript:void()">social media management</a>
+							</div>
+							<div class="alm-sidebar-section-menu-item alm-wrapper">
+								<a class="alm-sidebar-section-menu-link alm-wrapper" href="javascript:void()">email & sms marketing</a>
+							</div>
+							<div class="alm-sidebar-section-menu-item alm-wrapper">
+								<a class="alm-sidebar-section-menu-link alm-wrapper" href="javascript:void()">reporting & analytics</a>
+							</div>
+							<div class="alm-sidebar-section-menu-item alm-wrapper">
+								<a class="alm-sidebar-section-menu-link alm-wrapper" href="javascript:void()">social listening</a>
+							</div>
+							<div class="alm-sidebar-section-menu-item alm-wrapper">
+								<a class="alm-sidebar-section-menu-link alm-wrapper" href="javascript:void()">seo & sem</a>
+							</div>
+						</div>
+					</div>
+					<div class="alm-sidebar-section-menu-group">
+						<div class="alm-sidebar-section-menu-title alm-wrapper">
+							<a class="alm-sidebar-section-menu-link alm-wrapper" href="javascript:void(0)">about</a>
+							<div class="alm-sidebar-section-menu-expand alm-wrapper">
+								<div class="alm-sidebar-section-menu-expand-item alm-25"></div>
+								<div class="alm-sidebar-section-menu-expand-item alm-25"></div>
+							</div>
+						</div>
+						<div class="alm-sidebar-section-menu-list">
+							<div class="alm-sidebar-section-menu-item alm-wrapper">
+								<a class="alm-sidebar-section-menu-link alm-wrapper" href="about.html">about us</a>
+							</div>
+							<div class="alm-sidebar-section-menu-item alm-wrapper">
+								<a class="alm-sidebar-section-menu-link alm-wrapper" href="team.html">team</a>
+							</div>
+						</div>
+					</div>
+					<div class="alm-sidebar-section-menu-group">
+						<div class="alm-sidebar-section-menu-title alm-wrapper">
+							<a class="alm-sidebar-section-menu-link alm-wrapper" href="pricing.html">pricing</a>
+						</div>
+					</div>
+					<div class="alm-sidebar-section-menu-group">
+						<div class="alm-sidebar-section-menu-title alm-wrapper">
+							<a class="alm-sidebar-section-menu-link alm-wrapper" href="blog.html">blog</a>
+						</div>
+					</div>
+					<div class="alm-sidebar-section-menu-group">
+						<div class="alm-sidebar-section-menu-title alm-wrapper">
+							<a class="alm-sidebar-section-menu-link alm-wrapper" href="contact.html">contact</a>
+						</div>
+					</div>`;
+		container.append(content);
+
+		jQuery('.alm-sidebar-section-menu-title').on('click', function() {
+			let item, list;
+			item = jQuery(this);
+			list = item.siblings('.alm-sidebar-section-menu-list');
+			jQuery('.alm-sidebar-section-menu-list').slideUp();
+			if(item.hasClass('active')) {
+				item.removeClass('active');
+			}
+			else {
+				jQuery('.alm-sidebar-section-menu-title').removeClass('active');
+				item.addClass('active');
+				list.slideDown();
+			}
+		});
+
 	}
 
 	sidebarControls() {
@@ -371,7 +472,7 @@ class App {
 	}
 
 	sidebarOpen() {
-		jQuery('.alm-sidebar, .alm-sidebar-menu-item:first-child, .alm-sidebar-section:first-child').addClass('active');
+		jQuery('.alm-sidebar, .alm-sidebar-menu-item:nth-child(3), .alm-sidebar-section:nth-child(3)').addClass('active');
 		jQuery('body').addClass('alm-sidebar-opened');
 		jQuery('.alm-sidebar-overlay').fadeIn();
 	}
@@ -541,6 +642,16 @@ class App {
 			containerHeight = containerWidth * (9/16);
 			container.css({'height':containerHeight+'px'});
 		}
+    }
+
+    disableZoom() {
+    	// Disables zoom on mobile
+		document.addEventListener('touchmove', function(event) {
+	        event = event.originalEvent || event;
+	        if (event.scale !== 1) {
+	           event.preventDefault();
+	        }
+	    }, false);
     }
 
 }

@@ -31,8 +31,6 @@ requirejs.config({
         main: 'main',
         // pages
         about: 'controller/pages/about',
-        admin: 'controller/pages/admin',
-        audit: 'controller/pages/audit',
         blog: 'controller/pages/blog',
         contact: 'controller/pages/contact',
         dashboard: 'controller/pages/dashboard',
@@ -43,6 +41,17 @@ requirejs.config({
         register: 'controller/pages/register',
         services: 'controller/pages/services',
         team: 'controller/pages/team',
+        // admin
+        admin: 'controller/pages/admin/dashboard',
+        audit: 'controller/pages/admin/audit',
+            // posts
+            newPost: 'controller/pages/admin/posts/add-new',
+            editPost: 'controller/pages/admin/posts/edit',
+            allPosts: 'controller/pages/admin/posts/view-all',
+            // pages
+            newPage: 'controller/pages/admin/pages/add-new',
+            editPage: 'controller/pages/admin/posts/edit',
+            allPages: 'controller/pages/admin/pages/view-all',
     },
     shim: {
         'bootstrap': ['jQuery'],
