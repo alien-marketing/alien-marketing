@@ -9,14 +9,17 @@
 		<!-- RequireJS -->
 		<script src="../src/js/frontend/require.js"></script>
 
+		<!-- AWS -->
+   		<script src="https://sdk.amazonaws.com/js/aws-sdk-2.219.1.min.js"></script>
+
 	</head>
 	<body class="alm-app alm-25">
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['localforage','moment','jQuery','particle','AES','MD5','config','api','app','user'],
+				requirejs(['localforage','moment','jQuery','particle','AES','MD5','config','api','app','user','allPages'],
 				function (localforage,moment) {
-					var config = new Config(), api = new API(), app = new App(), user = new User();
+					var config = new Config(), api = new API(), app = new App(), user = new User(), pages = new allPages();
 					window.localforage = localforage
 					window.moment = moment;
 					localforage.ready(function() {
@@ -26,6 +29,7 @@
 						    if(value != null) {
 						    	app.init({'template':'admin'});
 								user.init();
+								pages.init();
 						    }
 						    else {
 								window.location.href = 'home.html';

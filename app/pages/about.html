@@ -13,13 +13,14 @@
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['localforage','moment','jQuery','particle','AES','MD5','config','api','app','user','about'],
+				requirejs(['localforage','moment','jQuery','particle','AES','MD5','config','api','app','user','page','about'],
 				function (localforage,moment) {
-					var config = new Config(), api = new API(), app = new App(), user = new User(), about = new About();
+					var config = new Config(), api = new API(), app = new App(), user = new User(), page = new Page(), about = new About();
 					window.localforage = localforage
 					window.moment = moment;
 					app.init({'template':'frontend'});
 					user.init();
+					page.init('about');
 					about.init();
 				});
 			});

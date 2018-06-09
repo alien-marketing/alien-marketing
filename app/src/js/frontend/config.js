@@ -26,6 +26,7 @@ requirejs.config({
         // core
         api: 'controller/core/api',
         config: 'controller/core/config',
+        page: 'controller/core/page',
         user: 'controller/core/user',
         // default
         main: 'main',
@@ -35,7 +36,6 @@ requirejs.config({
         contact: 'controller/pages/contact',
         dashboard: 'controller/pages/dashboard',
         home: 'controller/pages/home',
-        page: 'controller/pages/page',
         post: 'controller/pages/post',
         pricing: 'controller/pages/pricing',
         register: 'controller/pages/register',
