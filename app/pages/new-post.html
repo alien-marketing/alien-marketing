@@ -14,9 +14,9 @@
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['localforage','moment','jQuery','particle','AES','MD5','config','api','app','user'],
+				requirejs(['localforage','moment','jQuery','particle','AES','MD5','ace','editor','config','api','app','user','newPost'],
 				function (localforage,moment) {
-					var config = new Config(), api = new API(), app = new App(), user = new User();
+					var config = new Config(), api = new API(), app = new App(), user = new User(), post = new newPost();
 					window.localforage = localforage
 					window.moment = moment;
 					localforage.ready(function() {
@@ -26,6 +26,7 @@
 						    if(value != null) {
 						    	app.init({'template':'admin'});
 								user.init();
+								post.init();
 						    }
 						    else {
 								window.location.href = 'home.html';

@@ -1,32 +1,36 @@
 class Page {
 
 	init(data) {
-		this.name = data;
-		this.checkPage();
+		this.checkPage(data.name);
 	}
 
-	checkPage() {
+	checkPage(name) {
 		let url, path, lastPath, page = new Page();
 		url = window.location.href;
 		path = url.split('/');
 		lastPath = path[path.length - 1];
 		if(lastPath.includes('.html')) {
 			localforage.ready(function() {
-				let key, name;
-				name = lastPath.replace('.html','');
-		        key = 'edx-cache-page-obj-'+name;
-		        localforage.getItem(key).then(function(value) {
-				    if(value != null) {
-				    	// cached
-				    	console.log('cached');
-						page.buildPage(value);
-				    }
-				    else {
-				    	// not cached
-				  		console.log('not cached');
-				  		page.getData();
-				    }
-				});
+				let key, pathName;
+				pathName = lastPath.replace('.html','');
+				if(name === pathName) {
+					key = 'edx-cache-page-obj-'+name;
+			        localforage.getItem(key).then(function(value) {
+					    if(value != null) {
+					    	// cached
+					    	console.log('cached');
+							page.buildPage(value);
+					    }
+					    else {
+					    	// not cached
+					  		console.log('not cached');
+					  		page.getData(name);
+					    }
+					});
+				}
+				else {
+					console.log('name is incorrect');
+				}
 		    });
 		}
 		else {
@@ -81,14 +85,14 @@ class Page {
 		container.append(content);
 	}
 
-	getData() {
-		let name, pageData, config = new Config(), page = new Page();
-		name = this.name;
+	getData(name) {
+		let pageData, config = new Config(), page = new Page();
+		console.log(name);
 		jQuery.ajax({
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
-            url: config.route('page')+page+'.json',
+            url: config.route('page')+name+'.json',
             complete: function(jsondata) {
             	pageData = jsondata.responseText;
 				if(pageData) {

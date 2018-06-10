@@ -1,0 +1,243 @@
+:root {
+    --alm-active-tab: #272823;
+    --alm-inactive-tab: #424242;
+}
+
+.alm-editor-wrapper {
+	align-items: flex-start;
+}
+
+.alm-editor-holder.shadow {
+    box-shadow: 0px 0px 4px rgba(20,20,20,0.15);
+}
+
+.alm-editor-app {
+    margin: 20px 0px;
+    position: relative;
+}
+
+.alm-editor-toolbar {
+    padding-left: 58px;
+    height: 24px !important;
+    position: relative;
+    justify-content: flex-start !important;
+    top: 0px;
+    z-index: 0;
+}
+
+.alm-editor-tabs {
+    justify-content: flex-start !important;
+}
+
+.alm-editor-tab.active {
+    z-index: 5;
+}
+
+.alm-editor-tab {
+    position: relative;
+    margin: 0px -8px;
+    justify-content: flex-start !important;
+    z-index: 1;
+}
+
+.alm-editor-tab-holder {
+    -webkit-filter: drop-shadow( 0px 0px 2px rgba(20,20,20,0.65)); 
+    filter: drop-shadow( 0px 0px 2px rgba(20,20,20,0.65));
+}
+
+.alm-editor-tab.active .alm-editor-tab-svg {
+    fill: var(--alm-active-tab);
+    z-index: 1;
+}
+
+.alm-editor-tab-svg {
+    fill: var(--alm-inactive-tab);
+}
+
+.alm-tab-title {
+    position: absolute;
+    top: 6px;
+    left: 30px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.alm-editor-tab-close {
+    position: absolute;
+    right: 20px;
+    top: 3px;
+    font-size: 7px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.45);
+    cursor: pointer;
+}
+
+.alm-editor-tab-close:hover {
+    color: #fff;
+}
+
+.alm-editor-add {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    width: 36px;
+    height: 24px;
+    background: var(--alm-inactive-tab);
+    color: #fff;
+    font-size: 12px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    box-shadow: 0px 0px 2px rgba(20,20,20,0.65);
+    cursor: pointer;
+}
+
+.alm-editor-options {
+    display: none;
+    position: absolute;
+    top: 34px;
+    right: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 44px) !important;
+    background: rgba(47, 49, 42,0.75);
+    z-index: 10;
+}
+
+.alm-editor-options-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 45px;
+    height: 20px !important;
+    background: #ce5549;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.alm-editor-holder:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #ebebeb;
+    height: 8px;
+    width: 48px;
+    border-top-left-radius: 4px;
+}
+
+.alm-editor-holder.active {
+    display: block;
+}
+
+.alm-editor-holder {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 500px;
+    min-height: 350px;
+    padding: 8px 0px;
+    background: #ededed;
+    border-radius: 4px;
+}
+
+.alm-editor-holder:after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: #ebebeb;
+    height: 8px;
+    width: 48px;
+    border-bottom-left-radius: 4px;
+}
+
+.alm-editor-btn {
+	display: inline-flex;
+    height: 36px;
+    padding: 0px 20px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+.alm-purple-btn {
+	background: #8660d9;
+    border: 1px solid #8660d9;
+    border-bottom: 2px solid #6d3bda;
+    color: #fff;
+}
+
+.alm-editor {
+    margin: 0;
+    position: relative;
+    width: inherit;
+    height: inherit;
+}
+
+.alm-editor-error {
+    font-size: 50px;
+    color: #fff;
+}
+
+.alm-editor-sidebar-container {
+	margin: 20px;
+}
+
+.alm-editor-sidebar {
+    background: #f6f6f7;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.alm-editor-sidebar-content {
+	padding: 15px;
+}
+
+.alm-editor-sidebar-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(20,20,20,0.1);
+}
+
+.alm-editor-sidebar-instruction {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.alm-editor-sidebar-code {
+    font-size: 12px;
+    color: #636363;
+}
+
+.alm-editor-sidebar-code span {
+	font-weight: 800;
+}
+
+.alm-editor-sidebar-completion {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Snippet */
+.alm-course-snippet-container {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    padding: 8px 0px;
+    margin: 15px 0px;
+    background: #272922;
+    border-radius: 4px;
+}
+
+.alm-course-snippet {
+    width: 100%;
+    height: 100%;
+}

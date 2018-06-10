@@ -5,6 +5,7 @@ requirejs.config({
         jQuery: 'libs/jquery.min',
         mask: 'libs/jquery.mask.min',
         angular: 'libs/angular.min',
+        ace: 'libs/ace/ace',
         aws: 'libs/aws-sdk.min',
         bootstrap: 'libs/bootstrap.min',
         charts: 'libs/charts.min',
@@ -26,6 +27,7 @@ requirejs.config({
         // core
         api: 'controller/core/api',
         config: 'controller/core/config',
+        editor: 'controller/core/editor',
         page: 'controller/core/page',
         user: 'controller/core/user',
         // default

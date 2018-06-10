@@ -25,6 +25,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Roboto:100,300,400,500,700,900');
+@import url('libs/editor.css');
 @import url('libs/datetimepicker.css');
 @import url('libs/bootstrap.min.css');
 @import url('libs/messenger.css');
@@ -41,8 +42,11 @@
 	    left: 0px;
 	}
 
-	body:not(.alm-page) {
-		font-family: 'Lato';
+	/* this is used because changing the font for ace breaks the layout... */
+	body:not(.alm-page),
+	body:not(.edx-editor-holder) > div,
+	body:not(.edx-editor-holder) > textarea {
+	    font-family: 'Lato';
 	}
 
 	a {
