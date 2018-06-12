@@ -446,14 +446,14 @@ class App {
 			let item, list;
 			item = jQuery(this);
 			list = item.siblings('.alm-sidebar-section-menu-list');
-			jQuery('.alm-sidebar-section-menu-list').slideUp();
+			jQuery('.alm-sidebar-section-menu-list').slideUp(250);
 			if(item.hasClass('active')) {
 				item.removeClass('active');
 			}
 			else {
 				jQuery('.alm-sidebar-section-menu-title').removeClass('active');
 				item.addClass('active');
-				list.slideDown();
+				list.slideDown(250);
 			}
 		});
 

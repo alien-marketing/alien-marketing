@@ -30,7 +30,7 @@ class newPost {
 									<div class="alm-wrapper alm-editor-wrapper">
 										<div class="alm-xs-100 alm-sm-100 alm-md-75 alm-lg-75">
 											<div class="alm-admin-new-post-title">
-												<input class="alm-admin-new-post-value" type="text">
+												<input class="alm-admin-new-post-value" type="text" placeholder="Title goes here...">
 											</div>
 											<div class="alm-editor-app">
 												<div class="alm-editor-holder active">
@@ -44,19 +44,120 @@ class newPost {
 						</div>
 					</div>
 					<div class="alm-xs-100 alm-sm-25">
-						<div class="alm-admin-page-block alm-wrapper">
-							<div>
-								<div>publish</div>
-								<button>preview</button>
-								<div>Status: Published</div>
-								<div>Visibility: Public</div>
-								<div>Created: June 12, 2018 at 6:05pm</div>
-								<div>Delete</div>
-								<div>Update</div>
+						<div class="alm-admin-page-block-sidebar">
+
+							<!-- Publish -->
+							<div class="alm-admin-page-block">
+								<div class="alm-admin-page-block-sidebar-header alm-wrapper">
+									<div class="alm-admin-page-block-sidebar-title">
+										publish
+									</div>
+									<div class="alm-admin-page-block-sidebar-preview alm-wrapper">
+										preview
+									</div>
+								</div>
+								<div class="alm-admin-page-block-sidebar-content">
+									<div class="alm-admin-page-block-sidebar-item alm-wrapper">
+										<div class="alm-admin-page-block-sidebar-name">Status:</div>
+										<div class="alm-admin-page-block-sidebar-value">
+											<select>
+												<option>draft</option>
+												<option>pending</option>
+												<option>published</option>
+											</select>
+										</div>
+									</div>
+									<div class="alm-admin-page-block-sidebar-item alm-wrapper">
+										<div class="alm-admin-page-block-sidebar-name">Visibility:</div>
+										<div class="alm-admin-page-block-sidebar-value">
+											<select>
+												<option>public</option>
+												<option>private</option>
+												<option>unlisted</option>
+											</select>
+										</div>
+									</div>
+									<div class="alm-admin-page-block-sidebar-item alm-wrapper">
+										<div class="alm-admin-page-block-sidebar-name">Created:</div>
+										<div class="alm-admin-page-block-sidebar-value">
+											<input type="text" value="`+moment().format('MMMM Do YYYY @ h:mm A')+`" placeholder="date">
+										</div>
+									</div>
+									<div class="alm-admin-page-block-sidebar-item alm-wrapper">
+										<div class="alm-admin-page-block-sidebar-name">Author:</div>
+										<div class="alm-admin-page-block-sidebar-value">
+											Mathew
+										</div>
+									</div>
+								</div>
+								<div class="alm-admin-page-block-sidebar-footer">
+									<div class="alm-admin-page-block-sidebar-update alm-wrapper">
+										<div class="alm-admin-page-block-sidebar-btn alm-wrapper">publish</div>
+									</div>
+								</div>
 							</div>
+
+							<!-- Layout -->
+							<div class="alm-admin-page-block">
+								<div class="alm-admin-page-block-sidebar-header">
+									<div class="alm-admin-page-block-sidebar-title">
+										layout
+									</div>
+								</div>
+								<div class="alm-admin-page-block-sidebar-content">
+									content
+								</div>
+								<div class="alm-admin-page-block-sidebar-footer">
+									footer
+								</div>
+							</div>
+
+							<!-- Media -->
+							<div class="alm-admin-page-block">
+								<div class="alm-admin-page-block-sidebar-header">
+									<div class="alm-admin-page-block-sidebar-title">
+										media
+									</div>
+								</div>
+								<div class="alm-admin-page-block-sidebar-content">
+									content
+								</div>
+								<div class="alm-admin-page-block-sidebar-footer">
+									footer
+								</div>
+							</div>
+
+							<!-- Categories -->
+							<div class="alm-admin-page-block">
+								<div class="alm-admin-page-block-sidebar-header">
+									<div class="alm-admin-page-block-sidebar-title">
+										categories
+									</div>
+								</div>
+								<div class="alm-admin-page-block-sidebar-content">
+									content
+								</div>
+								<div class="alm-admin-page-block-sidebar-footer">
+									footer
+								</div>
+							</div>
+
+							<!-- Tags -->
+							<div class="alm-admin-page-block">
+								<div class="alm-admin-page-block-sidebar-header">
+									<div class="alm-admin-page-block-sidebar-title">
+										tags
+									</div>
+								</div>
+								<div class="alm-admin-page-block-sidebar-content">
+									content
+								</div>
+								<div class="alm-admin-page-block-sidebar-footer">
+									footer
+								</div>
+							</div>
+
 						</div>
-						<div class="alm-admin-page-block alm-wrapper">options</div>
-						<div class="alm-admin-page-block alm-wrapper">categories</div>
 					</div>`;
 		container.append(content);
 

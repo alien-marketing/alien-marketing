@@ -22,7 +22,8 @@ class Blog {
 				'type':'gradient',
 				'layout':'normal',
 				// 'style':'background: linear-gradient(-45deg, rgb(255, 65, 108), rgb(255, 75, 43));'
-				'style':'background: linear-gradient(-15deg, rgb(61, 126, 170), rgb(255, 228, 122));'
+				// 'style':'background: linear-gradient(15deg, rgb(238, 9, 121), rgb(255, 106, 0));'
+				'style':'background: linear-gradient(15deg, rgb(17, 153, 142), rgb(168, 224, 99))'
 			},
 			{
 				'title':'content',

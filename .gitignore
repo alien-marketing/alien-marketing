@@ -1,2 +1,3 @@
 .DS_Store
+/data/
 /app/src/js/frontend/controller/core/config.js

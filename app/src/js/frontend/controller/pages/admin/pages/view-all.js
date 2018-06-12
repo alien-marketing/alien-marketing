@@ -37,10 +37,11 @@ class allPages {
 		let container, content, s3, params, config = new Config();
 
 		container = jQuery('.alm-admin-page-pages');
-		s3 = new AWS.S3({accessKeyId: config.route('key'),secretAccessKey: config.route('secret')});
+		s3 = new AWS.S3({accessKeyId: config.route('id'),secretAccessKey: config.route('secret')});
 		params = {Bucket: 'alien-marketing',MaxKeys: 100,Marker: 'website/',Prefix: 'website/app/pages/'};
 
         s3.listObjects(params, function(err, data) {
+        	console.log(err);
 			if(data) {
 				for (var i = 0; i < data.Contents.length; i++) {
 					let item, path, lastPath, link, page;
@@ -90,6 +91,9 @@ class allPages {
 
 					}
 				}
+			}
+			else {
+				console.log('no data');
 			}
         });
 

@@ -10,14 +10,17 @@
 
 	</head>
 	<body class="alm-app alm-25">
-
+		
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['jQuery','app','home'],
-				function () {
-					let app = new App(), home = new Home();
+				requirejs(['localforage','moment','jQuery','particle','AES','MD5','config','api','app','user','post'],
+				function (localforage,moment) {
+					var config = new Config(), api = new API(), app = new App(), user = new User(), post = new Post();
+					window.localforage = localforage
+					window.moment = moment;
 					app.init({'template':'frontend'});
-					home.init();
+					user.init();
+					post.init();
 				});
 			});
 		</script>

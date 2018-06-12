@@ -1070,6 +1070,11 @@
 		/*padding: 15px;*/
 	}
 
+	.alm-sidebar-profile-content,
+	.alm-sidebar-settings-content {
+	    padding: 15px;
+	}
+
 	.alm-sidebar-break {
 	    margin: 15px 0px;
 	    width: 100%;
@@ -1328,6 +1333,7 @@
 		    height: 46px;
 		    background: #0eb486;
 		    background: #8f57a0;
+		    background: #8660d9;
 		    color: #fff;
 		    font-weight: 600;
 		    text-transform: capitalize;
@@ -1378,7 +1384,7 @@
 		}
 
 		.alm-services-card-btn {
-		    height: 40px;
+		    height: 46px;
 		    /*background: #0eb486;*/
 		    /*background: #685ec5;*/
 		    /*background: #9c5596;*/
@@ -1424,8 +1430,8 @@
 		}
 
 		.alm-stories-card-btn {
-		    height: 40px;
-		    background: #c24d6c;
+		    height: 46px;
+		    background: #cf4a62;
 		    color: #fff;
 		    font-size: 14px;
 		    text-transform: capitalize;
@@ -1572,6 +1578,8 @@
 		    height: 30vh;
 		    min-height: 350px;
 		    background: url(https://cdn4.iconfinder.com/data/icons/space-exploration-set/128/iStar_Design_Space_LineIcons_Live-1-512.png);
+		    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    		filter: grayscale(100%);
 		}
 
 		.alm-team-member-info {

@@ -19,21 +19,20 @@
 					var config = new Config(), api = new API(), app = new App(), user = new User(), admin = new Admin();
 					window.localforage = localforage
 					window.moment = moment;
-					app.init({'template':'admin'});
-					user.init();
-					admin.init();
-					// localforage.ready(function() {
-					// 	let key, status;
-				 //        key = 'alm-cache-user-obj';
-				 //        localforage.getItem(key).then(function(value) {
-					// 	    if(value != null) {
-						    	
-					// 	    }
-					// 	    else {
-					// 			window.location.href = 'home.html';
-					// 	    }
-					// 	});
-				 //    });
+					localforage.ready(function() {
+						let key, status;
+				        key = 'alm-cache-user-obj';
+				        localforage.getItem(key).then(function(value) {
+						    if(value != null) {
+						    	app.init({'template':'admin'});
+								user.init();
+								admin.init();
+						    }
+						    else {
+								window.location.href = 'home.html';
+						    }
+						});
+				    });
 				});
 			});
 		</script>

@@ -21,7 +21,7 @@ class Team {
 				'title':'cover',
 				'type':'gradient',
 				'layout':'normal',
-				'style':'background: linear-gradient(to right, rgb(8, 80, 120), rgb(133, 216, 206));'
+				'style':'background: linear-gradient(-45deg, rgb(156, 236, 251), rgb(101, 199, 247), rgb(0, 82, 212));'
 			},
 			{
 				'title':'content',
@@ -74,7 +74,8 @@ class Team {
 			{
 				'name':'sarah',
 				'title':'founder',
-				'image':'',
+				'image':'https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/team/sarah.jpg',
+				'style':'background-size: cover; background-position: center center;',
 				'social':[
 					{'type':'instagram','link':''},
 					{'type':'facebook','link':''},
@@ -86,7 +87,8 @@ class Team {
 			{
 				'name':'larry',
 				'title':'founder',
-				'image':'',
+				'image':'https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/team/larry.jpg',
+				'style':'background-size: cover; background-position: center center;',
 				'social':[
 					{'type':'instagram','link':''},
 					{'type':'facebook','link':''},
@@ -98,7 +100,8 @@ class Team {
 			{
 				'name':'mathew',
 				'title':'developer',
-				'image':'',
+				'image':'https://s3-us-west-2.amazonaws.com/alien-marketing/media/images/team/mathew.jpg',
+				'style':'background-size: cover; background-position: top center;',
 				'social':[
 					{'type':'instagram','link':''},
 					{'type':'twitter','link':''},
@@ -125,7 +128,7 @@ class Team {
 			member = 	`<div class="alm-xs-100 alm-sm-50 alm-md-33">
 							<div class="alm-team-member alm-team-member-`+i+`">
 								<div class="alm-team-member-image-container">
-									<div class="alm-team-member-image" style="background-size: contain; background-repeat: no-repeat; background-position: center center;"></div>
+									<div class="alm-team-member-image" style="background: url(`+data.image+`); `+data.style+`"></div>
 								</div>
 								<div class="alm-team-member-info">
 									<div class="alm-team-member-name alm-wrapper">`+data.name+`</div>
