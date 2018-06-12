@@ -1,27 +1,28 @@
 class Post {
 
 	init() {
-		this.container = jQuery('.alm-page');
-		this.template();
+		this.getData();
 	}
 
-	template() {
+	template(data) {
 		let container, content;
-		container = this.container;
+		this.data = JSON.parse(data);
+		container = jQuery('.alm-page');
 		content = '<div class="alm-angled-sections"></div>';
 		container.html(content);
 		this.sections();
 	}
 
 	sections() {
-		let container, content, sections, section;
+		let container, content, data, sections, section;
 		container = jQuery('.alm-angled-sections');
+		data = this.data;
 		sections = [
 			{
 				'title':'cover',
 				'type':'gradient',
 				'layout':'normal',
-				'style':'background: url(https://images.pexels.com/photos/6224/hands-people-woman-working.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-attachment: fixed;'
+				'style':'background: url('+data.cover+'); background-attachment: fixed; background-size: cover;'
 			},
 			{
 				'title':'content',
@@ -39,8 +40,8 @@ class Post {
 	    				</div>`;
 	    	container.append(content);
 	    }
-	    this.cover();
 	    this.content();
+	    this.cover();
 	}
 
 	cover() {
@@ -51,12 +52,8 @@ class Post {
 						<div class="alm-wrapper">
 							<div class="alm-xs-100 alm-sm-50">
 								<div class="alm-page-content">
-									<div class="alm-page-cover-title">
-										
-									</div>
-									<div class="alm-page-cover-subtitle">
-
-									</div>
+									<div class="alm-page-cover-title"></div>
+									<div class="alm-page-cover-subtitle"></div>
 								</div>
 							</div>
 						</div>
@@ -68,37 +65,72 @@ class Post {
 	}
 
 	content() {
-		let container, content
+		let container, content, data;
+		data = this.data;
 		container = jQuery('.alm-section-content');
 		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
 							<div class="alm-xs-100 alm-sm-75">
 								<div class="alm-page-content">
-									<div class="alm-page-blog-post-titles" style="margin-bottom: 50px;">
-										<div class="alm-page-blog-post-title" style="font-size: 44px; font-weight: 600;">
-											10 reasons to hire a marketing agency
+									<div class="alm-page-blog-post-titles">
+										<div class="alm-page-blog-post-title">
+											`+data.title+`
 										</div>
-										<div class="alm-page-blog-post-author">
-											Sarah Wislon
+										<div class="alm-page-blog-post-created alm-wrapper">
+											<div class="alm-page-blog-post-author">
+												By: `+data.created.published.author+`
+											</div>
 										</div>
 									</div>
-									<div class="alm-page-text">
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-									</div>
-									<br>
-									<div class="alm-page-text">
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-									</div>
-									<br>
-									<div class="alm-page-text">
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-									</div>
+									<div class="alm-page-blog-post-content"></div>
 								</div>
 							</div>
 						</div>
 					</div>`;
 		container.append(content);
+		for (var i = 0; i < data.content.length; i++) {
+			switch(data.content[i].type) {
+				case 'text':
+					jQuery('.alm-page-blog-post-content').append('<div class="alm-page-blog-post-text">'+data.content[i].data.text+'</div>');
+				break;
+				case 'image':
+					jQuery('.alm-page-blog-post-content').append(`<div class="alm-page-blog-post-image">
+																	<img src="`+data.content[i].data.src+`" width="100%">
+																	<div class="alm-page-blog-post-caption">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+																</div>`);
+				break;
+			}
+		}
+	}
 
+	getData() {
+		let url, name, postData, post = new Post();
+		url = window.location.search;
+		if(url.includes('?name=')) {
+			name = url.replace('?name=');
+			jQuery.ajax({
+	            type: 'GET',
+	            crossDomain: true,
+	            dataType: 'json',
+	            url: 'https://s3-us-west-2.amazonaws.com/alien-marketing/blog/posts/vkxoq9w7/post.json',
+	            complete: function(jsondata) {
+	            	postData = jsondata.responseText;
+					if(postData) {
+						post.template(postData);
+						// localforage.ready(function() {
+						// 	localforage.setItem('edx-cache-page-obj-'+name,postData);
+						// 	page.buildPage(postData);
+						// });
+					}
+					else {
+						console.log('failed to load page');
+					}
+	            }
+	        });
+		}
+		else {
+
+		}
 	}
 
 }

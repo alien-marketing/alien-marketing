@@ -1,13 +1,12 @@
 class Blog {
 
 	init() {
-		this.container = jQuery('.alm-page');
-		this.template();
+		this.checkData();
 	}
 
 	template() {
 		let container, content;
-		container = this.container;
+		container = jQuery('.alm-page');
 		content = '<div class="alm-angled-sections"></div>';
 		container.html(content);
 		this.sections();
@@ -75,16 +74,82 @@ class Blog {
 		container = jQuery('.alm-section-content');
 		content = 	`<div class="alm-angled-section-wrapper alm-container">
 						<div class="alm-wrapper">
-							<div class="alm-xs-100 alm-sm-50">
-								<div class="alm-page-content">
-									<div class="alm-page-text">
-										content
-									</div>
-								</div>
+							<div class="alm-xs-100 alm-sm-100">
+								<div class="alm-page-blog-content alm-wrapper"></div>
 							</div>
 						</div>
 					</div>`;
 		container.append(content);
+	}
+
+	buildPosts(obj) {
+		let container, content, posts, data, col;
+		this.template();
+		container = jQuery('.alm-page-blog-content');
+		posts = JSON.parse(obj);
+		for (var i = 0; i < posts.posts.length; i++) {
+			data = posts.posts[i];
+			if(i%3){ col = 'alm-sm-40'; }
+			else { col = 'alm-sm-60'; }
+			content = 	`<div class="alm-xs-100 `+col+`">
+							<div class="alm-page-blog-posts">
+								<div class="alm-page-blog-posts-image alm-wrapper">
+									<div class="alm-page-blog-posts-info">
+										<a href="post.html?name=`+data.name+`">
+											<div class="alm-page-blog-posts-title">`+data.name.replace(/-/g,' ')+`</div>
+										</a>
+										<div class="alm-page-blog-posts-description">
+											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+										</div>
+									</div>
+									<div class="alm-page-blog-posts-image-overlay"></div>
+								</div>
+							</div>
+						</div>`;
+			container.append(content);
+		}
+	}
+
+	checkData() {
+		let blog = new Blog();
+		localforage.ready(function() {
+			let key;
+			key = 'edx-cache-blog-obj';
+	        localforage.getItem(key).then(function(value) {
+			    if(value != null) {
+			    	// cached
+			    	console.log('cached');
+					blog.buildPosts(value);
+			    }
+			    else {
+			    	// not cached
+			  		console.log('not cached');
+			  		blog.getData();
+			    }
+			});
+		});
+	}
+
+	getData() {
+		let blogData, blog = new Blog();
+		jQuery.ajax({
+            type: 'GET',
+            crossDomain: true,
+            dataType: 'json',
+            url: 'http://s3-us-west-2.amazonaws.com/alien-marketing/blog/list.json',
+            complete: function(jsondata) {
+            	blogData = jsondata.responseText;
+				if(blogData) {
+					localforage.ready(function() {
+						localforage.setItem('edx-cache-blog-obj',blogData);
+						blog.buildPosts(blogData);
+					});
+				}
+				else {
+					console.log('failed to load page');
+				}
+            }
+        });
 	}
 
 }

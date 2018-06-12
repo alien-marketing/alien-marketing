@@ -87,7 +87,6 @@ class Page {
 
 	getData(name) {
 		let pageData, config = new Config(), page = new Page();
-		console.log(name);
 		jQuery.ajax({
             type: 'GET',
             crossDomain: true,
