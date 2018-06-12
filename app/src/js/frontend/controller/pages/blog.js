@@ -91,19 +91,24 @@ class Blog {
 			data = posts.posts[i];
 			if(i%3){ col = 'alm-sm-40'; }
 			else { col = 'alm-sm-60'; }
-			content = 	`<div class="alm-xs-100 `+col+`">
-							<div class="alm-page-blog-posts">
-								<div class="alm-page-blog-posts-image alm-wrapper">
-									<div class="alm-page-blog-posts-info">
-										<a href="post.html?name=`+data.name+`">
-											<div class="alm-page-blog-posts-title">`+data.name.replace(/-/g,' ')+`</div>
-										</a>
-										<div class="alm-page-blog-posts-description">
-											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+			content = 	`<div class="alm-xs-100 `+col+` alm-page-blog-posts">
+							<div class="alm-page-blog-posts-container">
+								<a href="post.html?name=`+data.name+`" class="alm-wrapper">
+									<div class="alm-page-blog-posts-image alm-wrapper">
+										<div class="alm-page-blog-posts-info">
+											<div class="alm-page-blog-posts-created">
+												<div class="alm-page-blog-posts-title">`+data.name.replace(/-/g,' ')+`</div>
+												<div class="alm-page-blog-posts-author">sarah wilson</div>
+											</div>
+											<div class="alm-page-blog-posts-description">
+												Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+											</div>
+										</div>
+										<div class="alm-page-blog-posts-image-overlay">
+											<div class="alm-page-blog-posts-pattern"></div>
 										</div>
 									</div>
-									<div class="alm-page-blog-posts-image-overlay"></div>
-								</div>
+								</a>
 							</div>
 						</div>`;
 			container.append(content);
@@ -136,7 +141,7 @@ class Blog {
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
-            url: 'http://s3-us-west-2.amazonaws.com/alien-marketing/blog/list.json',
+            url: 'https://s3-us-west-2.amazonaws.com/alien-marketing/blog/list.json',
             complete: function(jsondata) {
             	blogData = jsondata.responseText;
 				if(blogData) {
