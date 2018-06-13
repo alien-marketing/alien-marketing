@@ -40,7 +40,7 @@ class User {
 		content = 	`<div class="alm-sidebar-profile-online">
 						<div>Hello, `+data.first_name+`!</div>
 						<div class="alm-user-logout">logout</div>
-						<div class="alm-user-admin"><a href="admin.html">admin</a></div>
+						<div class="alm-user-admin"><a href="admin.html"><button>admin</button></a></div>
 					</div>`;
 		container.html(content);
 
