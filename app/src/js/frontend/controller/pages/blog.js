@@ -20,8 +20,6 @@ class Blog {
 				'title':'cover',
 				'type':'gradient',
 				'layout':'normal',
-				// 'style':'background: linear-gradient(-45deg, rgb(255, 65, 108), rgb(255, 75, 43));'
-				// 'style':'background: linear-gradient(15deg, rgb(238, 9, 121), rgb(255, 106, 0));'
 				'style':'background: linear-gradient(15deg, rgb(17, 153, 142), rgb(168, 224, 99))'
 			},
 			{
@@ -93,22 +91,23 @@ class Blog {
 			else { col = 'alm-sm-60'; }
 			content = 	`<div class="alm-xs-100 `+col+` alm-page-blog-posts">
 							<div class="alm-page-blog-posts-container">
-								<a href="post.html?name=`+data.name+`" class="alm-wrapper">
-									<div class="alm-page-blog-posts-image alm-wrapper">
-										<div class="alm-page-blog-posts-info">
-											<div class="alm-page-blog-posts-created">
+								<div class="alm-page-blog-posts-image alm-wrapper alm-15"></div>
+								<div class="alm-page-blog-posts-details alm-wrapper">
+									<div class="alm-page-blog-posts-info">
+										<div class="alm-page-blog-posts-created">
+											<a href="post.html?name=`+data.name+`" class="alm-wrapper">
 												<div class="alm-page-blog-posts-title">`+data.name.replace(/-/g,' ')+`</div>
-												<div class="alm-page-blog-posts-author">sarah wilson</div>
-											</div>
-											<div class="alm-page-blog-posts-description">
-												Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-											</div>
+											</a>
+											<div class="alm-page-blog-posts-author">sarah wilson</div>
 										</div>
-										<div class="alm-page-blog-posts-image-overlay">
-											<div class="alm-page-blog-posts-pattern"></div>
+										<div class="alm-page-blog-posts-description">
+											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
 										</div>
 									</div>
-								</a>
+								</div>
+								<div class="alm-page-blog-posts-image-overlay">
+									<div class="alm-page-blog-posts-pattern"></div>
+								</div>
 							</div>
 						</div>`;
 			container.append(content);

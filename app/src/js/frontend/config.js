@@ -42,6 +42,13 @@ requirejs.config({
         pricing: 'controller/pages/pricing',
         register: 'controller/pages/register',
         services: 'controller/pages/services',
+            // services
+            analytics: 'controller/pages/services/analytics',
+            email: 'controller/pages/services/email',
+            listening: 'controller/pages/services/listening',
+            seo: 'controller/pages/services/seo',
+            social: 'controller/pages/services/social',
+            web: 'controller/pages/services/web',
         team: 'controller/pages/team',
         // admin
         admin: 'controller/pages/admin/dashboard',
