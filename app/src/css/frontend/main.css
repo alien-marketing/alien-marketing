@@ -29,6 +29,7 @@
 @import url('libs/datetimepicker.css');
 @import url('libs/bootstrap.min.css');
 @import url('libs/messenger.css');
+@import url('libs/qstn.css');
 
 /* Start ~ Browser Defaults */
 
@@ -1309,7 +1310,8 @@
 			font-weight: 300;
 		}
 
-		input.alm-hero-contact-value {
+		input.alm-hero-contact-value,
+		select.alm-hero-contact-value {
 		    width: 100%;
 		    height: 44px;
 		    font-size: 16px;

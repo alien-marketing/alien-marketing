@@ -14,11 +14,12 @@ requirejs.config({
         moment: 'libs/moment.min',
         datetimepicker: 'libs/datetimepicker',
         messenger: 'libs/messenger',
+        qstn: 'libs/qstn',
+        owl: 'libs/owl',
         particle: 'libs/particle',
         progress: 'libs/progressbar.min',
         signature: 'libs/signature.min',
         youtube: 'libs/youtube',
-        owl: 'libs/owl',
         // cryptoJS
         AES: 'libs/cryptoJS/aes',
         MD5: 'libs/cryptoJS/md5',

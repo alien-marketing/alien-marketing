@@ -66,7 +66,7 @@ class Home {
 	}
 
 	hero() {
-		let container, block, content, today, api = new API();
+		let container, block, content, today, formData, qstn = new Qstn(), api = new API(), messenger = new Messenger(), config = new Config();
 		container = jQuery('.alm-section-hero');
 		content = 	`<div class="alm-hero-particle-js" id="particles-js"></div>
 					<div class="alm-angled-section-wrapper alm-container">
@@ -86,101 +86,167 @@ class Home {
 									<div class="alm-hero-contact-text">
 										Sign up to receive a <span>free</span> website + social media analysis
 									</div>
-									<div class="alm-hero-contact-form">
-										<div class="alm-hero-contact-form-section active">
-											<div class="alm-hero-contact-item">
-												<div class="alm-hero-contact-title">Name*</div>
-												<div class="alm-hero-contact-input">
-													<input type="text" class="alm-hero-contact-value" data-min="" data-max="" data-type="name" placeholder="Barry Alien">
-												</div>
-											</div>
-											<div class="alm-hero-contact-item">
-												<div class="alm-hero-contact-title">Email*</div>
-												<div class="alm-hero-contact-input">
-													<input type="text" class="alm-hero-contact-value" data-min="" data-max="" data-type="email" placeholder="barry@example.com">
-												</div>
-											</div>
-											<div class="alm-hero-contact-item">
-												<div class="alm-hero-contact-title">Phone*</div>
-												<div class="alm-hero-contact-input">
-													<input type="text" class="alm-hero-contact-value alm-phone-mask" data-min="14" data-max="14" data-type="phone" placeholder="(949) 999-9999" autocomplete="off" />
-												</div>
-											</div>
-											<div class="alm-hero-contact-item">
-												<div class="alm-hero-contact-title">Website</div>
-												<div class="alm-hero-contact-input">
-													<input type="text" class="alm-hero-contact-value" data-min="" data-max="" data-type="website" placeholder="http://www.alien.marketing">
-												</div>
-											</div>
-										</div>
-										<div class="alm-hero-contact-form-section">
-											<div class="alm-hero-contact-item">
-												<div class="alm-hero-contact-title">Company*</div>
-												<div class="alm-hero-contact-input">
-													<input type="text" class="alm-hero-contact-value" data-min="" data-max="" data-type="company" placeholder="Alien Inc.">
-												</div>
-											</div>
-											<div class="alm-hero-contact-item">
-												<div class="alm-hero-contact-title">Industry*</div>
-												<div class="alm-hero-contact-input">
-													<input type="text" class="alm-hero-contact-value" data-min="" data-max="" data-type="industry" placeholder="Software">
-												</div>
-											</div>
-											<div class="alm-hero-contact-item">
-												<div class="alm-hero-contact-title">Budget*</div>
-												<div class="alm-hero-contact-input">
-													<input type="text" class="alm-hero-contact-value" data-min="" data-max="" data-type="budget" placeholder="$2,000 /month">
-												</div>
-											</div>
-											<div class="alm-hero-contact-item">
-												<div class="alm-hero-contact-title">Desired Meeting*</div>
-												<div class="input-group date" id="alm-hero-contact-datetimepicker">
-													<div class="input-group-addon">
-									                	<input type="text" class="form-control alm-hero-contact-value" data-min="" data-max="" data-type="date" data-format="dd/MM/yyyy hh:mm:ss" placeholder="June 1st, 2018" />
-									                </div>
-									            </div>
-											</div>
-										</div>
-										<div class="alm-hero-contact-btn alm-wrapper">
-											continue
-										</div>
-									</div>
+									<div class="alm-hero-contact-form"></div>
 								</div>
 							</div>
 						</div>
 					</div>`;
 		container.append(content);
-		jQuery('.alm-phone-mask').mask('(000) 000-0000');
-		// particlesJS("particles-js", {"particles":{"number":{"value":175,"density":{"enable":true,"value_area":2164.606282168456}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#fff"},"polygon":{"nb_sides":6},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.49705773886831206,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#fff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"repulse"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
-		today = moment().format('MMMM Do YYYY, h:mm A');
-		jQuery('#alm-hero-contact-datetimepicker input').attr('placeholder',today);
-		jQuery('#alm-hero-contact-datetimepicker').datetimepicker({
-            format: 'MMMM Do YYYY, h:mm A',
-		});
-
-		jQuery('.alm-hero-contact-btn').on('click', function() {
-			let obj = {}, error = [];
-			jQuery('.alm-section-hero .alm-hero-contact-value').each(function() {
-				let item, value, type;
-				item = jQuery(this);
-				value = item.val();
-				type = item.data('type');
-				if(!value) {
-					error[type] = 'Error: '+type+' is missing value';
+		formData = {
+			"id":"alm-hero-contact-form",
+			"name":"signup",
+			"sections":[
+				{
+					"title":"section 1",
+					"fields":[
+						{
+							"title":"name",
+							"placeholder":"Barry Alien",
+							"params":{
+								"type":"text",
+								"set":"name",
+								"min":"3",
+								"max":"36",
+								"required":true
+							},
+							"class":{
+								"item":"",
+								"parent":""
+							}
+						},
+						{
+							"title":"email",
+							"placeholder":"barry@example.com",
+							"params":{
+								"type":"text",
+								"set":"email",
+								"min":"5",
+								"max":"90",
+								"required":true
+							},
+							"class":{
+								"item":"",
+								"parent":""
+							}
+						},
+						{
+							"title":"phone",
+							"placeholder":"(949) 999-9999",
+							"params":{
+								"type":"text",
+								"set":"phone",
+								"min":"14",
+								"max":"14",
+								"required":true
+							},
+							"class":{
+								"item":"qstn-form-phone-mask",
+								"parent":""
+							}
+						},
+						{
+							"title":"website",
+							"placeholder":"https://www.alien.marketing",
+							"params":{
+								"type":"text",
+								"set":"website",
+								"min":"3",
+								"max":"90",
+								"required":false
+							},
+							"class":{
+								"item":"",
+								"parent":""
+							}
+						}
+					]
+				},
+				{
+					"title":"section 2",
+					"fields":[
+						{
+							"title":"company",
+							"placeholder":"Alien Inc.",
+							"params":{
+								"type":"text",
+								"set":"company",
+								"min":"3",
+								"max":"36",
+								"required":true
+							},
+							"class":{
+								"item":"",
+								"parent":""
+							}
+						},
+						{
+							"title":"industry",
+							"placeholder":"",
+							"params":{
+								"type":"select",
+								"set":"industry",
+								"options":[{"title":"aerospace","value":"aerospace"},{"title":"agribusiness","value":"agribusiness"},{"title":"arms","value":"arms"},{"title":"automotive","value":"automotive"},{"title":"broadcasting","value":"broadcasting"},{"title":"chemical","value":"chemical"},{"title":"computer","value":"computer"},{"title":"construction","value":"construction"},{"title":"defense","value":"defense"},{"title":"education","value":"education"},{"title":"electrical power","value":"electrical-power"},{"title":"electronics","value":"electronics"},{"title":"energy","value":"energy"},{"title":"entertainment","value":"entertainment"},{"title":"film","value":"film"},{"title":"financial services","value":"financial-services"},{"title":"fishing","value":"fishing"},{"title":"food","value":"food"},{"title":"fruit production","value":"fruit-production"},{"title":"health care","value":"health-care"},{"title":"hospitality","value":"hospitality"},{"title":"information","value":"information"},{"title":"insurance","value":"insurance"},{"title":"internet","value":"internet"},{"title":"manufacturing","value":"manufacturing"},{"title":"mass media","value":"mass-media"},{"title":"mining","value":"mining"},{"title":"music","value":"music"},{"title":"news media","value":"news-media"},{"title":"petroleum","value":"petroleum"},{"title":"pharmaceutical","value":"pharmaceutical"},{"title":"private military company","value":"private-military-company"},{"title":"private security company","value":"private-security-company"},{"title":"public utility","value":"public-utility"},{"title":"publishing","value":"publishing"},{"title":"pulp and paper","value":"pulp-and-paper"},{"title":"real estate","value":"real-estate"},{"title":"shipbuilding","value":"shipbuilding"},{"title":"software","value":"software"},{"title":"steel","value":"steel"},{"title":"technology","value":"technology"},{"title":"telecommunications","value":"telecommunications"},{"title":"timber","value":"timber"},{"title":"tobacco","value":"tobacco"},{"title":"transport","value":"transport"},{"title":"water","value":"water"},{"title":"world wide web","value":"world-wide-web"}],
+								"required":true
+							},
+							"class":{
+								"item":"",
+								"parent":""
+							}
+						},
+						{
+							"title":"budget",
+							"placeholder":"",
+							"params":{
+								"type":"select",
+								"set":"budget",
+								"options":[{"title":"$0 - $500 /month","value":"0-500"},{"title":"$500 - $1000 /month","value":"500-1000"},{"title":"$1000 - $2500 /month","value":"1000-2500"},{"title":"$2500+ /month","value":"2500+"}],
+								"required":true
+							},
+							"class":{
+								"item":"",
+								"parent":""
+							}
+						},
+						{
+							"title":"desired meeting",
+							"placeholder":"",
+							"params":{
+								"type":"datetime",
+								"set":"datetime",
+								"required":true
+							},
+							"class":{
+								"item":"",
+								"parent":""
+							}
+						}
+					]
 				}
-				obj[type] = value;
-			});
-			console.log(obj);
-			console.log(error);
-			if(error.name || error.email || error.phone || error.website) {
-				console.log('missing values');
+			],
+			"submit":{
+				"button":{
+					"states":{
+						"prev":{
+							"title":"back"
+						},
+						"next":{
+							"title":"continue"
+						},
+						"finish":{
+							"title":"submit"
+						}
+					},
+					"class":"",
+					"style":"background:#8660d9;color: #fff;"
+				},
+				"message":"thank you for signing up!"
+			},
+			"ajax":{
+				"url":""
 			}
-			else {
-				jQuery('.alm-hero-contact-form-section').removeClass('active');
-				jQuery('.alm-hero-contact-form-section:nth-child(2)').addClass('active');
-			}
-		});
-
+		};
+		qstn.build(formData);
+		// particlesJS("particles-js", {"particles":{"number":{"value":175,"density":{"enable":true,"value_area":2164.606282168456}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#fff"},"polygon":{"nb_sides":6},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.49705773886831206,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#fff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"repulse"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
 	}
 
 	about() {

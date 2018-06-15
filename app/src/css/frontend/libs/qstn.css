@@ -1,0 +1,41 @@
+.qstn-form {
+
+}
+
+.qstn-form-section {
+	display: none;
+}
+
+.qstn-form-section.active {
+	display: block;
+}
+
+.qstn-form-field {
+	margin-bottom: 20px;
+}
+
+.qstn-form-field-title {
+	margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+.qstn-form-input {
+
+}
+
+.qstn-form-value {
+	width: 100%;
+    height: 44px;
+    font-size: 16px;
+    font-weight: 300;
+    text-indent: 10px;
+    border: 1px solid rgba(20,20,20,0.1);
+}
+
+.qstn-form-btn {
+	height: 46px !important;
+    font-weight: 600;
+    text-transform: capitalize;
+}
