@@ -20,6 +20,7 @@ requirejs.config({
         progress: 'libs/progressbar.min',
         signature: 'libs/signature.min',
         youtube: 'libs/youtube',
+        typewriter: 'libs/typewriter',
         // cryptoJS
         AES: 'libs/cryptoJS/aes',
         MD5: 'libs/cryptoJS/md5',

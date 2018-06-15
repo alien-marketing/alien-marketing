@@ -8,6 +8,7 @@ class Qstn {
 			this.buildSections();
 			this.buildSubmit();
 			this.buildEvents();
+			this.checkQstn();
 			this.submitQstn();
 		}
 		else {
@@ -17,14 +18,15 @@ class Qstn {
 	}
 
 	buildSections() {
-		let container, content, sections, item;
+		let container, content, sections, item, id;
 		container = this.container;
 		sections = this.data.sections;
 		for (var i = 0; i < sections.length; i++) {
 			item = sections[i];
-			content = `<div class="qstn-form-section qstn-form-section-`+i+`"></div>`;
+			id = (i+1);
+			content = `<div class="qstn-form-section qstn-form-section-`+id+`" data-section="`+id+`"></div>`;
 			container.append(content);
-			this.buildFields(item,i);
+			this.buildFields(item,id);
 		}
 	}
 
@@ -35,7 +37,9 @@ class Qstn {
 			field = data.fields[i];
 			content = 	`<div class="qstn-form-field qstn-form-field-`+id+`-`+i+`">
 							<div class="qstn-form-field-title">`+field.title+`</div>
-							<div class="qstn-form-input"></div>
+							<div class="qstn-form-input">
+								<div class="qstn-form-input-status"></div>
+							</div>
 						</div>`;
 			container.append(content);
 			this.buildInput(field,id,i);
@@ -82,11 +86,41 @@ class Qstn {
 		});
 	}
 
+	checkQstn() {
+		let sections, section, total, complete, incomplete;
+		jQuery('.qstn-form-value').each(function() {
+			let item, value, length;
+			item = jQuery(this);
+			item.on('keyup', function() {
+				value = item.val();
+				length = value.length;
+				if(length > item.data('max') || value.length < item.data('min')) {
+					item.parent().addClass('qstn-form-input-error').removeClass('qstn-form-input-complete');
+				}
+				else {
+					item.parent().addClass('qstn-form-input-complete').removeClass('qstn-form-input-error');
+				}
+				section = jQuery('.qstn-form-section.active').data('section');
+				total = jQuery('.qstn-form-section.active .qstn-form-input').length;
+				complete = jQuery('.qstn-form-section.active .qstn-form-input-complete').length;
+				incomplete = total - complete;
+				sections = {'current':section,'complete':complete,'incompete':incomplete,'total':total,};
+				console.log(sections);
+			});
+		});
+	}
+
 	submitQstn() {
 		jQuery('.qstn-form-btn').on('click', function() {
-			let item, form, obj = {}, error = [];
+			let item, form, section, sections, completeSecions, incompleteSections, totalSections, obj = {}, error = [];
 			item = jQuery(this);
 			form = item.data('id');
+			section = jQuery('.qstn-form-section.active').data('section');
+			totalSections = jQuery('.qstn-form-section').length;
+			completeSecions = jQuery('.qstn-form-section-complete').length;
+			incompleteSections = totalSections - completeSecions;
+			sections = {'current':section,'complete':completeSecions,'incompete':incompleteSections,'total':totalSections,};
+			console.log(sections);
 			jQuery('.'+form+' .qstn-form-section.active .qstn-form-value').each(function() {
 				let item, value, type;
 				item = jQuery(this);
@@ -95,15 +129,24 @@ class Qstn {
 				if(!value) {
 					error[type] = 'Error: '+type+' is missing value';
 				}
-				obj[type] = value;
+				else {
+					if(value.length > item.data('max')) {
+						error[type] = 'Error: '+type+' value is too long';
+					}
+					else if(value.length < item.data('min')) {
+						error[type] = 'Error: '+type+' value is too short';	
+					}
+					else {
+						obj[type] = value;
+					}
+				}
 			});
-			console.log(obj);
-			console.log(error);
-
-			if(error.name || error.email || error.phone || error.website) {
+			if(Object.keys(error).length > 0) {
 				console.log('missing values');
+				console.log(error);
 			}
 			else {
+				jQuery('.qstn-form-section.active').addClass('good');
 				jQuery('.qstn-form-section').removeClass('active');
 				jQuery('.qstn-form-section:nth-child(2)').addClass('active');
 			}

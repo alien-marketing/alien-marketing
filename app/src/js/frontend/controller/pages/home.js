@@ -74,7 +74,8 @@ class Home {
 							<div class="alm-xs-100 alm-sm-50 alm-angled-section-title">
 								<div class="alm-page-content">
 									<div class="alm-hero-title">
-										We love marketing
+										We love <br>
+										<span id="alm-hero-title"></span>
 									</div>
 									<div class="alm-hero-text">
 										For us, there's nothing greater than helping a <span>local business</span> or <span>entrepreneur</span> grow to see their dreams come true. You have the idea, we're just here to help make it as successful as you want it to be.
@@ -92,6 +93,23 @@ class Home {
 						</div>
 					</div>`;
 		container.append(content);
+
+		var app = document.getElementById('alm-hero-title');
+		var typewriter = new Typewriter(app, {
+		    loop: true
+		});
+
+		typewriter.typeString('marketing!')
+		    .pauseFor(2500)
+		    .deleteAll()
+		    .typeString('creating!')
+		    .pauseFor(2500)
+		    .deleteAll()
+		    .typeString('socializing!')
+		    .pauseFor(1500)
+		    .start();
+
+
 		formData = {
 			"id":"alm-hero-contact-form",
 			"name":"signup",
