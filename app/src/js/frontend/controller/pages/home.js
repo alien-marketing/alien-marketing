@@ -66,7 +66,7 @@ class Home {
 	}
 
 	hero() {
-		let container, block, content, today, formData, qstn = new Qstn(), api = new API(), messenger = new Messenger(), config = new Config();
+		let container, block, content, today, formData, qstn = new Qstn(), api = new API(), config = new Config();
 		container = jQuery('.alm-section-hero');
 		content = 	`<div class="alm-hero-particle-js" id="particles-js"></div>
 					<div class="alm-angled-section-wrapper alm-container">
@@ -231,6 +231,8 @@ class Home {
 							"params":{
 								"type":"datetime",
 								"set":"datetime",
+								"min":"10",
+								"max":"60",
 								"required":true
 							},
 							"class":{

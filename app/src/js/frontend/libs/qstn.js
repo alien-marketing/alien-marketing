@@ -4,9 +4,12 @@ class Qstn {
 
 		if(obj.id) {
 			this.data = obj;
+			console.log(obj);
 			this.container = jQuery('.'+obj.id);
+			this.buildTemplate();
 			this.buildSections();
 			this.buildSubmit();
+			this.buildMessage();
 			this.buildEvents();
 			this.checkQstn();
 			this.submitQstn();
@@ -17,9 +20,25 @@ class Qstn {
 
 	}
 
-	buildSections() {
-		let container, content, sections, item, id;
+	buildTemplate() {
+		let container, content, id, api = new API();
 		container = this.container;
+		id = api.randomString(8, '0123456789abcdefghijklmnopqrstuvwxyz');
+		this.data.uid = id;
+		content = 	`<div class="qstn-form qstn-form-`+id+`">
+						<div class="qstn-form-content">
+							<div class="qstn-form-title"></div>
+							<div class="qstn-form-sections"></div>
+						</div>
+						<div class="qstn-form-message"></div>
+					</div>`;
+		container.append(content);
+	}
+
+	buildSections() {
+		let container, content, sections, item, id, uid;
+		uid = this.data.uid;
+		container = jQuery('.qstn-form-'+uid+' .qstn-form-sections');
 		sections = this.data.sections;
 		for (var i = 0; i < sections.length; i++) {
 			item = sections[i];
@@ -28,6 +47,14 @@ class Qstn {
 			container.append(content);
 			this.buildFields(item,id);
 		}
+	}
+
+	buildMessage() {
+		let container, content, uid;
+		uid = this.data.uid;
+		container = jQuery('.qstn-form-'+uid+' .qstn-form-message');
+		content = this.data.submit.message;
+		container.append(content);
 	}
 
 	buildFields(data,id) {
@@ -51,13 +78,13 @@ class Qstn {
 		container = jQuery('.qstn-form-field-'+pid+'-'+id+' .qstn-form-input');
 		switch(data.params.type) {
 			case 'text':
-				content = '<input type="text" class="qstn-form-value '+data.class.item+'" data-min="'+data.params.min+'" data-max="'+data.params.max+'" data-type="'+data.params.set+'" placeholder="'+data.placeholder+'" autocomplete="off">';
+				content = '<input type="text" class="qstn-form-value '+data.class.item+'" data-min="'+data.params.min+'" data-max="'+data.params.max+'" data-type="'+data.params.type+'" data-set="'+data.params.set+'" placeholder="'+data.placeholder+'" autocomplete="off">';
 			break;
 			case 'select':
-				content = 	'<select class="qstn-form-value '+data.class.item+'" data-type="'+data.params.set+'"></select>';
+				content = 	'<select class="qstn-form-value '+data.class.item+'" data-type="'+data.params.type+'" data-set="'+data.params.set+'"></select>';
 			break;
 			case 'datetime':
-				content = '<div class="input-group date qstn-form-datetimepicker"><div class="input-group-addon"><input type="text" class="form-control qstn-form-value '+data.class.item+'" data-type="'+data.params.set+'" data-format="dd/MM/yyyy hh:mm:ss" placeholder="'+data.placeholder+'"></div></div>';
+				content = '<div class="input-group date qstn-form-datetimepicker"><div class="input-group-addon"><input type="text" class="form-control qstn-form-value '+data.class.item+'" data-min="'+data.params.min+'" data-max="'+data.params.max+'" data-type="'+data.params.type+'" data-set="'+data.params.set+'" data-format="dd/MM/yyyy hh:mm:ss" placeholder="'+data.placeholder+'"></div></div>';
 			break
 		}
 		container.append(content);
@@ -70,8 +97,9 @@ class Qstn {
 	}
 
 	buildSubmit() {
-		let container, content, button;
-		container = this.container;
+		let container, content, button, uid;
+		uid = this.data.uid;
+		container = jQuery('.qstn-form-'+uid+' .qstn-form-content');
 		button = this.data.submit.button;
 		content = '<div class="qstn-form-btn alm-wrapper" data-id="'+this.data.id+'" style="'+button.style+'">continue</div>';
 		container.append(content);
@@ -87,69 +115,219 @@ class Qstn {
 	}
 
 	checkQstn() {
-		let sections, section, total, complete, incomplete;
+		let qstn = new Qstn();
 		jQuery('.qstn-form-value').each(function() {
-			let item, value, length;
+			let item, value, length, type, typing;
 			item = jQuery(this);
+			typing = null;
 			item.on('keyup', function() {
 				value = item.val();
 				length = value.length;
-				if(length > item.data('max') || value.length < item.data('min')) {
-					item.parent().addClass('qstn-form-input-error').removeClass('qstn-form-input-complete');
+				if(length == 0 || !value) {
+					item.parent().removeClass('qstn-form-input-complete qstn-form-input-error');
 				}
 				else {
-					item.parent().addClass('qstn-form-input-complete').removeClass('qstn-form-input-error');
+					// Wait until user types something
+					clearInterval(typing);
+
+					typing = setInterval(function() {
+						// User has stopped typing
+						clearInterval(typing);
+						qstn.checkField(item);
+						qstn.sections = qstn.checkSection();
+					}, 500);
 				}
-				section = jQuery('.qstn-form-section.active').data('section');
-				total = jQuery('.qstn-form-section.active .qstn-form-input').length;
-				complete = jQuery('.qstn-form-section.active .qstn-form-input-complete').length;
-				incomplete = total - complete;
-				sections = {'current':section,'complete':complete,'incompete':incomplete,'total':total,};
-				console.log(sections);
+			});
+			item.on('change', function() {
+				qstn.checkField(item);
+				qstn.sections = qstn.checkSection();
+			});
+			item.closest('.qstn-form-datetimepicker').on('dp.change', function(e){
+				qstn.checkField(item);
+				qstn.sections = qstn.checkSection();
 			});
 		});
 	}
 
-	submitQstn() {
-		jQuery('.qstn-form-btn').on('click', function() {
-			let item, form, section, sections, completeSecions, incompleteSections, totalSections, obj = {}, error = [];
+	checkField(item) {
+		let type;
+		type = item.data('type');
+		switch(type) {
+			case 'text':
+				this.validateText(item);
+			break;
+			case 'select':
+				this.validateSelect(item);
+			break;
+			case 'datetime':
+				this.validateDatetime(item);
+			break;
+		}
+	}
+
+	checkSection() {
+		let id = 1, sections = {}, section, input, total, complete, incomplete;
+		jQuery('.qstn-form-section').each(function() {
+			let item, fields = [];
 			item = jQuery(this);
-			form = item.data('id');
-			section = jQuery('.qstn-form-section.active').data('section');
-			totalSections = jQuery('.qstn-form-section').length;
-			completeSecions = jQuery('.qstn-form-section-complete').length;
-			incompleteSections = totalSections - completeSecions;
-			sections = {'current':section,'complete':completeSecions,'incompete':incompleteSections,'total':totalSections,};
-			console.log(sections);
-			jQuery('.'+form+' .qstn-form-section.active .qstn-form-value').each(function() {
-				let item, value, type;
-				item = jQuery(this);
-				value = item.val();
-				type = item.data('type');
-				if(!value) {
-					error[type] = 'Error: '+type+' is missing value';
+			if(item.hasClass('active')) { section = item.data('section'); }
+			input = item.children('.qstn-form-field').children('.qstn-form-input');
+			input.find('.qstn-form-value').each(function() {
+				let data;
+				data = jQuery(this);
+				fields.push({'value':data.val(),'type':data.data('set')});
+			});
+			total = input.length;
+			complete = jQuery('.qstn-form-section-'+id+' .qstn-form-input-complete').length;
+			incomplete = total - complete;
+			sections[id] = {'complete':complete,'incomplete':incomplete,'total':total,'fields':fields};
+			sections.current = section;
+			sections.count = id;
+			id++;
+		});
+		return sections;		
+	}
+
+	validateText(item) {
+		let value, length, min, max, set;
+		value = item.val();
+		length = value.length;
+		min = item.data('min');
+		max = item.data('max');
+		set = item.data('set');
+
+		if(length > max || value.length < min) {
+			item.parent().addClass('qstn-form-input-error').removeClass('qstn-form-input-complete');
+		}
+		else {
+			switch(set) {
+				case 'email':
+					this.validateEmail(item);
+				break;
+				case 'website':
+					this.validateWebsite(item);
+				break;
+				default:
+					this.validateDefault(item);
+				break;
+			}
+		}
+
+	}
+
+	validateSelect(item) {
+		let value, length;
+		value = item.val();
+		length = value.length;
+		if(length > 0) {
+			this.validateDefault(item);
+		}
+		else {
+			item.parent().addClass('qstn-form-input-error').removeClass('qstn-form-input-complete');
+		}
+	}
+
+	validateEmail(item) {
+		let value, validator;
+		value = item.val();
+		validator = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    	if(validator.test(String(value).toLowerCase())) {
+    		item.parent().addClass('qstn-form-input-complete').removeClass('qstn-form-input-error');
+    	}
+		else {
+			item.parent().addClass('qstn-form-input-error').removeClass('qstn-form-input-complete');
+		}
+	}
+
+	validateWebsite(item) {
+		let value, validator;
+		value = item.val();
+		validator = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+		if(validator.test(String(value).toLowerCase())) {
+    		item.parent().addClass('qstn-form-input-complete').removeClass('qstn-form-input-error');
+    	}
+		else {
+			item.parent().addClass('qstn-form-input-error').removeClass('qstn-form-input-complete');
+		}
+	}
+
+	validateDatetime(item) {
+		let value, length, min, max;
+		value = item.val();
+		length = value.length;
+		min = item.data('min');
+		max = item.data('max');
+		if(length > max || value.length < min) {
+			item.closest('.qstn-form-input').addClass('qstn-form-input-error').removeClass('qstn-form-input-complete');
+		}
+		else {
+			item.closest('.qstn-form-input').addClass('qstn-form-input-complete').removeClass('qstn-form-input-error');
+		}
+	}
+
+	validateDefault(item) {
+		item.parent().addClass('qstn-form-input-complete').removeClass('qstn-form-input-error');
+	}
+
+	submitQstn() {
+		let sections, current, complete, incomplete, total, count, qstn = new Qstn(), api = new API(), messenger = new Messenger();
+		jQuery('.qstn-form-btn').on('click', function() {
+
+			sections = qstn.checkSection();
+			current = sections.current;
+			complete = sections[current].complete;
+			total = sections[current].total;
+			count = sections.count;
+			
+			if(complete == total) {
+				if(current == count) {
+					let id, name;
+					id = api.randomString(8, 'abcdefghijklmnopqrstuvwxyz');
+					name = api.randomString(8, 'abcdefghijklmnopqrstuvwxyz');
+					jQuery('.qstn-form-content').slideUp(250);
+					jQuery('.qstn-form-message').slideDown(250);
+					messenger.run({
+						'id':id,
+						'name':name,
+						'title':'Success!',
+						'message':'Form was successfully sent',
+						'duration':4500,
+						'theme':'light',
+						'icon':'check',
+						'color':'#37bfb1',
+						'location':'bottom-right',
+						'button':{
+							'title':'',
+							'link':''
+						}
+					});
 				}
 				else {
-					if(value.length > item.data('max')) {
-						error[type] = 'Error: '+type+' value is too long';
-					}
-					else if(value.length < item.data('min')) {
-						error[type] = 'Error: '+type+' value is too short';	
-					}
-					else {
-						obj[type] = value;
-					}
+					jQuery('.qstn-form-section').removeClass('active');
+					jQuery('.qstn-form-section:nth-child('+(current+1)+')').addClass('active');
 				}
-			});
-			if(Object.keys(error).length > 0) {
-				console.log('missing values');
-				console.log(error);
 			}
 			else {
-				jQuery('.qstn-form-section.active').addClass('good');
-				jQuery('.qstn-form-section').removeClass('active');
-				jQuery('.qstn-form-section:nth-child(2)').addClass('active');
+				let id, name;
+				id = api.randomString(8, 'abcdefghijklmnopqrstuvwxyz');
+				name = api.randomString(8, 'abcdefghijklmnopqrstuvwxyz');
+				messenger.run({
+					'id':id,
+					'name':name,
+					'title':'ERROR!',
+					'message':'please finish the current section',
+					'duration':4500,
+					'theme':'light',
+					'icon':'exclamation',
+					'color':'#f92b30',
+					'location':'bottom-right',
+					'button':{
+						'title':'',
+						'link':''
+					}
+				});
 			}
+
 		});
 	}
 

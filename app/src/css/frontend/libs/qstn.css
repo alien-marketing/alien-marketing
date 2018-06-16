@@ -41,6 +41,7 @@
     height: 8px;
     background: #ececec;
     border-radius: 50%;
+    z-index: 3;
 }
 
 .qstn-form-value {
@@ -56,4 +57,8 @@
 	height: 46px !important;
     font-weight: 600;
     text-transform: capitalize;
+}
+
+.qstn-form-message {
+    display: none;
 }
