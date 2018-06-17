@@ -71,6 +71,14 @@ textarea.qstn-form-value {
     text-transform: capitalize;
 }
 
+.qstn-form-btn {
+    opacity: 0.5
+}
+
+.qstn-form-btn.ready {
+    opacity: 1;
+}
+
 .qstn-form-btn:hover {
     cursor: pointer;
 }
