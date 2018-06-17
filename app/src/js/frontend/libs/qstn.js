@@ -1,18 +1,19 @@
 class Qstn {
 
+	init() {
+		this.submitQstn();
+	}
+
 	build(obj) {
 
 		if(obj.id) {
 			this.data = obj;
-			console.log(obj);
 			this.container = jQuery('.'+obj.id);
 			this.buildTemplate();
 			this.buildSections();
-			this.buildSubmit();
 			this.buildMessage();
 			this.buildEvents();
 			this.checkQstn();
-			this.submitQstn();
 		}
 		else {
 			console.log('missing form identification');
@@ -29,6 +30,7 @@ class Qstn {
 						<div class="qstn-form-content">
 							<div class="qstn-form-title"></div>
 							<div class="qstn-form-sections"></div>
+							<div class="qstn-form-btn alm-wrapper" data-id="`+this.data.id+`" style="`+this.data.submit.button.style+`">continue</div>
 						</div>
 						<div class="qstn-form-message"></div>
 					</div>`;
@@ -58,8 +60,9 @@ class Qstn {
 	}
 
 	buildFields(data,id) {
-		let container, content, field;
-		container = jQuery('.qstn-form-section-'+id);
+		let container, content, field, uid;
+		uid = this.data.uid;
+		container = jQuery('.qstn-form-'+uid+' .qstn-form-section-'+id);
 		for (var i = 0; i < data.fields.length; i++) {
 			field = data.fields[i];
 			content = 	`<div class="qstn-form-field qstn-form-field-`+id+`-`+i+`">
@@ -74,11 +77,15 @@ class Qstn {
 	}
 
 	buildInput(data,pid,id) {
-		let container, content;
-		container = jQuery('.qstn-form-field-'+pid+'-'+id+' .qstn-form-input');
+		let container, content, uid;
+		uid = this.data.uid;
+		container = jQuery('.qstn-form-'+uid+' .qstn-form-field-'+pid+'-'+id+' .qstn-form-input');
 		switch(data.params.type) {
 			case 'text':
 				content = '<input type="text" class="qstn-form-value '+data.class.item+'" data-min="'+data.params.min+'" data-max="'+data.params.max+'" data-type="'+data.params.type+'" data-set="'+data.params.set+'" placeholder="'+data.placeholder+'" autocomplete="off">';
+			break;
+			case 'textarea':
+				content = '<textarea class="qstn-form-value '+data.class.item+'" data-min="'+data.params.min+'" data-max="'+data.params.max+'" data-type="'+data.params.type+'" data-set="'+data.params.set+'" placeholder="'+data.placeholder+'"></textarea>';
 			break;
 			case 'select':
 				content = 	'<select class="qstn-form-value '+data.class.item+'" data-type="'+data.params.type+'" data-set="'+data.params.set+'"></select>';
@@ -96,15 +103,6 @@ class Qstn {
 		}
 	}
 
-	buildSubmit() {
-		let container, content, button, uid;
-		uid = this.data.uid;
-		container = jQuery('.qstn-form-'+uid+' .qstn-form-content');
-		button = this.data.submit.button;
-		content = '<div class="qstn-form-btn alm-wrapper" data-id="'+this.data.id+'" style="'+button.style+'">continue</div>';
-		container.append(content);
-	}
-
 	buildEvents() {
 		jQuery('.qstn-form-section:first-child').addClass('active');
 		jQuery('.qstn-form-phone-mask').mask('(000) 000-0000');
@@ -115,8 +113,9 @@ class Qstn {
 	}
 
 	checkQstn() {
-		let qstn = new Qstn();
-		jQuery('.qstn-form-value').each(function() {
+		let uid, qstn = new Qstn();
+		uid = this.data.uid;
+		jQuery('.qstn-form-'+uid+' .qstn-form-value').each(function() {
 			let item, value, length, type, typing;
 			item = jQuery(this);
 			typing = null;
@@ -134,17 +133,17 @@ class Qstn {
 						// User has stopped typing
 						clearInterval(typing);
 						qstn.checkField(item);
-						qstn.sections = qstn.checkSection();
+						qstn.sections = qstn.checkSection(uid);
 					}, 500);
 				}
 			});
 			item.on('change', function() {
 				qstn.checkField(item);
-				qstn.sections = qstn.checkSection();
+				qstn.sections = qstn.checkSection(uid);
 			});
 			item.closest('.qstn-form-datetimepicker').on('dp.change', function(e){
 				qstn.checkField(item);
-				qstn.sections = qstn.checkSection();
+				qstn.sections = qstn.checkSection(uid);
 			});
 		});
 	}
@@ -156,6 +155,9 @@ class Qstn {
 			case 'text':
 				this.validateText(item);
 			break;
+			case 'textarea':
+				this.validateTextarea(item);
+			break;
 			case 'select':
 				this.validateSelect(item);
 			break;
@@ -165,9 +167,9 @@ class Qstn {
 		}
 	}
 
-	checkSection() {
+	checkSection(uid) {
 		let id = 1, sections = {}, section, input, total, complete, incomplete;
-		jQuery('.qstn-form-section').each(function() {
+		jQuery('.'+uid+' .qstn-form-section').each(function() {
 			let item, fields = [];
 			item = jQuery(this);
 			if(item.hasClass('active')) { section = item.data('section'); }
@@ -213,6 +215,21 @@ class Qstn {
 			}
 		}
 
+	}
+
+	validateTextarea(item) {
+		let value, length, min, max;
+		value = item.val();
+		length = value.length;
+		console.log(length);
+		min = item.data('min');
+		max = item.data('max');
+		if(length > max || value.length < min) {
+			item.parent().addClass('qstn-form-input-error').removeClass('qstn-form-input-complete');
+		}
+		else {
+			this.validateDefault(item);
+		}
 	}
 
 	validateSelect(item) {
@@ -270,10 +287,12 @@ class Qstn {
 	}
 
 	submitQstn() {
-		let sections, current, complete, incomplete, total, count, qstn = new Qstn(), api = new API(), messenger = new Messenger();
+		let item, sections, current, complete, incomplete, total, count, uid, qstn = new Qstn(), api = new API(), messenger = new Messenger();
 		jQuery('.qstn-form-btn').on('click', function() {
 
-			sections = qstn.checkSection();
+			item = jQuery(this);
+			uid = item.data('id');
+			sections = qstn.checkSection(uid);
 			current = sections.current;
 			complete = sections[current].complete;
 			total = sections[current].total;
@@ -284,8 +303,8 @@ class Qstn {
 					let id, name;
 					id = api.randomString(8, 'abcdefghijklmnopqrstuvwxyz');
 					name = api.randomString(8, 'abcdefghijklmnopqrstuvwxyz');
-					jQuery('.qstn-form-content').slideUp(250);
-					jQuery('.qstn-form-message').slideDown(250);
+					jQuery('.'+uid+' .qstn-form-content').slideUp(250);
+					jQuery('.'+uid+' .qstn-form-message').slideDown(250);
 					messenger.run({
 						'id':id,
 						'name':name,
@@ -303,8 +322,8 @@ class Qstn {
 					});
 				}
 				else {
-					jQuery('.qstn-form-section').removeClass('active');
-					jQuery('.qstn-form-section:nth-child('+(current+1)+')').addClass('active');
+					jQuery('.'+uid+' .qstn-form-section').removeClass('active');
+					jQuery('.'+uid+' .qstn-form-section:nth-child('+(current+1)+')').addClass('active');
 				}
 			}
 			else {

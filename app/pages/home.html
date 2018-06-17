@@ -13,9 +13,9 @@
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['localforage','moment','progress','jQuery','mask','datetimepicker','particle','AES','MD5','config','api','app','user','typewriter','qstn','messenger','owl','home'],
+				requirejs(['localforage','moment','progress','jQuery','mask','datetimepicker','particle','AES','MD5','config','api','app','user','typewriter','messenger','owl','home','qstn'],
 				function (localforage,moment,progress) {
-					var config = new Config(), api = new API(), app = new App(), user = new User(), messenger = new Messenger(), home = new Home();
+					var config = new Config(), api = new API(), app = new App(), user = new User(), messenger = new Messenger(), home = new Home(), qstn = new Qstn();
 					window.localforage = localforage
 					window.moment = moment;
 					window.progress = progress;
@@ -23,6 +23,7 @@
 					user.init();
 					messenger.init();
 					home.init();
+					qstn.init();
 				});
 			});
 		</script>

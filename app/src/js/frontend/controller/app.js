@@ -20,6 +20,7 @@ class App {
 		}
 		this.events();
 		this.disableZoom();
+		this.topLoad();
 	}
 
 	meta() {
@@ -652,6 +653,12 @@ class App {
 	           event.preventDefault();
 	        }
 	    }, false);
+    }
+
+    topLoad() {
+    	jQuery('html, body').animate({
+	        scrollTop: jQuery(".alm-app").offset().top
+	    }, 50);
     }
 
 }
