@@ -27,7 +27,9 @@ class allPages {
 						<div class="alm-admin-page-pages"></div>
 					</div>
 					<div class="alm-xs-100 alm-sm-25">
-						<div class="alm-admin-page-block alm-wrapper">sidebar</div>
+						<div class="alm-admin-page-block alm-wrapper">
+							<div class="alm-admin-page-btn alm-admin-page-add-new alm-wrapper">add new page</div>
+						</div>
 					</div>`;
 		container.append(content);
 		this.getPages();

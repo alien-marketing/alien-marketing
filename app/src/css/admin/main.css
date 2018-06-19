@@ -596,3 +596,13 @@ textarea.alm-admin-audit-item-value {
     padding: 0px;
     margin: 0px;
 }
+
+/* Pages */
+.alm-admin-page-btn {
+    width: 100%;
+    height: 46px;
+    background: #333;
+    color: #fff;
+    font-weight: 600;
+    text-transform: capitalize;
+}

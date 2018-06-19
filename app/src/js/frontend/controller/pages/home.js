@@ -400,13 +400,9 @@ class Home {
 										<div class="alm-stories-card alm-15">
 											<div class="alm-stories-card-image-container">
 												<div class="alm-stories-card-image" style="background: url(https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: cover; background-position: center center;"></div>
-											</div>
-											<div class="alm-stories-card-content">
-												<div class="alm-stories-card-title">10 Reasons to hire a marketing agency</div>
-												<div class="alm-stories-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												<div class="alm-stories-card-overlay">
+													<div class="alm-stories-card-title">10 Reasons to hire a marketing agency</div>
 												</div>
-												<div class="alm-stories-card-btn alm-wrapper">read more</div>
 											</div>
 										</div>
 									</div>
@@ -414,13 +410,9 @@ class Home {
 										<div class="alm-stories-card alm-15">
 											<div class="alm-stories-card-image-container">
 												<div class="alm-stories-card-image" style="background: url(https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: cover; background-position: center center;"></div>
-											</div>
-											<div class="alm-stories-card-content">
-												<div class="alm-stories-card-title">How to create an organic following</div>
-												<div class="alm-stories-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												<div class="alm-stories-card-overlay">
+													<div class="alm-stories-card-title">How to create an organic following</div>
 												</div>
-												<div class="alm-stories-card-btn alm-wrapper">read more</div>
 											</div>
 										</div>
 									</div>
@@ -428,13 +420,9 @@ class Home {
 										<div class="alm-stories-card alm-15">
 											<div class="alm-stories-card-image-container">
 												<div class="alm-stories-card-image" style="background: url(https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: cover; background-position: center center;"></div>
-											</div>
-											<div class="alm-stories-card-content">
-												<div class="alm-stories-card-title">Instagram is the new Facebook</div>
-												<div class="alm-stories-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												<div class="alm-stories-card-overlay">
+													<div class="alm-stories-card-title">Instagram is the new Facebook</div>
 												</div>
-												<div class="alm-stories-card-btn alm-wrapper">read more</div>
 											</div>
 										</div>
 									</div>
@@ -442,13 +430,9 @@ class Home {
 										<div class="alm-stories-card alm-15">
 											<div class="alm-stories-card-image-container">
 												<div class="alm-stories-card-image" style="background: url(https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: cover; background-position: center center;"></div>
-											</div>
-											<div class="alm-stories-card-content">
-												<div class="alm-stories-card-title">How to get started with Google Analytics</div>
-												<div class="alm-stories-card-text">
-													Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+												<div class="alm-stories-card-overlay">
+													<div class="alm-stories-card-title">How to get started with Google Analytics</div>
 												</div>
-												<div class="alm-stories-card-btn alm-wrapper">read more</div>
 											</div>
 										</div>
 									</div>
@@ -469,9 +453,9 @@ class Home {
 		    margin: 0,
 		    nav: true,
 		    dots: false,
-			autoplay: true,
-			autoplayTimeout: 3000,
-			autoplayHoverPause: true,
+			// autoplay: true,
+			// autoplayTimeout: 3000,
+			// autoplayHoverPause: true,
 		    responsive:{
 		        0:{ items:1 },
 		        1200:{ items:2 }
