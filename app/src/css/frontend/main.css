@@ -782,6 +782,7 @@
 	.owl-prev {
 	    position: absolute;
 	    left: -10px;
+	    top: -15px;
 	    width: 30px;
 	    padding: 2px;
 	    height: 40px;
@@ -793,6 +794,7 @@
 	.owl-next {
 	    position: absolute;
 	    right: -10px;
+	    top: -15px;
 	    width: 30px;
 	    padding: 2px;
 	    height: 40px;
@@ -1409,7 +1411,8 @@
 		}
 
 		.alm-stories-card-image {
-		    height: 250px;
+		    height: 280px;
+		    min-height: 36vh;
 		}
 
 		.alm-stories-card-content {
@@ -1426,16 +1429,14 @@
 		}
 
 		.alm-stories-card-title {
-		    position: absolute;
-		    top: 20px;
-		    left: 20px;
-		    font-weight: 900;
-		    font-size: 36px;
-		    line-height: 48px;
-		    color: #fff;
-		    text-transform: none;
-		    margin-bottom: 15px;
-		    font-family: 'Lato';
+			position: absolute;
+			font-weight: 900;
+			font-size: 40px;
+			line-height: 52px;
+			color: #fff;
+			text-transform: none;
+			padding: 20px 30px;
+			font-family: 'Lato';
 		}
 
 		.alm-stories-card-text {
