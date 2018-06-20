@@ -453,9 +453,9 @@ class Home {
 		    margin: 0,
 		    nav: true,
 		    dots: false,
-			// autoplay: true,
-			// autoplayTimeout: 3000,
-			// autoplayHoverPause: true,
+			autoplay: true,
+			autoplayTimeout: 3000,
+			autoplayHoverPause: true,
 		    responsive:{
 		        0:{ items:1 },
 		        1200:{ items:2 }

@@ -3,6 +3,7 @@ requirejs.config({
     paths: {
         // libraries
         jQuery: 'libs/jquery.min',
+        sortable: 'libs/sortable.min',
         mask: 'libs/jquery.mask.min',
         angular: 'libs/angular.min',
         ace: 'libs/ace/ace',
@@ -61,11 +62,12 @@ requirejs.config({
             allPosts: 'controller/pages/admin/posts/view-all',
             // pages
             newPage: 'controller/pages/admin/pages/add-new',
-            editPage: 'controller/pages/admin/posts/edit',
+            editPage: 'controller/pages/admin/pages/edit',
             allPages: 'controller/pages/admin/pages/view-all',
     },
     shim: {
         'bootstrap': ['jQuery'],
+        'sortable': ['jQuery'],
         'mask': ['jQuery'],
     }
 });
