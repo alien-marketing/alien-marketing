@@ -635,7 +635,7 @@ textarea.alm-admin-audit-item-value {
 	height: 46px;
 }
 
-.alm-admin-page-builder-item-options {
+.buildr-sortable-item-options {
 	display: none;
 }
 
@@ -668,6 +668,8 @@ textarea.alm-admin-audit-item-value {
 .alm-admin-page-builder-render .alm-admin-page-builder-item:not(:first-child) {
 	margin-top: 10px;
 }
+
+
 
 .alm-admin-page-builder-render .buildr-sortable-item-options {
 	display: inline-flex;

@@ -153,6 +153,7 @@ class editPage {
 
 		this.buildMenu(obj);
 		
+		// This initiates the page builder menu
 		sortable('.buildr-sortable-menu', {
 			forcePlaceholderSize: false,
 			copy: true,
@@ -160,48 +161,102 @@ class editPage {
 			placeholderClass: 'alm-admin-page-builder-placeholder',
 		});
 
-		// Inside Menu
-		let selected = false;
+		sortable('.buildr-sortable-main-list', {
+			forcePlaceholderSize: true,
+			copy: false,
+			maxItems: 5,
+			acceptFrom: '.buildr-sortable-menu-section',
+			placeholderClass: 'alm-admin-page-builder-placeholder',
+		});
+
+		// Section
+		sortable('.buildr-sortable-menu-section', {
+			forcePlaceholderSize: false,
+			copy: true,
+			acceptFrom: '.buildr-sortable-menu-block',
+			placeholderClass: 'alm-admin-page-builder-placeholder',
+		});
+
+		// Block
+		sortable('.buildr-sortable-menu-block', {
+			forcePlaceholderSize: false,
+			copy: true,
+			acceptFrom: '.buildr-sortable-menu, .buildr-sortable-list, .buildr-sortable-main-list',
+			placeholderClass: 'alm-admin-page-builder-placeholder',
+		});
+
+		// This runs during an item selection in the page builder menu
 		document.querySelector('.buildr-sortable-menu').addEventListener('sortstart', function(e){
 
 			sortable('.buildr-sortable-main-list', {
 				forcePlaceholderSize: true,
 				copy: false,
-				acceptFrom: '.buildr-sortable-menu, .buildr-sortable-list, .buildr-sortable-main-list, .buildr-sortable-item-list',
+				maxItems: 5,
+				acceptFrom: '.buildr-sortable-menu-section',
 				placeholderClass: 'alm-admin-page-builder-placeholder',
 			});
 
-			sortable('.buildr-sortable-item-list', {
-				forcePlaceholderSize: true,
-				copy: false,
-				acceptFrom: '.buildr-sortable-menu, .buildr-sortable-list, .buildr-sortable-main-list, .buildr-sortable-item-list',
-				placeholderClass: 'alm-admin-page-builder-placeholder',
-			});
+			// // Section
+			// sortable('.buildr-sortable-list-section', {
+			// 	forcePlaceholderSize: true,
+			// 	copy: false,
+			// 	maxItems: 5,
+			// 	items: ':not(.buildr-sortable-menu-section)',
+			// 	acceptFrom: '.buildr-sortable-menu-block',
+			// 	placeholderClass: 'alm-admin-page-builder-placeholder',
+			// });
 
-		});
+			// // Block
+			// sortable('.buildr-sortable-list-block', {
+			// 	forcePlaceholderSize: true,
+			// 	copy: false,
+			// 	maxItems: 2,
+			// 	acceptFrom: '.buildr-sortable-menu, .buildr-sortable-list, .buildr-sortable-main-list',
+			// 	placeholderClass: 'alm-admin-page-builder-placeholder',
+			// });
 
-		document.querySelector('.buildr-sortable-main-list').addEventListener('sortupdate', function(e){
-			let parent;
-			parent = e.detail.item;
-			jQuery('.buildr-sortable-item-options').removeClass('buildr-open-modal');
-			parent.children[2].classList.add('buildr-open-modal');
+			document.querySelector('.buildr-sortable-main-list').addEventListener('sortstart', function(e){
+				console.log('item added to main container');
 
-			jQuery('.buildr-open-modal').on('click', function() {
-				jQuery(this).parent().remove();
-			});
-
-			document.querySelector('.buildr-sortable-item-list').addEventListener('sortupdate', function(e) {
-				let child;
-				child = e.detail.item;
-				jQuery('.buildr-sortable-item-options').removeClass('buildr-open-modal');
-				child.children[2].classList.add('buildr-open-modal');
-				jQuery('.buildr-open-modal').on('click', function() {
-					jQuery(this).parent().remove();
+				sortable('.buildr-sortable-list-section', {
+					forcePlaceholderSize: true,
+					copy: false,
+					maxItems: 5,
+					items: ':not(.buildr-sortable-menu-section)',
+					acceptFrom: '.buildr-sortable-menu-block',
+					placeholderClass: 'alm-admin-page-builder-placeholder',
 				});
 
+				// document.querySelector('.buildr-sortable-item-list').addEventListener('sortupdate', function(e){
+				// 	console.log('item added to item container');
+
+				// 	document.querySelector('.buildr-sortable-list-container').addEventListener('sortupdate', function(e){
+				// 		console.log('item added to item item container');
+				// 	});
+				// });
 			});
 
 		});
+
+		// let parent;
+		// parent = e.detail.item;
+		// jQuery('.buildr-sortable-item-options').removeClass('buildr-open-modal');
+		// parent.children[2].classList.add('buildr-open-modal');
+
+		// jQuery('.buildr-open-modal').on('click', function() {
+		// 	jQuery(this).parent().remove();
+		// });
+
+		// document.querySelector('.buildr-sortable-item-list').addEventListener('sortupdate', function(e) {
+		// 	let child;
+		// 	child = e.detail.item;
+		// 	jQuery('.buildr-sortable-item-options').removeClass('buildr-open-modal');
+		// 	child.children[2].classList.add('buildr-open-modal');
+		// 	jQuery('.buildr-open-modal').on('click', function() {
+		// 		jQuery(this).parent().remove();
+		// 	});
+
+		// });
 
 		// initiate editor
 		// editor.init({
@@ -231,16 +286,18 @@ class editPage {
 		container = jQuery('.buildr-sortable-menu');
 		for (var i = 0; i < obj.length; i++) {
 			data = obj[i].info;
-			if(data.addList == true) { list = '<div class="buildr-sortable-item-container"><div class="buildr-sortable-list-container buildr-sortable-list buildr-sortable-item-list sortable alm-wrapper"></div></div>'; } else { list = ''; }
-			content = 	`<div class="alm-admin-page-builder-item alm-wrapper" data-copy="`+data.copy+`" data-type="`+data.type+`" data-id="`+i+`">
-							<div class="alm-admin-page-builder-item-icon alm-wrapper">
-								<span class="fa `+data.icon+`">
+			if(data.addList == true) { list = '<div class="buildr-sortable-item-container"><div class="buildr-sortable-list-container buildr-sortable-list-'+data.type+' sortable alm-wrapper"></div></div>'; } else { list = ''; }
+			content = 	`<div class="buildr-sortable-menu-container buildr-sortable-menu-`+data.type+`">
+							<div class="alm-admin-page-builder-item alm-wrapper" data-copy="`+data.copy+`" data-type="`+data.type+`" data-id="`+i+`">
+								<div class="alm-admin-page-builder-item-icon alm-wrapper">
+									<span class="fa `+data.icon+`">
+								</div>
+								<div class="alm-admin-page-builder-item-title alm-wrapper">`+data.title+`</div>
+								<div class="buildr-sortable-item-options alm-wrapper" data-id="`+i+`">
+									<span class="fa fa-ellipsis-v">
+								</div>
+								`+list+`
 							</div>
-							<div class="alm-admin-page-builder-item-title alm-wrapper">`+data.title+`</div>
-							<div class="buildr-sortable-item-options alm-wrapper" data-id="`+i+`">
-								<span class="fa fa-ellipsis-v">
-							</div>
-							`+list+`
 						</div>`;
 			container.append(content);
 		}
