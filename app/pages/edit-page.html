@@ -14,9 +14,9 @@
 
 		<script>
 			requirejs(['../src/js/frontend/config'],function(){
-				requirejs(['localforage','moment','jQuery','sortable','particle','AES','MD5','ace','editor','config','api','app','user','editPage'],
+				requirejs(['localforage','moment','jQuery','sortable','particle','AES','MD5','ace','editor','config','api','app','buildr','user','editPage'],
 				function (localforage,moment) {
-					var config = new Config(), api = new API(), app = new App(), user = new User(), pages = new editPage();
+					var config = new Config(), api = new API(), app = new App(), buildr = new Buildr(), user = new User(), pages = new editPage();
 					window.localforage = localforage
 					window.moment = moment;
 					localforage.ready(function() {
@@ -25,6 +25,7 @@
 				        localforage.getItem(key).then(function(value) {
 						    if(value != null) {
 						    	app.init({'template':'admin'});
+						    	buildr.init();
 								user.init();
 								pages.init();
 						    }

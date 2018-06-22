@@ -29,6 +29,7 @@ requirejs.config({
         app: 'controller/app',
         // core
         api: 'controller/core/api',
+        buildr: 'controller/core/buildr',
         config: 'controller/core/config',
         editor: 'controller/core/editor',
         page: 'controller/core/page',
