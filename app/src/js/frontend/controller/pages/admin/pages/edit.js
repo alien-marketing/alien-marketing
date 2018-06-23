@@ -81,9 +81,6 @@ class editPage {
 								<div class="alm-admin-page-block-sidebar-content">
 									<div class="alm-admin-page-builder">
 										<div class="alm-admin-page-builder-section">
-											<div class="alm-page-build-title">
-												Blocks
-											</div>
 											<div class="alm-page-builder-list buildr-sortable-menu sortable"></div>
 										</div>
 									</div>
@@ -112,42 +109,6 @@ class editPage {
 					'addList':true,
 					'copy':true
 				}
-			},
-			{
-				'info':{
-					'title':'slider',
-					'icon':'fa-cog',
-					'type':'slider',
-					'addList':false,
-					'copy':false
-				}
-			},
-			{
-				'info':{
-					'title':'form',
-					'icon':'fa-cog',
-					'type':'form',
-					'addList':false,
-					'copy':false
-				}
-			},
-			{
-				'info':{
-					'title':'image/video',
-					'icon':'fa-cog',
-					'type':'media',
-					'addList':false,
-					'copy':true
-				}
-			},
-			{
-				'info':{
-					'title':'text',
-					'icon':'fa-cog',
-					'type':'content',
-					'addList':false,
-					'copy':true
-				}
 			}
 		];
 
@@ -169,94 +130,68 @@ class editPage {
 			placeholderClass: 'alm-admin-page-builder-placeholder',
 		});
 
-		// Section
 		sortable('.buildr-sortable-menu-section', {
-			forcePlaceholderSize: false,
+			forcePlaceholderSize: true,
 			copy: true,
-			acceptFrom: '.buildr-sortable-menu-block',
+			maxItems: 5,
+			acceptFrom: false,
 			placeholderClass: 'alm-admin-page-builder-placeholder',
 		});
 
-		// Block
 		sortable('.buildr-sortable-menu-block', {
 			forcePlaceholderSize: false,
 			copy: true,
-			acceptFrom: '.buildr-sortable-menu, .buildr-sortable-list, .buildr-sortable-main-list',
+			acceptFrom: false,
 			placeholderClass: 'alm-admin-page-builder-placeholder',
 		});
 
-		// This runs during an item selection in the page builder menu
-		document.querySelector('.buildr-sortable-menu').addEventListener('sortstart', function(e){
+		document.querySelector('.buildr-sortable-main-list').addEventListener('sortupdate', function(e){
+			// this is where we can add items to the section...
+			let parent;
+			parent = e.detail.item;
+			jQuery('.buildr-sortable-item-edit').removeClass('buildr-edit-item');
+			jQuery('.buildr-sortable-item-options').removeClass('buildr-remove-item');
+			parent.children[0].classList.add('buildr-edit-item');
+			parent.children[2].classList.add('buildr-remove-item');
+			jQuery('.buildr-remove-item').on('click', function() {
+				jQuery(this).parent().remove();
+				console.log('remove item');
+			});
+			jQuery('.buildr-edit-item').on('click', function() {
+				console.log('edit this item');
+			});
 
-			sortable('.buildr-sortable-main-list', {
+			sortable('.buildr-sortable-list-section', {
 				forcePlaceholderSize: true,
 				copy: false,
 				maxItems: 5,
-				acceptFrom: '.buildr-sortable-menu-section',
+				items: ':not(.buildr-sortable-menu-section)',
+				acceptFrom: '.buildr-sortable-menu-block, .buildr-sortable-list-section',
 				placeholderClass: 'alm-admin-page-builder-placeholder',
 			});
 
-			// // Section
-			// sortable('.buildr-sortable-list-section', {
-			// 	forcePlaceholderSize: true,
-			// 	copy: false,
-			// 	maxItems: 5,
-			// 	items: ':not(.buildr-sortable-menu-section)',
-			// 	acceptFrom: '.buildr-sortable-menu-block',
-			// 	placeholderClass: 'alm-admin-page-builder-placeholder',
-			// });
+			document.querySelector('.buildr-sortable-list-section').addEventListener('sortupdate', function(e){
+				// this is where we can add items to the block...
+				let child;
+				child = e.detail.item;
 
-			// // Block
-			// sortable('.buildr-sortable-list-block', {
-			// 	forcePlaceholderSize: true,
-			// 	copy: false,
-			// 	maxItems: 2,
-			// 	acceptFrom: '.buildr-sortable-menu, .buildr-sortable-list, .buildr-sortable-main-list',
-			// 	placeholderClass: 'alm-admin-page-builder-placeholder',
-			// });
-
-			document.querySelector('.buildr-sortable-main-list').addEventListener('sortstart', function(e){
-				console.log('item added to main container');
-
-				sortable('.buildr-sortable-list-section', {
-					forcePlaceholderSize: true,
-					copy: false,
-					maxItems: 5,
-					items: ':not(.buildr-sortable-menu-section)',
-					acceptFrom: '.buildr-sortable-menu-block',
-					placeholderClass: 'alm-admin-page-builder-placeholder',
+				jQuery('.buildr-sortable-item-options').off('click').on('click', function() {
+					jQuery(this).parent().remove();
+					console.log('remove item');
 				});
 
-				// document.querySelector('.buildr-sortable-item-list').addEventListener('sortupdate', function(e){
-				// 	console.log('item added to item container');
+				jQuery('.buildr-sortable-list-block .buildr-option-item').off('click').on('click', function() {
+					let item, contents, options, option;
+					item = jQuery(this);
+					options = item.text();
+					item.parent().children('.buildr-option-item').removeClass('active');
+					item.addClass('active');
+					
+				});
 
-				// 	document.querySelector('.buildr-sortable-list-container').addEventListener('sortupdate', function(e){
-				// 		console.log('item added to item item container');
-				// 	});
-				// });
 			});
 
 		});
-
-		// let parent;
-		// parent = e.detail.item;
-		// jQuery('.buildr-sortable-item-options').removeClass('buildr-open-modal');
-		// parent.children[2].classList.add('buildr-open-modal');
-
-		// jQuery('.buildr-open-modal').on('click', function() {
-		// 	jQuery(this).parent().remove();
-		// });
-
-		// document.querySelector('.buildr-sortable-item-list').addEventListener('sortupdate', function(e) {
-		// 	let child;
-		// 	child = e.detail.item;
-		// 	jQuery('.buildr-sortable-item-options').removeClass('buildr-open-modal');
-		// 	child.children[2].classList.add('buildr-open-modal');
-		// 	jQuery('.buildr-open-modal').on('click', function() {
-		// 		jQuery(this).parent().remove();
-		// 	});
-
-		// });
 
 		// initiate editor
 		// editor.init({
@@ -282,21 +217,33 @@ class editPage {
 	}
 
 	buildMenu(obj) {
-		let container, content, data, list;
+		let container, content, data, list, edit;
 		container = jQuery('.buildr-sortable-menu');
 		for (var i = 0; i < obj.length; i++) {
 			data = obj[i].info;
-			if(data.addList == true) { list = '<div class="buildr-sortable-item-container"><div class="buildr-sortable-list-container buildr-sortable-list-'+data.type+' sortable alm-wrapper"></div></div>'; } else { list = ''; }
+			edit = '';
+			list = '';
+			if(data.type == 'block') { 
+				edit = 	`<div class="buildr-options alm-wrapper">
+							<div class="buildr-option-item alm-wrapper alm-sm-50 alm-md-25">slider</div>
+							<div class="buildr-option-item alm-wrapper alm-sm-50 alm-md-25">form</div>
+							<div class="buildr-option-item alm-wrapper alm-sm-50 alm-md-25">media</div>
+							<div class="buildr-option-item alm-wrapper alm-sm-50 alm-md-25">text</div>
+						</div>`; 
+			}
+			if(data.addList == true) { 
+				list = `<div class="buildr-sortable-list-container buildr-sortable-list-`+data.type+` alm-wrapper">`+edit+`</div>`;
+			}
 			content = 	`<div class="buildr-sortable-menu-container buildr-sortable-menu-`+data.type+`">
 							<div class="alm-admin-page-builder-item alm-wrapper" data-copy="`+data.copy+`" data-type="`+data.type+`" data-id="`+i+`">
-								<div class="alm-admin-page-builder-item-icon alm-wrapper">
-									<span class="fa `+data.icon+`">
+								<div class="buildr-sortable-item-edit alm-wrapper">
+									<span class="fa `+data.icon+`"></span>
 								</div>
 								<div class="alm-admin-page-builder-item-title alm-wrapper">`+data.title+`</div>
 								<div class="buildr-sortable-item-options alm-wrapper" data-id="`+i+`">
-									<span class="fa fa-ellipsis-v">
+									<span class="fa fa-remove">
 								</div>
-								`+list+`
+								<div class="buildr-sortable-item-container">`+list+`</div>
 							</div>
 						</div>`;
 			container.append(content);

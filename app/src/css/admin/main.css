@@ -1,11 +1,12 @@
 .alm-admin-header {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 50px;
-	background: #fff;
-	z-index: 10;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    z-index: 100;
+    box-shadow: 0px 0px 2px rgba(20,20,20,0.25);
 }
 
 .alm-admin-header-brand {
@@ -54,6 +55,7 @@
     background: #3c3c3c;
     z-index: 100;
     overflow-y: scroll;
+    box-shadow: 0px 0px 2px rgba(20,20,20,0.25);
 }
 
 /*.alm-admin-sidebar.open {
@@ -607,7 +609,7 @@ textarea.alm-admin-audit-item-value {
     text-transform: capitalize;
 }
 
-.alm-admin-page-builder-list {
+.buildr-sortable-list {
     background: #fff;
     min-height: 40px;
     padding: 10px;
@@ -630,7 +632,7 @@ textarea.alm-admin-audit-item-value {
     z-index: 10;
 }
 
-.alm-admin-page-builder-item-icon {
+.buildr-sortable-item-edit {
 	width: 46px;
 	height: 46px;
 }
@@ -652,7 +654,12 @@ textarea.alm-admin-audit-item-value {
 	margin-bottom: 0px;
 }
 
+.buildr-sortable-item-container {
+	display: none;
+}
+
 .alm-admin-page-builder-render .buildr-sortable-item-container {
+	display: flex;
 	width: 100%;
     padding: 0px 10px 10px 10px;
 }
@@ -680,6 +687,20 @@ textarea.alm-admin-audit-item-value {
 	height: 46px;
 }
 
+.buildr-sortable-edit-container {
+	display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #fff;
+    padding: 10px;
+    min-width: 80px;
+}
+
+.alm-admin-page-builder-render .buildr-sortable-item-edit:hover .buildr-sortable-edit-container {
+	display: block !important;
+}
+
 .buildr-modal {
 	display: none;
     position: fixed;
@@ -703,4 +724,12 @@ textarea.alm-admin-audit-item-value {
 	width: inherit;
 	height: inherit;
 	background: rgba(20,20,20,0.75);
+}
+
+.buildr-options {
+    width: 100%;
+}
+
+.buildr-option-item.active {
+	font-weight: 800;
 }
