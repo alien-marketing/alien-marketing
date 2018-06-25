@@ -458,7 +458,7 @@ class Home {
 			autoplayHoverPause: true,
 		    responsive:{
 		        0:{ items:1 },
-		        1200:{ items:2 }
+		        1500:{ items:2 }
 		    }
 		});
 	}
